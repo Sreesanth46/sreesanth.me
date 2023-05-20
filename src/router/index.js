@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Board from '../views/Board.vue';
+import Navbar from '../components/Navbar.vue';
 
 const routes = [
 	{
 		path: '/',
-		name: 'board',
-		component: Board,
+		name: 'navbar',
+		component: Navbar,
 	}
 ]
 
