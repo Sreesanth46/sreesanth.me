@@ -1,12 +1,12 @@
 <template>
     <header class="bg-slate-100">
       <nav class="flex items-center mx-auto justify-between p-5">
-          <div>
+          <div class="text-lg">
             Sreesanth
           </div>
-          <div class="flex ">
+          <div class="flex">
             <ul v-for="(item, index) in navMenu" :key="index">
-                <li>
+                <li class="px-3">
                     {{ item.name }}
                 </li>
             </ul>
