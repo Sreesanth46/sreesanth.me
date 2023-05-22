@@ -1,5 +1,5 @@
 <template>
-    <nav class="w-full fixed top-0 bg-white z-10">
+    <nav class="w-full top-0 bg-white z-10">
         <div class="container mx-auto py-5 flex items-center justify-between">
             <div class="hidden sm:flex items-center gap-2">
                 <!-- Logo -->
@@ -18,6 +18,10 @@
                 </ul>
                 <Theme />
             </div>
+
+            <!-- TODO -->
+            <!-- https://paste.sreesanth.me/dahavomehu.xml -->
+            <!-- Mobile screen nav -->
         </div>
     </nav>
 </template>
