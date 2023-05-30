@@ -15,3 +15,6 @@ export const useThemeStore = defineStore('ThemeStore', {
         }
     },
 })
+
+// TODO - change theme dynamically
+// https://paste.sreesanth.me/usiyamukum.coffee
