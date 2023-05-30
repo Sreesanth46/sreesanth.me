@@ -1,11 +1,13 @@
 <template>
-    <div id="app">
+    <div id="app" :class="{ 'bg-gray-800': themeStore.darkMode }">
         <RouterView />
     </div>
 </template>
 
 <script setup>
 import { RouterView } from "vue-router";
+import { useThemeStore } from "./stores/Theme";
+const themeStore = useThemeStore();
 </script>
 
 <style>
