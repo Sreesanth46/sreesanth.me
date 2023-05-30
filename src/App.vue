@@ -1,5 +1,9 @@
 <template>
-    <div id="app" :class="{ 'bg-gray-800': themeStore.darkMode }">
+    <div
+        id="app"
+        class="transition duration-[1500ms] ease-in-out"
+        :class="{ 'bg-gray-800': themeStore.darkMode }"
+    >
         <RouterView />
     </div>
 </template>
