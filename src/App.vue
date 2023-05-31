@@ -38,5 +38,6 @@ html {
 svg {
     width: 24px;
     height: 24px;
+    @apply fill-violet-900;
 }
 </style>
