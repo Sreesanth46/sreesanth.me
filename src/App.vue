@@ -34,4 +34,9 @@ html {
 .container {
     @apply mx-auto;
 }
+
+svg {
+    width: 24px;
+    height: 24px;
+}
 </style>
