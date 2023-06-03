@@ -1,0 +1,3 @@
+<template>
+    Demo component
+</template>

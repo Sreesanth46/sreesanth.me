@@ -1,0 +1,3 @@
+<template>
+    Project component
+</template>
