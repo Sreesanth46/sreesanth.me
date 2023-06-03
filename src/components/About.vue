@@ -1,13 +1,18 @@
 <template>
-    <section class="container">
-        <div class="grid mx-auto">
-            <div class="p-5 space-y-6">
+    <div class="">
+        <h1 class="">Sreesanth</h1>
+    </div>
+    <article>
+        <div class="">
+            <p>Hey, I'm Sreesanth, a fullstack developer.</p>
+            <p>Find me on</p>
+            <p class="flex">
                 <GithubIconVue />
                 <InstagramIconVue />
                 <LinkedinIconVue />
-            </div>
+            </p>
         </div>
-    </section>
+    </article>
 </template>
 
 <script setup>
