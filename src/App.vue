@@ -4,12 +4,16 @@
         class="transition duration-[1500ms] ease-in-out"
         :class="{ 'bg-gray-800': themeStore.darkMode }"
     >
-        <RouterView />
+        <Navbar />
+        <div class="container">
+            <RouterView />
+        </div>
     </div>
 </template>
 
 <script setup>
 import { RouterView } from "vue-router";
+import Navbar from "./components/Navbar.vue";
 import { useThemeStore } from "./stores/Theme";
 const themeStore = useThemeStore();
 </script>
@@ -19,15 +23,6 @@ const themeStore = useThemeStore();
 
 body,
 html {
-    height: 100%;
-}
-
-#app {
-    font-family: "Avenir", Arial, Helvetica, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
     height: 100%;
 }
 
