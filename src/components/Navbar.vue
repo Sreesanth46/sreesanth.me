@@ -12,11 +12,16 @@
                 class="hidden md:flex space-x-8 text-gray-600 font-medium items-center justify-center"
             >
                 <ul v-for="(item, index) in navMenu" :key="index">
-                    <li class="hover:text-gray-400">
-                        {{ item.name }}
-                    </li>
+                    <router-link :to="{ name: item.name }">
+                        <li class="hover:text-gray-400 cursor-pointer">
+                            {{ item.name }}
+                        </li>
+                    </router-link>
                 </ul>
                 <Theme />
+                <GithubIconVue />
+                <InstagramIconVue />
+                <LinkedinIconVue />
             </div>
 
             <!-- TODO -->
@@ -28,22 +33,21 @@
 
 <script setup>
 import Theme from "./Theme.vue";
-
+import GithubIconVue from "../icons/GithubIcon.vue";
+import InstagramIconVue from "../icons/InstagramIcon.vue";
+import LinkedinIconVue from "../icons/LinkedinIcon.vue";
 const navMenu = [
     {
-        name: "Home",
+        name: "Projects",
     },
 
     {
-        name: "About",
+        name: "Demos",
     },
 
     {
         name: "Services",
     },
 
-    {
-        name: "Contact Me",
-    },
 ];
 </script>
