@@ -8,12 +8,14 @@
         <div class="container">
             <RouterView />
         </div>
+        <Particles />
     </div>
 </template>
 
 <script setup>
 import { RouterView } from "vue-router";
 import Navbar from "./components/Navbar.vue";
+import Particles from "./components/Particles.vue";
 import { useThemeStore } from "./stores/Theme";
 const themeStore = useThemeStore();
 </script>
@@ -33,6 +35,6 @@ html {
 svg {
     width: 24px;
     height: 24px;
-    @apply fill-violet-900;
+    @apply fill-gray-400;
 }
 </style>
