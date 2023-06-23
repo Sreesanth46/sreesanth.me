@@ -14,7 +14,7 @@ const textProp = "Hey, I'm Sreesanth, a fullstack developer.";
     </div>
     <article>
         <div class="">
-            <Caption :type-prop="textProp" />
+            <Caption :text-prop="textProp" />
             <p>Find me on</p>
             <p class="grid gap-3">
                 <a :href="URLS.GITHUB">
