@@ -9,9 +9,9 @@ const textProp = "Hey, I'm Sreesanth, a fullstack developer.";
 </script>
         
 <template>
-    <div class="">
-        <h1 class="">Sreesanth</h1>
-    </div>
+    <!-- <div class=""> -->
+    <!-- <h1 class="">Sreesanth</h1> -->
+    <!-- </div> -->
     <article>
         <div class="">
             <Caption :text-prop="textProp" />
