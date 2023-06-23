@@ -3,9 +3,7 @@ import GithubIconVue from "../icons/GithubIcon.vue";
 import InstagramIconVue from "../icons/InstagramIcon.vue";
 import LinkedinIconVue from "../icons/LinkedinIcon.vue";
 import Caption from "./Caption.vue";
-import { URLS } from "../globals";
-
-const textProp = "Hey, I'm Sreesanth, a fullstack developer.";
+import { URLS, CAPTION } from "../globals";
 </script>
         
 <template>
@@ -14,7 +12,7 @@ const textProp = "Hey, I'm Sreesanth, a fullstack developer.";
     <!-- </div> -->
     <article>
         <div class="">
-            <Caption :text-prop="textProp" />
+            <Caption :text-prop="CAPTION" />
             <p>Find me on</p>
             <p class="grid gap-3">
                 <a :href="URLS.GITHUB">
