@@ -1,9 +1,9 @@
 <script setup>
-import Theme from "./Theme.vue";
-import GithubIconVue from "../icons/GithubIcon.vue";
-import InstagramIconVue from "../icons/InstagramIcon.vue";
-import LinkedinIconVue from "../icons/LinkedinIcon.vue";
-import { URLS } from "../globals";
+import Theme from "@components/Theme.vue";
+import GithubIconVue from "@icons/GithubIcon.vue";
+import InstagramIconVue from "@icons/InstagramIcon.vue";
+import LinkedinIconVue from "@icons/LinkedinIcon.vue";
+import { URLS } from "@/globals";
 const navMenu = [
     {
         name: "Projects",
