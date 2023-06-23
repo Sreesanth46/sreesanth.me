@@ -1,3 +1,24 @@
+<script setup>
+import Theme from "./Theme.vue";
+import GithubIconVue from "../icons/GithubIcon.vue";
+import InstagramIconVue from "../icons/InstagramIcon.vue";
+import LinkedinIconVue from "../icons/LinkedinIcon.vue";
+import { URLS } from "../globals";
+const navMenu = [
+    {
+        name: "Projects",
+    },
+
+    {
+        name: "Demos",
+    },
+
+    {
+        name: "Services",
+    },
+];
+</script>
+
 <template>
     <nav class="w-full top-0 z-10">
         <div class="container mx-auto py-5 flex items-center justify-between">
@@ -19,9 +40,15 @@
                     </router-link>
                 </ul>
                 <Theme />
-                <GithubIconVue />
-                <InstagramIconVue />
-                <LinkedinIconVue />
+                <a :href="URLS.GITHUB">
+                    <GithubIconVue />
+                </a>
+                <a :href="URLS.INSTAGRAM">
+                    <InstagramIconVue />
+                </a>
+                <a :href="URLS.LINKEDIN">
+                    <LinkedinIconVue />
+                </a>
             </div>
 
             <!-- TODO -->
@@ -30,24 +57,3 @@
         </div>
     </nav>
 </template>
-
-<script setup>
-import Theme from "./Theme.vue";
-import GithubIconVue from "../icons/GithubIcon.vue";
-import InstagramIconVue from "../icons/InstagramIcon.vue";
-import LinkedinIconVue from "../icons/LinkedinIcon.vue";
-const navMenu = [
-    {
-        name: "Projects",
-    },
-
-    {
-        name: "Demos",
-    },
-
-    {
-        name: "Services",
-    },
-
-];
-</script>
