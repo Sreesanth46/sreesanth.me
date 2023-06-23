@@ -1,9 +1,14 @@
+<script setup>
+import { defineProps } from "vue";
+const props = defineProps(["textProp"]);
+</script>
+
 <template>
-    <div class="typing-demo">I write code</div>
+    <div class="typing">{{ textProp }}</div>
 </template>
 
-<style>
-.typing-demo {
+<style scoped>
+.typing {
     width: 22ch;
     animation: typing 3s steps(22), blink 0.5s step-end infinite alternate;
     white-space: nowrap;
