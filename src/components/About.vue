@@ -13,7 +13,7 @@ import { URLS, CAPTION } from "../globals";
     <article>
         <div class="">
             <Caption :text-prop="CAPTION" />
-            <p>Find me on</p>
+            <p class="mt-10">Find me on</p>
             <p class="grid gap-3">
                 <a :href="URLS.GITHUB">
                     <GithubIconVue />
