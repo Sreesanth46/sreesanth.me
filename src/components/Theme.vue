@@ -1,3 +1,12 @@
+<script setup>
+import { useThemeStore } from "@stores/Theme";
+const themeStore = useThemeStore();
+
+function toggleTheme() {
+    themeStore.toggelDark();
+}
+</script>
+
 <template>
     <label class="switch">
         <span class="sun"
@@ -24,15 +33,6 @@
         <span class="slider"></span>
     </label>
 </template>
-
-<script setup>
-import { useThemeStore } from "../stores/Theme";
-const themeStore = useThemeStore();
-
-function toggleTheme() {
-    themeStore.toggelDark();
-}
-</script>
 
 <style lang="css">
 .switch {
