@@ -9,8 +9,8 @@ const props = defineProps(["textProp"]);
 
 <style scoped>
 .typing {
-    width: 22ch;
-    animation: typing 3s steps(22), blink 0.5s step-end infinite alternate;
+    width: 44ch;
+    animation: typing 3s steps(44), blink 0.5s step-end infinite alternate;
     white-space: nowrap;
     overflow: hidden;
     /* border-right: 3px solid; */
