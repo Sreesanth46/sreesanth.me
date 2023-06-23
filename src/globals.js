@@ -3,3 +3,5 @@ export const URLS = {
     LINKEDIN: 'https://www.linkedin.com/in/sreesanth46',
     INSTAGRAM: 'https://www.instagram.com/sreesanth.sh',
 }
+
+export const CAPTION = "Hey, I'm Sreesanth, a fullstack developer."
