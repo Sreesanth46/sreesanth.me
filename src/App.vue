@@ -1,7 +1,7 @@
 <template>
     <div
         id="app"
-        class="transition duration-[1500ms] ease-in-out"
+        class="h-screen transition duration-[1500ms] ease-in-out"
         :class="{ 'bg-gray-800': themeStore.darkMode }"
     >
         <Navbar />
