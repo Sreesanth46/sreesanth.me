@@ -15,4 +15,5 @@ export default defineConfig({
       '@stores': fileURLToPath(new URL('./src/stores', import.meta.url))
     }
   },
+  base: '/Portfolio/'
 })
