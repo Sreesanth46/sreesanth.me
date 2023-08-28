@@ -4,4 +4,4 @@ export const URLS = {
     INSTAGRAM: 'https://www.instagram.com/sreesanth.sh',
 }
 
-export const CAPTION = "Hey, I'm Sreesanth, a fullstack developer."
+export const CAPTION = "<p>Hey, <br>I'm Sreesanth, <br>a fullstack | devops | developer.</p>"
