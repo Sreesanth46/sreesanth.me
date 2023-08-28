@@ -5,26 +5,16 @@ import LinkedinIconVue from "@icons/LinkedinIcon.vue";
 import Caption from "@components/Caption.vue";
 import { URLS, CAPTION } from "@/globals";
 </script>
-        
+
 <template>
-    <!-- <div class=""> -->
-    <!-- <h1 class="">Sreesanth</h1> -->
-    <!-- </div> -->
-    <article>
-        <div class="">
-            <Caption :text-prop="CAPTION" />
-            <p class="mt-10">Find me on</p>
-            <p class="grid gap-3">
-                <a :href="URLS.GITHUB">
-                    <GithubIconVue />
-                </a>
-                <a :href="URLS.INSTAGRAM">
-                    <InstagramIconVue />
-                </a>
-                <a :href="URLS.LINKEDIN">
-                    <LinkedinIconVue />
-                </a>
-            </p>
-        </div>
-    </article>
+  <div>
+    <div class="flex gap-8">
+      <p class="grid gap-3">
+        <GithubIconVue />
+        <InstagramIconVue />
+        <LinkedinIconVue />
+      </p>
+      <Caption :text-prop="CAPTION" />
+    </div>
+  </div>
 </template>
