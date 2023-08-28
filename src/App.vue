@@ -14,9 +14,9 @@
 
 <script setup>
 import { RouterView } from "vue-router";
-import Navbar from "./components/Navbar.vue";
-import Particles from "./components/Particles.vue";
-import { useThemeStore } from "./stores/Theme";
+import Navbar from "@/components/Navbar.vue";
+import Particles from "@/components/Particles.vue";
+import { useThemeStore } from "@/stores/Theme";
 const themeStore = useThemeStore();
 </script>
 
@@ -26,10 +26,6 @@ const themeStore = useThemeStore();
 body,
 html {
     height: 100%;
-}
-
-body * {
-    @apply transition-colors duration-500;
 }
 
 svg {
