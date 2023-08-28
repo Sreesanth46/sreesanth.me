@@ -3,7 +3,7 @@ import { useThemeStore } from "@stores/Theme";
 const themeStore = useThemeStore();
 
 function toggleTheme() {
-    themeStore.toggelDark();
+    themeStore.toggleDark();
 }
 </script>
 
