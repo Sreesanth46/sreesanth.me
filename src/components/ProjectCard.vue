@@ -1,32 +1,23 @@
 <template>
-    <div
-        class="max-w-md rounded-3xl p-px bg-gradient-to-b from-blue-300 to-pink-300 dark:from-blue-800 dark:to-purple-800"
-    >
-        <div class="rounded-[calc(1.5rem-1px)] p-10 bg-white dark:bg-gray-900">
-            <p class="text-gray-700 dark:text-gray-300">
-                I absolutely love Tailus! The component blocks are beautifully
-                designed and easy to use, which makes creating a great-looking
-                website a breeze.
-            </p>
-
-            <div class="mt-8 flex gap-4 items-center">
-                <img
-                    class="h-12 w-12 rounded-full"
-                    src="https://pbs.twimg.com/profile_images/1599029039297077249/p0znhFdE_400x400.jpg"
-                    alt=""
-                />
-                <div>
-                    <h3
-                        class="text-lg font-medium text-gray-700 dark:text-white"
-                    >
-                        Oketa Fred
-                    </h3>
-                    <span
-                        class="text-sm tracking-wide text-gray-600 dark:text-gray-400"
-                        >Fullstack Developer</span
-                    >
-                </div>
-            </div>
-        </div>
+  <a
+    href="#"
+    class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+  >
+    <img
+      class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      src="/docs/images/blog/image-4.jpg"
+      alt=""
+    />
+    <div class="flex flex-col justify-between p-4 leading-normal">
+      <h5
+        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        Noteworthy technology acquisitions 2021
+      </h5>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        Here are the biggest enterprise technology acquisitions of 2021 so far,
+        in reverse chronological order.
+      </p>
     </div>
+  </a>
 </template>
