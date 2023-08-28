@@ -24,9 +24,11 @@ const navMenu = [
         <div class="container mx-auto py-5 flex items-center justify-between">
             <div class="hidden sm:flex items-center gap-2">
                 <!-- Logo -->
-                <span class="text-2xl font-medium text-indigo-900"
-                    >Sreesanth</span
-                >
+                <RouterLink :to="{name: 'About'}">
+                    <span class="text-2xl font-medium text-indigo-900"
+                        >Sreesanth
+                    </span>
+                </RouterLink>
             </div>
 
             <div
