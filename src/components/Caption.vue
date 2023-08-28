@@ -5,7 +5,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div  v-html="textProp" class="typing dark:text-slate-400 whitespace-nowrap w-full text-[2em]" />
+    <div  v-html="textProp" class="typing dark:text-slate-400 whitespace-nowrap w-full text-lg" />
 </template>
 
 <style scoped>
