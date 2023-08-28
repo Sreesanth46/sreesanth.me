@@ -2,10 +2,10 @@
     <div
         id="app"
         class="h-screen transition duration-[1500ms] ease-in-out"
-        :class="{ 'bg-gray-800': themeStore.darkMode }"
+        :class="{ 'bg-gray-800 dark': themeStore.darkMode }"
     >
         <Navbar />
-        <div class="container">
+        <div class="container mx-auto">
             <RouterView />
         </div>
         <Particles />
@@ -28,8 +28,8 @@ html {
     height: 100%;
 }
 
-.container {
-    @apply mx-auto;
+body * {
+    @apply transition-colors duration-500;
 }
 
 svg {
