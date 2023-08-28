@@ -3,7 +3,7 @@ import { URLS } from "@/globals";
 </script>
 
 <template>
-  <a :href="URLS.LINKEDIN">
+  <a :href="URLS.LINKEDIN" target="_blank">
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
