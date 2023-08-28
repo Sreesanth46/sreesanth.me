@@ -1,20 +1,18 @@
 <script setup>
-const props = defineProps(["textProp"]);
+const props = defineProps({
+    textProp: String
+});
 </script>
 
 <template>
-    <div class="typing">{{ textProp }}</div>
+    <div  v-html="textProp" class="typing dark:text-slate-400 whitespace-nowrap w-full text-[2em]" />
 </template>
 
 <style scoped>
 .typing {
-    width: 44ch;
     animation: typing 3s steps(44), blink 0.5s step-end infinite alternate;
-    white-space: nowrap;
     overflow: hidden;
-    /* border-right: 3px solid; */
     font-family: monospace;
-    font-size: 2em;
 }
 
 @keyframes typing {
