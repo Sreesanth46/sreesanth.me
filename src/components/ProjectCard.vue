@@ -5,7 +5,7 @@
   >
     <img
       class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-      src="/docs/images/blog/image-4.jpg"
+      src="https://source.unsplash.com/random"
       alt=""
     />
     <div class="flex flex-col justify-between p-4 leading-normal">
