@@ -1,20 +1,12 @@
-<script setup lang="ts">
-import type { IconProps } from './interface';
-withDefaults(defineProps<IconProps>(), {
-  size: 24,
-  color: 'rgb(136, 136, 136)'
-});
-</script>
-
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    :width="size"
-    :height="size"
+    width="24"
+    height="24"
     viewBox="0 0 24 24">
     <path
       fill="none"
-      :stroke="color"
+      stroke="rgb(136, 136, 136)"
       stroke-linecap="round"
       stroke-linejoin="round"
       stroke-width="2"
