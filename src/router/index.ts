@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from '~/pages/HomePage.vue';
+import HomePage from '~/pages/Home.vue';
 
 const routes = [
   {
@@ -12,7 +12,8 @@ const routes = [
     name: 'Github',
     redirect: '',
     beforeEnter() {
-      location.href = 'http://github.com/Sreesanth46';
+      window.open('http://github.com/Sreesanth46', '_blank');
+      return false;
     }
   },
   {
@@ -20,7 +21,8 @@ const routes = [
     name: 'Linkedin',
     redirect: '',
     beforeEnter() {
-      location.href = 'https://www.linkedin.com/in/sreesanth46';
+      window.open('http://linkedin.com/in/Sreesanth46', '_blank');
+      return false;
     }
   }
 ];
