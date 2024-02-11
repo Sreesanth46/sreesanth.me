@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FindMe from '~/components/FindMe.vue';
 import {
   NodeSkillIcon,
   DjangoSkillIcon,
@@ -6,6 +7,7 @@ import {
   NextSkillIcon,
   ReactSkillIcon
 } from '~/icons';
+import { FindMeLinks } from '~/globals';
 
 const Frameworks = [
   {
@@ -36,8 +38,8 @@ const Frameworks = [
     <div class="max-w-prose mb-8">
       <hi class="mb-0 text-4xl font-bold"> Sreesanth </hi>
     </div>
-    <article>
-      <div class="m-auto text-gray-700/70 flex flex-col gap-4">
+    <article class="text-gray-700/70">
+      <div class="m-auto flex flex-col gap-4">
         <p>Hey, I am Sreesanth, a Full-Stack Developer | open sourceror</p>
 
         <div>
@@ -66,6 +68,19 @@ const Frameworks = [
         <p>Outside coding, I enjoy doing photography and traveling.</p>
       </div>
       <hr class="w-24 m-auto my-10 border-[#7d7d7d4d]" />
+
+      <div class="flex flex-col gap-2">
+        <p>Find me on</p>
+        <div class="flex gap-4">
+          <FindMe
+            v-for="me in FindMeLinks"
+            :key="me.link"
+            :label="me.label"
+            :link="me.link">
+            <component :is="me.icons.outlined" />
+          </FindMe>
+        </div>
+      </div>
     </article>
   </div>
 </template>
