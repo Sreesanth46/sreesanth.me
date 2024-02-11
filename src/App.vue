@@ -1,36 +1,15 @@
-<template>
-    <div
-        id="app"
-        class="h-screen transition duration-[1500ms] ease-in-out"
-        :class="{ 'bg-gray-800 dark': themeStore.darkMode }"
-    >
-        <Navbar />
-        <div class="container mx-auto">
-            <RouterView />
-        </div>
-        <Particles />
-    </div>
-</template>
-
-<script setup>
-import { RouterView } from "vue-router";
-import Navbar from "@/components/Navbar.vue";
-import Particles from "@/components/Particles.vue";
-import { useThemeStore } from "@/stores/Theme";
-const themeStore = useThemeStore();
+<script setup lang="ts">
+import Navbar from '~/components/Navbar.vue';
+import Plum from '~/components/Plum.vue';
 </script>
 
-<style>
-@import "assets/tailwind.css";
-
-body,
-html {
-    height: 100%;
-}
-
-svg {
-    width: 24px;
-    height: 24px;
-    @apply fill-gray-400;
-}
-</style>
+<template>
+  <div class="flex flex-col h-screen pb-2 px-6">
+    <Plum />
+    <Navbar />
+    <div class="flex-auto py-10"><router-view></router-view></div>
+    <footer class="flex justify-center py-6">
+      <p class="text-gray-600/30 text-xs">2023-PRESENT © Sreesanth</p>
+    </footer>
+  </div>
+</template>
