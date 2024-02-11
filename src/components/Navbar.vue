@@ -1,61 +1,32 @@
-<script setup>
-import Theme from "@components/Theme.vue";
-import GithubIconVue from "@icons/GithubIcon.vue";
-import InstagramIconVue from "@icons/InstagramIcon.vue";
-import LinkedinIconVue from "@icons/LinkedinIcon.vue";
-import { URLS } from "@/globals";
-const navMenu = [
-    {
-        name: "Projects",
-    },
-
-    {
-        name: "Demos",
-    },
-
-    {
-        name: "Services",
-    },
-];
+<script setup lang="ts">
+import Github from '~/icons/Github.vue';
+import SunOutlined from '~/icons/SunOutlined.vue';
+import MoonOutlined from '~/icons/MoonOutlined.vue';
+import LightBulbOutlined from '~/icons/LightBulbOutlined.vue';
+import Linkedin from '~/icons/Linkedin.vue';
 </script>
 
 <template>
-    <nav class="w-full top-0 z-10">
-        <div class="container mx-auto py-5 flex items-center justify-between">
-            <div class="hidden sm:flex items-center gap-2">
-                <!-- Logo -->
-                <RouterLink :to="{name: 'About'}">
-                    <span class="text-2xl font-medium text-indigo-900"
-                        >Sreesanth
-                    </span>
-                </RouterLink>
-            </div>
+  <header class="h-12 flex items-center text-gray-700 pt-2">
+    <p
+      class="text-2xl animate-pulse bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">
+      .sh
+    </p>
+    <div class="flex-auto" />
+    <div class="flex gap-2 sm:gap-5 text-gray-700/70">
+      <router-link class="hover:text-gray-800" :to="{ name: '' }">
+        <LightBulbOutlined class="sm:hidden" />
+        <p class="hidden sm:block">Projects</p>
+      </router-link>
+      <router-link class="hover:text-gray-800" :to="{ name: 'Github' }">
+        <Github />
+      </router-link>
+      <router-link class="hover:text-gray-800" :to="{ name: 'Linkedin' }">
+        <Linkedin />
+      </router-link>
 
-            <div
-                class="hidden md:flex space-x-8 text-gray-600 font-medium items-center justify-center"
-            >
-                <ul v-for="(item, index) in navMenu" :key="index">
-                    <router-link :to="{ name: item.name }">
-                        <li class="hover:text-gray-400 cursor-pointer">
-                            {{ item.name }}
-                        </li>
-                    </router-link>
-                </ul>
-                <Theme />
-                <a :href="URLS.GITHUB">
-                    <GithubIconVue />
-                </a>
-                <a :href="URLS.INSTAGRAM">
-                    <InstagramIconVue />
-                </a>
-                <a :href="URLS.LINKEDIN">
-                    <LinkedinIconVue />
-                </a>
-            </div>
-
-            <!-- TODO -->
-            <!-- https://paste.sreesanth.me/dahavomehu.xml -->
-            <!-- Mobile screen nav -->
-        </div>
-    </nav>
+      <MoonOutlined class="hidden dark:block hover:text-gray-800" />
+      <SunOutlined class="dark:hidden hover:text-gray-800" />
+    </div>
+  </header>
 </template>
