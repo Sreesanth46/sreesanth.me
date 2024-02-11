@@ -8,6 +8,11 @@ const routes = [
     component: HomePage
   },
   {
+    path: '/projects',
+    name: 'Projects',
+    component: () => import('~/pages/Projects.vue')
+  },
+  {
     path: '/github',
     name: 'Github',
     redirect: '',
