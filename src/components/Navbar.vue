@@ -8,13 +8,15 @@ import Linkedin from '~/icons/Linkedin.vue';
 
 <template>
   <header class="h-12 flex items-center text-gray-700 pt-2">
-    <p
-      class="text-2xl animate-pulse bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">
-      .sh
-    </p>
+    <router-link :to="{ name: 'Home' }">
+      <p
+        class="text-2xl animate-pulse bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">
+        .sh
+      </p>
+    </router-link>
     <div class="flex-auto" />
-    <div class="flex gap-2 sm:gap-5 text-gray-700/70">
-      <router-link class="hover:text-gray-800" :to="{ name: '' }">
+    <div class="flex gap-6 sm:gap-5 text-gray-700/70">
+      <router-link class="hover:text-gray-800" :to="{ name: 'Projects' }">
         <LightBulbOutlined class="sm:hidden" />
         <p class="hidden sm:block">Projects</p>
       </router-link>
