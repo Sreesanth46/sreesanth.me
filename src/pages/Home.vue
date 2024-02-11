@@ -32,7 +32,7 @@ const Frameworks = [
 </script>
 
 <template>
-  <div class="py-10 sm:m-auto max-w-[75ch]">
+  <div class="sm:m-auto max-w-[75ch]">
     <div class="max-w-prose mb-8">
       <hi class="mb-0 text-4xl font-bold"> Sreesanth </hi>
     </div>
