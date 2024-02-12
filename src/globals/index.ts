@@ -25,3 +25,16 @@ export const FindMeLinks = [
     }
   }
 ];
+
+const ProjectLinks = {
+  VueTable: 'https://github.com/Sreesanth46/vue-table'
+};
+
+export const ProjectList = [
+  {
+    title: 'Vue Table',
+    description: 'A declarative table component',
+    link: ProjectLinks.VueTable,
+    icon: Github
+  }
+];

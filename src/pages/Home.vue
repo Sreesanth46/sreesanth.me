@@ -72,13 +72,13 @@ const Frameworks = [
       <div class="flex flex-col gap-2">
         <p>Find me on</p>
         <div class="flex gap-4">
-          <FindMe
+          <find-me
             v-for="me in FindMeLinks"
             :key="me.link"
             :label="me.label"
             :link="me.link">
             <component :is="me.icons.outlined" />
-          </FindMe>
+          </find-me>
         </div>
       </div>
     </article>
