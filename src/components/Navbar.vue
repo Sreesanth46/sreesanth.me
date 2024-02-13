@@ -4,6 +4,7 @@ import SunOutlined from '~/icons/SunOutlined.vue';
 import MoonOutlined from '~/icons/MoonOutlined.vue';
 import LightBulbOutlined from '~/icons/LightBulbOutlined.vue';
 import Linkedin from '~/icons/Linkedin.vue';
+import CvOutlinedIcon from '~/icons/CvOutlinedIcon.vue';
 </script>
 
 <template>
@@ -19,6 +20,9 @@ import Linkedin from '~/icons/Linkedin.vue';
       <router-link class="hover:text-gray-800" :to="{ name: 'Projects' }">
         <LightBulbOutlined class="sm:hidden" />
         <p class="hidden sm:block">Projects</p>
+      </router-link>
+      <router-link class="hover:text-gray-800" :to="{ name: 'Resume' }">
+        <CvOutlinedIcon />
       </router-link>
       <router-link class="hover:text-gray-800" :to="{ name: 'Github' }">
         <Github />
