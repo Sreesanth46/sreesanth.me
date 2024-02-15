@@ -3,7 +3,9 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx,vue}",
-  ], theme: {
+  ],
+  darkMode: 'class',
+  theme: {
     screens: {
       'xs': '0px',
       'sm': '600px',
