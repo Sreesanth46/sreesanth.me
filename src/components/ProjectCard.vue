@@ -8,7 +8,7 @@ defineProps({
 
 <template>
   <a
-    class="item relative flex items-center rounded-md gap-2 p-2 text-gray-700/70 hover:bg-gray-100 hover:text-gray-700"
+    class="item relative flex items-center rounded-md gap-2 p-2 hover:bg-gray-100 hover:text-gray-700"
     target="_blank"
     :href="link"
     :title="title">
