@@ -16,24 +16,6 @@ const routes = [
     path: '/resume',
     name: 'Resume',
     component: () => import('~/pages/Resume.vue')
-  },
-  {
-    path: '/github',
-    name: 'Github',
-    redirect: '',
-    beforeEnter() {
-      window.open('http://github.com/Sreesanth46', '_blank');
-      return false;
-    }
-  },
-  {
-    path: '/linkedin',
-    name: 'Linkedin',
-    redirect: '',
-    beforeEnter() {
-      window.open('http://linkedin.com/in/Sreesanth46', '_blank');
-      return false;
-    }
   }
 ];
 
