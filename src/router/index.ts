@@ -16,7 +16,8 @@ const routes = [
     path: '/resume',
     name: 'Resume',
     component: () => import('~/pages/Resume')
-  }
+  },
+  { path: '*', redirect: '/' }
 ];
 
 const router = createRouter({
