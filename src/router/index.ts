@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/resume',
     name: 'Resume',
-    component: () => import('~/pages/Resume.vue')
+    component: () => import('~/pages/Resume')
   }
 ];
 
