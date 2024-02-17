@@ -38,7 +38,7 @@ const Frameworks = [
     <div class="max-w-prose mb-8">
       <hi class="mb-0 text-4xl font-bold"> Sreesanth </hi>
     </div>
-    <article class="text-gray-700/70">
+    <article>
       <div class="m-auto flex flex-col gap-4">
         <p>Hey, I am Sreesanth, a Full-Stack Developer | open sourceror</p>
 
