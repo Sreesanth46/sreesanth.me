@@ -16,6 +16,19 @@ const routes = [
     path: '/resume',
     name: 'Resume',
     component: () => import('~/pages/Resume')
+  },
+  {
+    path: '/blogs',
+    name: 'Blogs',
+    redirect: { name: 'blog.1' },
+    component: () => import('~/pages/blogs/Blogs.vue'),
+    children: [
+      {
+        path: 'micro-service-session',
+        name: 'blog.1',
+        component: () => import('~/pages/blogs/MicroServiceSession.vue')
+      }
+    ]
   }
 ];
 
