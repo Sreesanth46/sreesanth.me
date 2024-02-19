@@ -3,6 +3,7 @@ import Linkedin from '~/icons/Linkedin.vue';
 import LightBulbOutlined from '~/icons/LightBulbOutlined.vue';
 import { h } from 'vue';
 import CvOutlinedIcon from '~/icons/CvOutlinedIcon.vue';
+import ArticleOutlined from '~/icons/ArticleOutlined.vue';
 
 interface IResponsiveLabelProp {
   label: string;
@@ -26,6 +27,11 @@ export const Links = {
 };
 
 export const NavbarLinks: INavLink[] = [
+  {
+    label: 'Blogs',
+    icon: ResponsiveLabel({ icon: ArticleOutlined, label: 'Blogs' }),
+    to: 'Blogs'
+  },
   {
     label: 'Projects',
     icon: ResponsiveLabel({ icon: LightBulbOutlined, label: 'Projects' }),
