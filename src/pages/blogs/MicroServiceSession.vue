@@ -125,7 +125,7 @@
       </ul>
     </div>
 
-    <p class="pt-4 text-gray-900">
+    <p class="pt-4 text-gray-900 dark:text-white">
       This shared Redis token store allows services to coordinate sign-on state.
       Storing tokens for validity checks prevents unauthorized use if
       intercepted.
