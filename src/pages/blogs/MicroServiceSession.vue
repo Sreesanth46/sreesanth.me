@@ -40,7 +40,7 @@
 
     <div>
       <img
-        src="../../../public/micro-service-session.jpg"
+        src="/micro-service-session.jpg"
         alt="micro service session architecture" />
     </div>
 
