@@ -3,19 +3,29 @@
 @tailwind utilities;
 
 :root {
-    --c-bg: #fff;
-    --c-scrollbar: #eee;
-    --c-scrollbar-hover: #bbb;
-  }
-  
-  html {
-    background-color: var(--c-bg);
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
-  
-  html.dark {
-    --c-bg: #050505;
-    --c-scrollbar: #111;
-    --c-scrollbar-hover: #222;
-  }
+  --c-bg: #fff;
+  --c-scrollbar: #eee;
+  --c-scrollbar-hover: #bbb;
+}
+
+html {
+  background-color: var(--c-bg);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+html.dark {
+  --c-bg: #050505;
+  --c-scrollbar: #111;
+  --c-scrollbar-hover: #222;
+}
+
+.fade-enter-active {
+  transition: opacity 2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
