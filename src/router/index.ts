@@ -20,13 +20,13 @@ const routes = [
   {
     path: '/blogs',
     name: 'Blogs',
-    redirect: { name: 'blog.1' },
     component: () => import('~/pages/blogs/Blogs.vue'),
     children: [
       {
-        path: 'micro-service-session',
-        name: 'blog.1',
-        component: () => import('~/pages/blogs/MicroServiceSession.vue')
+        path: ':slug',
+        name: 'blogs.show',
+        component: () => import('~/components/BlogsShow.vue'),
+        props: true
       }
     ]
   }
