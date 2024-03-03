@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import markdownit from 'markdown-it';
 import { onMounted, ref } from 'vue';
+import markdownit from 'markdown-it';
+import Shiki from '@shikijs/markdown-it';
 
 const { markdown } = defineProps<{
   markdown: string;
@@ -8,8 +9,21 @@ const { markdown } = defineProps<{
 
 const md = markdownit({
   html: true,
-  breaks: true
+  breaks: true,
+  linkify: true,
+  typographer: true
 });
+
+(async () => {
+  md.use(
+    await Shiki({
+      themes: {
+        light: 'vitesse-light',
+        dark: 'vitesse-dark'
+      }
+    })
+  );
+})();
 
 const render = ref<string>('');
 
