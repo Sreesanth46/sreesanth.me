@@ -8,12 +8,12 @@ const prettyName = (name: string) => name.split('-').join(' ');
 
 <template>
   <div class="max-w-[75ch] m-auto pt-4 md:p-6">
-    <div v-if="route.name === 'Blogs'">
+    <div v-if="route.name === 'Blogs'" class="flex flex-col gap-2">
       <router-link
         :to="`blogs/${name}`"
         v-for="{ name } in blogs"
         :key="name"
-        class="capitalize">
+        class="capitalize hover:font-semibold hover:bg-slate-100/50 p-2 rounded-sm">
         {{ prettyName(name) }}
       </router-link>
     </div>
