@@ -1,1 +1,1 @@
-export const blogs = [{"name":"user-session-management-in-microservice.md","url":"https://raw.githubusercontent.com/Sreesanth46/blogs/main/user-session-management-in-microservice.md"}]
+export const blogs = [{"name":"show-component-for-react","url":"https://raw.githubusercontent.com/Sreesanth46/blogs/main/show-component-for-react.md"},{"name":"user-session-management-in-microservice","url":"https://raw.githubusercontent.com/Sreesanth46/blogs/main/user-session-management-in-microservice.md"}]
