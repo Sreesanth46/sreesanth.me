@@ -15,9 +15,10 @@ async function run(owner: string, repo: string, path: string = '') {
   const blogs: { name: string; url: string }[] = [];
 
   for (const content of data) {
-    const { name, download_url } = content;
+    const { type, name, download_url } = content;
 
-    blogs.push({ name, url: download_url ?? '' });
+    if (type === 'file')
+      blogs.push({ name: name.split('.')[0], url: download_url ?? '' });
   }
 
   const final = `export const blogs = ${JSON.stringify(blogs)}`;
