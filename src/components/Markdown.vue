@@ -113,5 +113,6 @@ h6 {
 code {
   overflow: auto;
   display: block;
+  padding: 1.5rem;
 }
 </style>
