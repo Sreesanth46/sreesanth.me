@@ -109,4 +109,9 @@ h6 {
   margin-right: 0;
   font-weight: bold;
 }
+
+code {
+  overflow: auto;
+  display: block;
+}
 </style>
