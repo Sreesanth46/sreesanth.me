@@ -115,4 +115,8 @@ code {
   display: block;
   padding: 1.5rem;
 }
+
+pre {
+  background-color: transparent !important;
+}
 </style>
