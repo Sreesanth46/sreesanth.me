@@ -8,15 +8,11 @@ const markdown = markdownit({
   typographer: true
 });
 
-const init = async (): Promise<typeof markdown> => {
-  return markdown.use(
-    await Shiki({
-      themes: {
-        light: 'vitesse-light',
-        dark: 'vitesse-dark'
-      }
-    })
-  );
-};
-
-export const md = await init();
+export const md = markdown.use(
+  await Shiki({
+    themes: {
+      light: 'vitesse-light',
+      dark: 'vitesse-dark'
+    }
+  })
+);
