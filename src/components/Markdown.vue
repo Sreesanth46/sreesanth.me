@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { md } from '~/hooks';
+import { useMarkDown } from '~/hooks';
 
 const { markdown } = defineProps<{
   markdown: string;
 }>();
 
 const render = ref<string>('');
+const md = await useMarkDown();
 
 async function downloadFile(downloadUrl: string) {
   try {
@@ -35,7 +36,7 @@ onMounted(async () => {
 <template>
   <section
     v-html="render"
-    class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80"></section>
+    class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80" />
 </template>
 
 <style>

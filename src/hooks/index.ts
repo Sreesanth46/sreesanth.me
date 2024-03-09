@@ -1,18 +1,26 @@
 import markdownit from 'markdown-it';
 import Shiki from '@shikijs/markdown-it';
 
-const markdown = markdownit({
-  html: true,
-  breaks: true,
-  linkify: true,
-  typographer: true
-});
+let _md: markdownit;
 
-export const md = markdown.use(
-  await Shiki({
-    themes: {
-      light: 'vitesse-light',
-      dark: 'vitesse-dark'
-    }
-  })
-);
+export async function useMarkDown() {
+  if (!_md) {
+    _md = markdownit({
+      html: true,
+      breaks: true,
+      linkify: true,
+      typographer: true
+    });
+
+    _md.use(
+      await Shiki({
+        themes: {
+          light: 'vitesse-light',
+          dark: 'vitesse-dark'
+        }
+      })
+    );
+  }
+
+  return _md;
+}
