@@ -9,11 +9,13 @@ const blog = computed(() => {
 });
 </script>
 <template>
-  <Markdown
-    :markdown="
-      blog?.url ??
-      `
+  <Suspense>
+    <Markdown
+      :markdown="
+        blog?.url ??
+        `
   <h4 class='text-center pt-6'>Oops! Not found</h4>
   `
-    " />
+      " />
+  </Suspense>
 </template>
