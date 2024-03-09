@@ -1,29 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import markdownit from 'markdown-it';
-import Shiki from '@shikijs/markdown-it';
+import { md } from '~/hooks';
 
 const { markdown } = defineProps<{
   markdown: string;
 }>();
-
-const md = markdownit({
-  html: true,
-  breaks: true,
-  linkify: true,
-  typographer: true
-});
-
-(async () => {
-  md.use(
-    await Shiki({
-      themes: {
-        light: 'vitesse-light',
-        dark: 'vitesse-dark'
-      }
-    })
-  );
-})();
 
 const render = ref<string>('');
 
@@ -52,70 +33,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-html="render"></div>
+  <section
+    v-html="render"
+    class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80"></section>
 </template>
 
 <style>
-h1 {
-  display: block;
-  font-size: 2em;
-  margin-top: 0.67em;
-  margin-bottom: 0.67em;
-  margin-left: 0;
-  margin-right: 0;
-  font-weight: bold;
-}
-h2 {
-  display: block;
-  font-size: 1.5em;
-  margin-top: 0.83em;
-  margin-bottom: 0.83em;
-  margin-left: 0;
-  margin-right: 0;
-  font-weight: bold;
-}
-h3 {
-  display: block;
-  font-size: 1.17em;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  margin-left: 0;
-  margin-right: 0;
-  font-weight: bold;
-}
-h4 {
-  display: block;
-  margin-top: 1.33em;
-  margin-bottom: 1.33em;
-  margin-left: 0;
-  margin-right: 0;
-  font-weight: bold;
-}
-h5 {
-  display: block;
-  font-size: 0.83em;
-  margin-top: 1.67em;
-  margin-bottom: 1.67em;
-  margin-left: 0;
-  margin-right: 0;
-  font-weight: bold;
-}
-h6 {
-  display: block;
-  font-size: 0.67em;
-  margin-top: 2.33em;
-  margin-bottom: 2.33em;
-  margin-left: 0;
-  margin-right: 0;
-  font-weight: bold;
-}
-
-code {
-  overflow: auto;
-  display: block;
-  padding: 1.5rem;
-}
-
 pre {
   background-color: transparent !important;
 }
