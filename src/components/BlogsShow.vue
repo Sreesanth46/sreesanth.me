@@ -9,13 +9,16 @@ const blog = computed(() => {
 });
 </script>
 <template>
-  <Suspense>
-    <Markdown
-      :markdown="
-        blog?.url ??
+  <Transition name="fade" mode="out-in">
+    <Suspense>
+      <component
+        :is="Markdown"
+        :markdown="
+          blog?.url ??
+          `
+        <h4 class='text-center pt-6'>Oops! Not found</h4>
         `
-  <h4 class='text-center pt-6'>Oops! Not found</h4>
-  `
-      " />
-  </Suspense>
+        "></component>
+    </Suspense>
+  </Transition>
 </template>
