@@ -2,6 +2,11 @@
 import ProjectExtraCard from '~/components/ProjectExtraCard.vue';
 import { FindMeLinks, ProjectList } from '~/globals';
 import WorkExperienceCard from './WorkExperienceCard.vue';
+import { h } from 'vue';
+
+const SectionTitle = h('h4', {
+  class: 'bg-black dark:bg-white w-max text-white dark:text-black px-1'
+});
 </script>
 
 <template>
@@ -24,10 +29,7 @@ import WorkExperienceCard from './WorkExperienceCard.vue';
       </section>
       <section class="text-sm leading-6 flex flex-col gap-8">
         <div class="flex flex-col gap-4">
-          <h4
-            class="bg-black dark:bg-white w-max text-white dark:text-black px-1">
-            About
-          </h4>
+          <section-title> About </section-title>
           <p>
             My name is Sreesanth, a computer science engineering graduate. I
             work on full stack web development projects using various
@@ -40,10 +42,7 @@ import WorkExperienceCard from './WorkExperienceCard.vue';
           </p>
         </div>
         <div class="flex flex-col gap-4">
-          <h4
-            class="bg-black dark:bg-white w-max text-white dark:text-black px-1">
-            Projects
-          </h4>
+          <section-title> Projects </section-title>
           <ProjectExtraCard
             v-for="project in ProjectList"
             :key="project.title"
@@ -52,17 +51,11 @@ import WorkExperienceCard from './WorkExperienceCard.vue';
             :link="project.link" />
         </div>
         <div class="flex flex-col gap-4">
-          <h4
-            class="bg-black dark:bg-white w-max text-white dark:text-black px-1">
-            Work Experience
-          </h4>
+          <section-title> Work Experience </section-title>
           <WorkExperienceCard />
         </div>
         <div class="flex flex-col gap-4">
-          <h4
-            class="bg-black dark:bg-white w-max text-white dark:text-black px-1">
-            Stacks
-          </h4>
+          <section-title> Stacks </section-title>
           <div class="grid grid-cols-[max-content,auto] gap-3">
             <div><strong>Frontend</strong></div>
             <p>TypeScript, JavaScript, Vue, Next, React, Vite, Nuxt</p>
@@ -75,20 +68,14 @@ import WorkExperienceCard from './WorkExperienceCard.vue';
           </div>
         </div>
         <div class="flex flex-col gap-4">
-          <h4
-            class="bg-black dark:bg-white w-max text-white dark:text-black px-1">
-            Awards
-          </h4>
+          <section-title> Awards </section-title>
           <div>
             <p><strong>Newbie 2023 Award</strong>, Innovature Labs</p>
             <p class="text-gray-500 font-light">Jan 2024</p>
           </div>
         </div>
         <div class="flex flex-col gap-4">
-          <h4
-            class="bg-black dark:bg-white w-max text-white dark:text-black px-1">
-            Languages
-          </h4>
+          <section-title> Languages </section-title>
           <div class="flex gap-2">
             <p><strong>English</strong> (Fluent),</p>
             <p><strong>Malayalam</strong> (Native)</p>
