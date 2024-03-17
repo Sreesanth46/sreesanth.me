@@ -74,7 +74,8 @@ export const FindMeLinks = [
 ];
 
 const ProjectLinks = {
-  VueTable: 'https://github.com/Sreesanth46/vue-table'
+  VueTable: 'https://github.com/Sreesanth46/vue-table',
+  sh: 'https://github.com/Sreesanth46/sreesanth.me'
 };
 
 export const ProjectList = [
@@ -82,6 +83,12 @@ export const ProjectList = [
     title: 'Vue Table',
     description: 'A declarative table component',
     link: ProjectLinks.VueTable,
+    icon: Github
+  },
+  {
+    title: 'Portfolio',
+    description: 'My portfolio website',
+    link: ProjectLinks.sh,
     icon: Github
   }
 ];
