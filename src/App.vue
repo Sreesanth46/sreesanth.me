@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Navbar from '~/components/Navbar.vue';
 import Plum from '~/components/Plum.vue';
+import SlideEnterTransition from '~/components/SlideEnterTransition.vue';
 </script>
 
 <template>
@@ -9,9 +10,9 @@ import Plum from '~/components/Plum.vue';
     <Navbar />
     <main class="flex-auto py-10">
       <router-view v-slot="{ Component }">
-        <Transition name="fade" mode="out-in">
+        <slide-enter-transition>
           <component :is="Component" />
-        </Transition>
+        </slide-enter-transition>
       </router-view>
     </main>
     <footer class="flex justify-center py-6">
