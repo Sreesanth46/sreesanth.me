@@ -8,7 +8,7 @@ import SlideEnterTransition from '~/components/SlideEnterTransition.vue';
   <div class="flex flex-col h-screen pb-2 px-6">
     <Plum />
     <Navbar />
-    <main class="flex-auto py-10">
+    <main class="flex-auto py-10 md:pt-14 md:pb-10">
       <router-view v-slot="{ Component }">
         <slide-enter-transition>
           <component :is="Component" />
