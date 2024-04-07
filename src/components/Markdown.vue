@@ -34,9 +34,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section
+  <article
     v-html="render"
-    class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80" />
+    class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg" />
 </template>
 
 <style>
