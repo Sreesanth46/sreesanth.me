@@ -7,7 +7,7 @@ const prettyName = (name: string) => name.split('-').join(' ');
 </script>
 
 <template>
-  <div class="max-w-[75ch] m-auto pt-4 md:p-6">
+  <div class="max-w-[75ch] m-auto">
     <div v-if="route.name === 'Blogs'" class="flex flex-col gap-2">
       <router-link
         :to="`blogs/${name}`"
