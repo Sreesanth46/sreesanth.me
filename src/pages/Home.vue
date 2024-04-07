@@ -35,52 +35,46 @@ const Frameworks = [
 
 <template>
   <div class="sm:m-auto max-w-[75ch]">
-    <div class="max-w-prose mb-8">
-      <hi class="mb-0 text-4xl font-bold"> Sreesanth </hi>
-    </div>
-    <article>
-      <div class="m-auto flex flex-col gap-4">
-        <p>Hey, I am Sreesanth, a Full-Stack Developer | open sourceror</p>
-
-        <div>
-          <p>
-            Detail-oriented Full-Stack Developer with expertise developing and
-            deploying complete web applications with technologies like
-          </p>
-          <div class="flex flex-wrap">
-            <div
-              class="flex items-center pr-3"
-              v-for="({ label, icon }, i) in Frameworks"
-              :key="label">
-              <p class="mr-1">{{ label }}</p>
-              <component :is="icon" />
-              <span v-if="Frameworks.length - 1 !== i">&#65104;</span>
-            </div>
+    <article class="prose dark:prose-invert lg:prose-lg">
+      <h1 class="mb-0 text-4xl font-bold">Sreesanth</h1>
+      <p>Hey, I am Sreesanth, a Full-Stack Developer | open sourceror</p>
+      <p class="mb-0">
+        Detail-oriented Full-Stack Developer with expertise developing and
+        deploying complete web applications with technologies like
+        <span class="flex flex-wrap not-prose">
+          <div
+            class="flex items-center pr-3"
+            v-for="({ label, icon }, i) in Frameworks"
+            :key="label">
+            <p class="mr-1">{{ label }}</p>
+            <component :is="icon" />
+            <span v-if="Frameworks.length - 1 !== i">&#65104;</span>
           </div>
-        </div>
+        </span>
+      </p>
 
-        <p>
-          Dreaming up ideas and making them come true is where my passion lies.
-          I excel in roles that require versatility, whether it's leading
-          collaborative planning sessions, designing scalable backend
-          architectures for growth, or coding intuitive and responsive frontend.
-        </p>
-        <p>Outside coding, I enjoy doing photography and traveling.</p>
-      </div>
-      <hr class="w-24 m-auto my-10 border-[#7d7d7d4d]" />
-
-      <div class="flex flex-col gap-2">
-        <p>Find me on</p>
-        <div class="flex gap-4">
-          <find-me
-            v-for="me in FindMeLinks"
-            :key="me.link"
-            :label="me.label"
-            :link="me.link">
-            <component :is="me.icons.outlined" />
-          </find-me>
-        </div>
-      </div>
+      <p>
+        Dreaming up ideas and making them come true is where my passion lies. I
+        excel in roles that require versatility, whether it's leading
+        collaborative planning sessions, designing scalable backend
+        architectures for growth, or coding intuitive and responsive frontend.
+      </p>
+      <p>Outside coding, I enjoy doing photography and traveling.</p>
+      <hr
+        class="w-24 m-auto my-10 border-[#7d7d7d4d] dark:border-[#e9e9e94d]" />
     </article>
+
+    <div class="flex flex-col gap-2 mt-10">
+      <p>Find me on</p>
+      <div class="flex gap-4">
+        <find-me
+          v-for="me in FindMeLinks"
+          :key="me.link"
+          :label="me.label"
+          :link="me.link">
+          <component :is="me.icons.outlined" />
+        </find-me>
+      </div>
+    </div>
   </div>
 </template>
