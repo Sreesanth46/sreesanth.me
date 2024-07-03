@@ -56,8 +56,6 @@ html.dark {
   border: 3px solid var(--primary);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@1,500&display=swap');
-
 .shiki,
 .shiki span {
   font-family: 'DM Mono', monospace;

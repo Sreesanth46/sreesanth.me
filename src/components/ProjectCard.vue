@@ -8,10 +8,11 @@ defineProps<{
 
 <template>
   <a
-    class="item relative flex items-center rounded-md gap-2 p-2 hover:bg-gray-100 hover:text-gray-700"
+    class="item relative flex items-center rounded-md gap-2 p-2 hover:bg-gray-100 dark:hover:bg-black/40 hover:text-lg"
     target="_blank"
     :href="link"
-    :title="title">
+    :title="title"
+  >
     <div class="flex justify-center items-center">
       <slot name="icon"></slot>
     </div>
