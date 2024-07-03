@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import ProjectExtraCard from '~/components/ProjectExtraCard.vue';
-import { FindMeLinks, ProjectList } from '~/globals';
-import WorkExperienceCard from './WorkExperienceCard.vue';
-import { h } from 'vue';
+import ProjectExtraCard from "~/components/ProjectExtraCard.vue";
+import { FindMeLinks, ProjectList } from "~/globals";
+import WorkExperienceCard from "./WorkExperienceCard.vue";
+import { h } from "vue";
+import { Experiences } from ".";
 
-const SectionTitle = h('h4', {
-  class: 'bg-black dark:bg-white w-max text-white dark:text-black px-1'
+const SectionTitle = h("h4", {
+  class: "bg-black dark:bg-white w-max text-white dark:text-black px-1",
 });
 </script>
 
@@ -18,11 +19,13 @@ const SectionTitle = h('h4', {
             <h3 class="font-medium text-3xl">Sreesanth</h3>
             <h5 class="text-md">Software Engineer</h5>
             <p class="font-extralight text-xs mt-3">sreesanth46@gmail.com</p>
-            <div class="flex gap-3 mt-2 justify-center items-center">
+            <div class="flex gap-2 mt-2 justify-center items-center">
               <component
-                class="h-3 w-3"
+                class="h-4 w-4 cursor-pointer"
                 v-for="me in FindMeLinks"
-                :is="me.icons.outlined" />
+                :is="me.icons.outlined"
+                :key="me.label"
+              />
             </div>
           </div>
         </div>
@@ -48,11 +51,20 @@ const SectionTitle = h('h4', {
             :key="project.title"
             :title="project.title"
             :descriptions="project.description"
-            :link="project.link" />
+            :link="project.link"
+          />
         </div>
         <div class="flex flex-col gap-4">
           <section-title> Work Experience </section-title>
-          <WorkExperienceCard />
+          <WorkExperienceCard
+            v-for="experience in Experiences"
+            :key="experience.employer"
+            :employer="experience.employer"
+            :title="experience.title"
+            :start-date="experience.startDate"
+            :end-date="experience.endDate"
+            :summary="experience.summary"
+          />
         </div>
         <div class="flex flex-col gap-4">
           <section-title> Stacks </section-title>
