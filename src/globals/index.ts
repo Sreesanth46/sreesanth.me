@@ -1,7 +1,7 @@
+import { h } from 'vue';
 import Github from '~/icons/Github.vue';
 import Linkedin from '~/icons/Linkedin.vue';
 import LightBulbOutlined from '~/icons/LightBulbOutlined.vue';
-import { h } from 'vue';
 import CvOutlinedIcon from '~/icons/CvOutlinedIcon.vue';
 import ArticleOutlined from '~/icons/ArticleOutlined.vue';
 
@@ -81,12 +81,12 @@ const ProjectLinks = {
 export const ProjectList = [
   {
     title: 'Vue Table',
-    description: 'A declarative table component',
+    description: 'A declarative table component with pagination component.',
     link: ProjectLinks.VueTable,
     icon: Github
   },
   {
-    title: 'Portfolio',
+    title: '.sh',
     description: 'My portfolio website',
     link: ProjectLinks.sh,
     icon: Github
