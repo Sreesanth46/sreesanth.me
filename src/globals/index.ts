@@ -26,6 +26,11 @@ export const Links = {
   Instagram: 'https://www.instagram.com/Sreesanth.sh'
 };
 
+const ProjectLinks = {
+  VueTable: 'https://github.com/Sreesanth46/vue-table',
+  sh: 'https://github.com/Sreesanth46/sreesanth.me'
+};
+
 export const NavbarLinks: INavLink[] = [
   {
     label: 'Blogs',
@@ -72,11 +77,6 @@ export const FindMeLinks = [
     }
   }
 ];
-
-const ProjectLinks = {
-  VueTable: 'https://github.com/Sreesanth46/vue-table',
-  sh: 'https://github.com/Sreesanth46/sreesanth.me'
-};
 
 export const ProjectList = [
   {
