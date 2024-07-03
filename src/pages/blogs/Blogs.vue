@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
-import { blogs } from '~/blogs';
+import { useRoute } from "vue-router";
+import { blogs } from "~/blogs";
 const route = useRoute();
 
-const prettyName = (name: string) => name.split('-').join(' ');
+const prettyName = (name: string) => name.split("-").join(" ");
 </script>
 
 <template>
@@ -13,7 +13,8 @@ const prettyName = (name: string) => name.split('-').join(' ');
         :to="`blogs/${name}`"
         v-for="{ name } in blogs"
         :key="name"
-        class="capitalize hover:font-semibold hover:bg-slate-100/50 p-2 rounded-sm">
+        class="capitalize hover:text-lg hover:bg-slate-100/50 dark:hover:bg-black/40 p-2 rounded-sm"
+      >
         {{ prettyName(name) }}
       </router-link>
     </div>
