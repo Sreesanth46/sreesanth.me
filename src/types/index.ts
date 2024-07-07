@@ -14,3 +14,5 @@ export interface BlogData {
 export interface BlogTitleProps extends BlogData {
   readTime?: string;
 }
+
+export type BlogPublishedOnProps = Omit<BlogTitleProps, "title">;
