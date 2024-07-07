@@ -1,21 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type { BlogTitleProps } from "~/types";
-import { monthWithDay } from "~/utils/date-utils";
+import BlogPublishedOn from "~/components/BlogPublishedOn.vue";
 
 const props = defineProps<BlogTitleProps>();
-const now = new Date();
 
 const isPropsEmpty = computed(() => {
   return Object.values(props).every((p) => !p);
-});
-
-const displayDate = computed(() => {
-  const publishedAt = new Date(props.date as string);
-  const { year, dayWithMonth } = monthWithDay(publishedAt);
-
-  const isSameYear = now.getFullYear() === year;
-  return `${dayWithMonth}${isSameYear ? "" : `, ${year}`}`;
 });
 </script>
 
@@ -27,8 +18,10 @@ const displayDate = computed(() => {
     <h1 v-if="title" class="mb-2">
       {{ title }}
     </h1>
-    <p v-if="date" class="mt-2 opacity-50">
-      {{ displayDate }} <span>&middot; {{ readTime }}</span>
-    </p>
+    <BlogPublishedOn
+      :date="date"
+      :read-time="readTime"
+      class="mt-2 opacity-50"
+    />
   </div>
 </template>

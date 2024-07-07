@@ -5,7 +5,7 @@ import SlideEnterTransition from "~/components/SlideEnterTransition.vue";
 </script>
 
 <template>
-  <div class="flex flex-col h-screen pb-2 px-6">
+  <div class="flex flex-col h-screen pb-2 px-6 font-sans">
     <Plum />
     <Navbar />
     <main class="flex-auto py-10 md:pt-14 md:pb-10">

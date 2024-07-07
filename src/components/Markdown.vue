@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { inject, onMounted, ref } from "vue";
 import type { BlogData } from "~/types";
 import { useMarkDown } from "~/hooks";
 import { matter } from "~/utils/matter";
 import BlogTitle from "~/components/BlogsTitle.vue";
-import { readTime } from "~/utils/read-time";
 
 const { markdown } = defineProps<{
   markdown: string;
 }>();
-
+const readTime = inject("readTime", "5min");
 const render = ref<string>("");
 const blogData = ref<BlogData>();
 const md = await useMarkDown();
@@ -38,15 +37,11 @@ onMounted(async () => {
     render.value = md.render(markdown);
   }
 });
-
-const blogReadTime = computed(() => {
-  return readTime(render.value);
-});
 </script>
 
 <template>
   <div>
-    <BlogTitle :read-time="blogReadTime" v-bind="blogData" />
+    <BlogTitle :read-time="readTime" v-bind="blogData" />
     <article
       v-html="render"
       class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg"
