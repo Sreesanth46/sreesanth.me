@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ProjectExtraCard from "~/components/ProjectExtraCard.vue";
 import { FindMeLinks, ProjectList } from "~/globals";
-import WorkExperienceCard from "./WorkExperienceCard.vue";
+import WorkExperienceCard from "~/components/WorkExperienceCard.vue";
 import { h } from "vue";
 import { Experiences } from ".";
 

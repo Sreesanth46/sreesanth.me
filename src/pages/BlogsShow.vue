@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { blogs } from '~/blogs';
-import Markdown from './Markdown.vue';
+import { computed } from "vue";
+import { blogs } from "~/blogs";
+import Markdown from "~/components/Markdown.vue";
 const { slug } = defineProps<{ slug: string }>();
 
 const blog = computed(() => {
-  return blogs.find(blog => blog.name === slug);
+  return blogs.find((blog) => blog.name === slug);
 });
 </script>
 <template>
@@ -18,7 +18,8 @@ const blog = computed(() => {
           `
         <h4 class='text-center pt-6'>Oops! Not found</h4>
         `
-        "></component>
+        "
+      ></component>
     </Suspense>
   </Transition>
 </template>

@@ -5,3 +5,12 @@ export interface Experience {
   endDate?: string;
   summary?: string[];
 }
+
+export interface BlogData {
+  title?: string;
+  date?: string;
+}
+
+export interface BlogTitleProps extends BlogData {
+  readTime?: string;
+}
