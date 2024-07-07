@@ -1,4 +1,4 @@
-export function readTime(content: string, wordsPerMinute = 200) {
+export function readTime(content: string, wordsPerMinute = 130) {
   // Count the total number of words in the content
   const wordCount = content.split(/\s+/).length;
 
