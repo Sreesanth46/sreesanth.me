@@ -1,3 +1,4 @@
+import { useTitle } from "@vueuse/core";
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "~/pages/Home.vue";
 
@@ -35,6 +36,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to) => {
+  const { name } = to;
+  if (typeof name === "string" && !["blogs.show", "Home"].includes(name)) {
+    useTitle(`${name} - sh`);
+  }
 });
 
 export default router;

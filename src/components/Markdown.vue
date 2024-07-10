@@ -4,6 +4,8 @@ import type { BlogData } from "~/types";
 import { useMarkDown } from "~/hooks";
 import { matter } from "~/utils/matter";
 import BlogTitle from "~/components/BlogsTitle.vue";
+import { useTitle } from "@vueuse/core";
+import { computed } from "vue";
 
 const { markdown } = defineProps<{
   markdown: string;
@@ -37,11 +39,14 @@ onMounted(async () => {
     render.value = md.render(markdown);
   }
 });
+
+const title = computed(() => blogData.value?.title);
+useTitle(title);
 </script>
 
 <template>
   <div>
-    <BlogTitle :read-time="readTime" v-bind="blogData" />
+    <BlogTitle v-if="render.length" :read-time="readTime" v-bind="blogData" />
     <article
       v-html="render"
       class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg"
