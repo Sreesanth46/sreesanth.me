@@ -15,13 +15,13 @@ const isPropsEmpty = computed(() => {
     v-if="!isPropsEmpty"
     class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg mb-6"
   >
-    <h1 v-if="title" class="mb-2">
+    <h1 v-if="title" class="mb-2 lg:mb-0">
       {{ title }}
     </h1>
     <BlogPublishedOn
       :date="date"
       :read-time="readTime"
-      class="mt-2 opacity-50"
+      class="mt-0 opacity-50"
     />
   </div>
 </template>
