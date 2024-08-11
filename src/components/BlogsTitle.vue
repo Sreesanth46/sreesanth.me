@@ -13,7 +13,7 @@ const isPropsEmpty = computed(() => {
 <template>
   <div
     v-if="!isPropsEmpty"
-    class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg mb-6"
+    class="prose-sm sm:prose lg:prose-lg dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 mb-6"
   >
     <h1 v-if="title" class="mb-2 lg:mb-0">
       {{ title }}

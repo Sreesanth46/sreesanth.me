@@ -44,8 +44,8 @@ const SectionTitle = h("h4", {
             development.
           </p>
         </div>
-        <div class="flex flex-col gap-4">
-          <section-title> Projects </section-title>
+        <div>
+          <section-title class="mb-2"> Projects </section-title>
           <ProjectExtraCard
             v-for="project in ProjectList"
             :key="project.title"
