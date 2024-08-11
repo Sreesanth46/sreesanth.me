@@ -14,10 +14,21 @@ const displayDate = computed(() => {
   const isSameYear = now.getFullYear() === year;
   return `${dayWithMonth}${isSameYear ? "" : `, ${year}`}`;
 });
+
+const ago = computed(() => {
+  const publishedAt = new Date(props.date as string);
+  const relativeTimeFormat = new Intl.RelativeTimeFormat("en", {
+    numeric: "auto",
+  });
+
+  const Δms = publishedAt.getTime() - now.getTime();
+  const Δd = Math.floor(Δms / (1000 * 60 * 60 * 24));
+  return relativeTimeFormat.format(Δd, "days");
+});
 </script>
 
 <template>
-  <p>
+  <p :title="ago">
     {{ displayDate }} <span>&middot; {{ readTime }}</span>
   </p>
 </template>
