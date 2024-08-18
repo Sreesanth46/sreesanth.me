@@ -51,7 +51,8 @@ const SectionTitle = h("h4", {
             :key="project.title"
             :title="project.title"
             :descriptions="project.description"
-            :link="project.link"
+            :github="project.github"
+            :live="project.live"
           />
         </div>
         <div class="flex flex-col gap-4">
