@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ProjectCard from '~/components/ProjectCard.vue';
-import { ProjectList } from '~/globals';
+import ProjectCard from "~/components/ProjectCard.vue";
+import { ProjectList } from "~/globals";
 </script>
 
 <template>
@@ -10,8 +10,9 @@ import { ProjectList } from '~/globals';
         v-for="project in ProjectList"
         :key="project.title"
         :title="project.title"
-        :link="project.link"
-        :descriptions="project.description">
+        :link="project.github"
+        :descriptions="project.description"
+      >
         <template #icon>
           <component :is="project.icon" />
         </template>
