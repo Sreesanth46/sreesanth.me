@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,11 +9,25 @@
       (function () {
         const prefersDark =
           window.matchMedia &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches
-        const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const setting = localStorage.getItem('vueuse-color-scheme') || 'auto';
         if (setting === 'dark' || (prefersDark && setting !== 'light'))
-          document.documentElement.classList.toggle('dark', true)
-      })()
+          document.documentElement.classList.toggle('dark', true);
+      })();
+    </script>
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', 'ode6xkbc19');
     </script>
   </head>
   <body class="font-sans text-gray-700 dark:text-gray-200 relative">
