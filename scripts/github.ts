@@ -1,52 +1,52 @@
-import { Octokit } from "@octokit/rest";
-import fs from "fs-extra";
-import { matter } from "../src/utils/matter.ts";
-import { readTime } from "../src/utils/read-time.ts";
-import type { components } from "@octokit/openapi-types";
+import { Octokit } from '@octokit/rest';
+import fs from 'fs-extra';
+import { matter } from '../src/utils/matter.ts';
+import { readTime } from '../src/utils/read-time.ts';
+import type { components } from '@octokit/openapi-types';
 
-type GetRepoContentResponseDataFile = components["schemas"]["content-file"];
+type GetRepoContentResponseDataFile = components['schemas']['content-file'];
 type TBlogs = {
   name: string;
   url: string;
   title?: string;
-  date?: string;
+  date: string;
   readTime?: string;
 };
 
 const auth = process.env.GITHUB_TOKEN;
 
-async function getContent(owner: string, repo: string, path = "") {
+async function getContent(owner: string, repo: string, path = '') {
   const github = new Octokit({ auth });
 
   const { data } = await github.repos.getContent({
     owner,
     repo,
-    path,
+    path
   });
 
   return data as GetRepoContentResponseDataFile;
 }
 
-const parseMatter = async (owner: string, repo: string, path = "") => {
+const parseMatter = async (owner: string, repo: string, path = '') => {
   const data = await getContent(owner, repo, path);
 
   if (Array.isArray(data)) return;
 
   const { name, download_url, content } = data;
 
-  const buffer = Buffer.from(content, "base64").toString();
+  const buffer = Buffer.from(content, 'base64').toString();
   const { data: matterData, content: matterContent } = matter(buffer);
   const read = readTime(matterContent);
 
   return {
-    name: name.split(".")[0],
-    url: download_url ?? "",
+    name: name.split('.')[0],
+    url: download_url ?? '',
     readTime: read,
-    ...matterData,
+    ...matterData
   } as TBlogs;
 };
 
-async function run(owner: string, repo: string, path = "") {
+async function run(owner: string, repo: string, path = '') {
   const data = await getContent(owner, repo, path);
 
   if (!Array.isArray(data)) {
@@ -56,15 +56,17 @@ async function run(owner: string, repo: string, path = "") {
   const blogs: TBlogs[] = [];
 
   for (const { type, path } of data) {
-    if (type === "file") {
+    if (type === 'file') {
       const contents = await parseMatter(owner, repo, path);
       if (contents) blogs.push(contents);
     }
   }
 
-  const final = `export const blogs = ${JSON.stringify(blogs)}`;
+  blogs.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
 
-  await fs.writeFile("./src/blogs.ts", final, "utf-8");
+  const final = `export const blogs = ${JSON.stringify(blogs, null, 4)}`;
+
+  await fs.writeFile('./src/blogs.ts', final, 'utf-8');
 }
 
-run("Sreesanth46", "blogs");
+run('Sreesanth46', 'blogs');
