@@ -1,5 +1,5 @@
 <template>
-  <div role="status" className="w-full h-full flex justify-center">
+  <div role="status" class="w-full h-full flex justify-center">
     <svg
       class="sh fill-none stroke-black dark:stroke-white w-96 h-96"
       viewBox="0 0 1485.14 1394.12">
