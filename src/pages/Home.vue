@@ -54,12 +54,16 @@ const Frameworks = [
       </p>
 
       <p>
-        Dreaming up ideas and making them come true is where my passion lies. I
-        excel in roles that require versatility, whether it's leading
+        My passion lies in dreaming up innovative ideas and making them a
+        reality. I excel in roles that require versatility, whether it's leading
         collaborative planning sessions, designing scalable backend
         architectures for growth, or coding intuitive and responsive frontend.
       </p>
-      <p>Outside coding, I enjoy doing photography and traveling.</p>
+      <p>
+        When I'm not coding, you'll usually find me reading something
+        interesting, playing badminton or cricket, or behind the camera,
+        capturing moments while exploring new places.
+      </p>
       <hr
         class="w-24 m-auto my-10 border-[#7d7d7d4d] dark:border-[#e9e9e94d]" />
     </article>
