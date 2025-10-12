@@ -33,6 +33,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install pnpm
+        run: npm install -g pnpm
+        shell: bash
+
       - name: Checkout
         uses: actions/checkout@v4
 
