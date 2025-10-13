@@ -1,5 +1,5 @@
-import { useDark, } from "@vueuse/core";
-import { nextTick } from "vue";
+import { useDark } from '@vueuse/core';
+import { nextTick } from 'vue';
 
 export const isDark = useDark();
 
@@ -8,8 +8,8 @@ export const isDark = useDark();
  * @see https://github.com/vuejs/vitepress/pull/2347
  */
 export function toggleDark(event: MouseEvent) {
-  // @ts-expect-error experimental API
-  const isAppearanceTransition = document.startViewTransition &&
+  const isAppearanceTransition =
+    typeof document.startViewTransition === 'function' &&
     !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!isAppearanceTransition) {
@@ -23,7 +23,6 @@ export function toggleDark(event: MouseEvent) {
     Math.max(x, innerWidth - x),
     Math.max(y, innerHeight - y)
   );
-  // @ts-expect-error: Transition API
   const transition = document.startViewTransition(async () => {
     isDark.value = !isDark.value;
     await nextTick();
@@ -47,4 +46,3 @@ export function toggleDark(event: MouseEvent) {
     );
   });
 }
-
