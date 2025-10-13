@@ -22,7 +22,7 @@
     "yaml": "^2.8.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/typography": "^0.5.10",
     "@types/fs-extra": "^11.0.4",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^24.7.2",
@@ -31,7 +31,7 @@
     "esno": "^4.8.0",
     "fs-extra": "^11.3.2",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.14",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.9.3",
     "vite": "npm:rolldown-vite@latest",
     "vue-tsc": "^3.1.1"
