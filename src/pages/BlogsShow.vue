@@ -14,7 +14,9 @@ provide('readTime', blog.value?.readTime);
 <template>
   <Transition name="fade" mode="out-in">
     <Suspense>
-      <component :is="Markdown" :markdown="blog?.url ?? `Oops! Not found`" />
+      <component
+        :is="Markdown"
+        :markdown-url="blog?.url ?? `Oops! Not found`" />
       <template #fallback>
         <AppLoader />
       </template>
