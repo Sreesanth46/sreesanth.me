@@ -6,6 +6,7 @@ import { matter } from '~/utils/matter';
 import BlogTitle from '~/components/BlogsTitle.vue';
 import { useFetch, useTitle } from '@vueuse/core';
 import { computed } from 'vue';
+import AppLoader from './AppLoader.vue';
 
 const { markdownUrl } = defineProps<{
   markdownUrl: string;
@@ -14,21 +15,26 @@ const { markdownUrl } = defineProps<{
 const readTime = inject('readTime', '5min');
 const md = useMarkDown();
 
-const { data: downloaded } = useFetch<string>(markdownUrl);
+const { data: downloaded, isFetching } = useFetch<{
+  matter: BlogData;
+  content: string;
+}>(markdownUrl, {
+  afterFetch(ctx) {
+    const { data, content } = matter(ctx.data ?? '');
+    ctx.data = { matter: data, content };
+
+    return ctx;
+  }
+});
 
 const baseUrl = computed(() => {
   return markdownUrl.split('/').slice(0, -1).join('/');
 });
 
-const m = computed(() => {
-  const { data, content } = matter(downloaded.value ?? '');
-  return { data, content };
-});
-
-const blogData = computed(() => m.value.data as BlogData);
+const blogData = computed(() => downloaded.value?.matter);
 
 const render = computed(() => {
-  const html = md.render(m.value.content);
+  const html = md.render(downloaded.value?.content ?? '');
   return html.replace(/src="([^"]+)"/g, (_, src) => {
     const cleanSrc = src.replace(/^\.?\//, '');
     return `src="${baseUrl.value}/${cleanSrc}"`;
@@ -41,7 +47,8 @@ useTitle(title);
 </script>
 
 <template>
-  <div>
+  <AppLoader v-if="isFetching" />
+  <div v-else>
     <BlogTitle v-if="render.length" :read-time="readTime" v-bind="blogData" />
     <article
       v-html="render"
