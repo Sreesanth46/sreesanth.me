@@ -1,52 +1,42 @@
 <script setup lang="ts">
-import { inject, onMounted, ref } from 'vue';
+import { inject } from 'vue';
 import type { BlogData } from '~/types';
 import { useMarkDown } from '~/hooks';
 import { matter } from '~/utils/matter';
 import BlogTitle from '~/components/BlogsTitle.vue';
-import { useTitle } from '@vueuse/core';
+import { useFetch, useTitle } from '@vueuse/core';
 import { computed } from 'vue';
 
-const { markdown } = defineProps<{
-  markdown: string;
+const { markdownUrl } = defineProps<{
+  markdownUrl: string;
 }>();
+
 const readTime = inject('readTime', '5min');
-const render = ref<string>('');
-const blogData = ref<BlogData>();
-const md = await useMarkDown();
+const md = useMarkDown();
 
-async function downloadFile(downloadUrl: string) {
-  try {
-    const response = await fetch(downloadUrl);
+const { data: downloaded } = useFetch<string>(markdownUrl);
 
-    if (!response.ok) {
-      throw new Error(`Failed to download file. Status: ${response.status}`);
-    }
+const baseUrl = computed(() => {
+  return markdownUrl.split('/').slice(0, -1).join('/');
+});
 
-    const text = await response.text();
-    const { data, content } = matter(text);
-    blogData.value = data;
+const m = computed(() => {
+  const { data, content } = matter(downloaded.value ?? '');
+  return { data, content };
+});
 
-    const html = md.render(content);
-    const baseUrl = downloadUrl.split('/').slice(0, -1).join('/');
-    render.value = html.replace(/src="([^"]+)"/g, (_, src) => {
-      const cleanSrc = src.replace(/^\.?\//, '');
-      return `src="${baseUrl}/${cleanSrc}"`;
-    });
-  } catch (error) {
-    console.error('Error downloading file content:', error);
-  }
-}
+const blogData = computed(() => m.value.data as BlogData);
 
-onMounted(async () => {
-  if (markdown.startsWith('http')) {
-    downloadFile(markdown);
-  } else {
-    render.value = md.render(markdown);
-  }
+const render = computed(() => {
+  const html = md.render(m.value.content);
+  return html.replace(/src="([^"]+)"/g, (_, src) => {
+    const cleanSrc = src.replace(/^\.?\//, '');
+    return `src="${baseUrl.value}/${cleanSrc}"`;
+  });
 });
 
 const title = computed(() => blogData.value?.title);
+
 useTitle(title);
 </script>
 
