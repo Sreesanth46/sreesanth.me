@@ -1,9 +1,21 @@
 import markdownit from 'markdown-it';
 import Shiki from '@shikijs/markdown-it';
 
-let _md: markdownit;
+let _md: markdownit | undefined;
+let shikiPlugin: any | undefined;
+let shikiPluginPromise: Promise<any> | undefined;
 
-export async function useMarkDown() {
+// Start loading the Shiki plugin at module load
+shikiPluginPromise = Shiki({
+  themes: {
+    light: 'vitesse-light',
+    dark: 'vitesse-dark'
+  }
+}).then(plugin => {
+  shikiPlugin = plugin;
+});
+
+export function useMarkDown() {
   if (!_md) {
     _md = markdownit({
       html: true,
@@ -11,16 +23,9 @@ export async function useMarkDown() {
       linkify: true,
       typographer: true
     });
-
-    _md.use(
-      await Shiki({
-        themes: {
-          light: 'vitesse-light',
-          dark: 'vitesse-dark'
-        }
-      })
-    );
+    if (shikiPlugin) {
+      _md.use(shikiPlugin);
+    }
   }
-
   return _md;
 }
