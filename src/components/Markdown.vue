@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { inject } from 'vue';
-import type { BlogData } from '~/types';
-import { useMarkDown } from '~/hooks';
-import { matter } from '~/utils/matter';
-import BlogTitle from '~/components/BlogsTitle.vue';
 import { useFetch, useTitle } from '@vueuse/core';
-import { computed } from 'vue';
-import AppLoader from './AppLoader.vue';
+import { computed, inject } from 'vue';
+import BlogTitle from '~/components/BlogsTitle.vue';
+import { useMarkDown } from '~/composable/use-markdown';
+import type { BlogData } from '~/types';
+import { matter } from '~/utils/matter';
+import AppLoader from '~/components/AppLoader.vue';
 
 const { markdownUrl } = defineProps<{
   markdownUrl: string;
