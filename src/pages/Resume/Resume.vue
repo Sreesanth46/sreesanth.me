@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import ProjectExtraCard from "~/components/ProjectExtraCard.vue";
-import { FindMeLinks, ProjectList } from "~/globals";
-import WorkExperienceCard from "~/components/WorkExperienceCard.vue";
-import { h } from "vue";
-import { Experiences } from ".";
+import ProjectExtraCard from '~/components/ProjectExtraCard.vue';
+import { FindMeLinks, ProjectList } from '~/globals';
+import WorkExperienceCard from '~/components/WorkExperienceCard.vue';
+import { h } from 'vue';
+import { Experiences } from '.';
 
-const SectionTitle = h("h4", {
-  class: "bg-black dark:bg-white w-max text-white dark:text-black px-1",
+const SectionTitle = h('h4', {
+  class:
+    'bg-black dark:bg-white w-max text-white dark:text-black px-1 rounded-sm'
 });
 </script>
 
@@ -24,8 +25,7 @@ const SectionTitle = h("h4", {
                 class="h-4 w-4 cursor-pointer"
                 v-for="me in FindMeLinks"
                 :is="me.icons.outlined"
-                :key="me.label"
-              />
+                :key="me.label" />
             </div>
           </div>
         </div>
@@ -52,8 +52,7 @@ const SectionTitle = h("h4", {
             :title="project.title"
             :descriptions="project.description"
             :github="project.github"
-            :live="project.live"
-          />
+            :live="project.live" />
         </div>
         <div class="flex flex-col gap-4">
           <section-title> Work Experience </section-title>
@@ -64,20 +63,21 @@ const SectionTitle = h("h4", {
             :title="experience.title"
             :start-date="experience.startDate"
             :end-date="experience.endDate"
-            :summary="experience.summary"
-          />
+            :summary="experience.summary" />
         </div>
         <div class="flex flex-col gap-4">
           <section-title> Stacks </section-title>
           <div class="grid grid-cols-[max-content,auto] gap-3">
             <div><strong>Frontend</strong></div>
-            <p>TypeScript, JavaScript, Vue, Next, React, Vite, Nuxt</p>
+            <p>Vue, Nuxt, React, Next, Vite</p>
             <div><strong>Backend</strong></div>
-            <p>Node, Python, MongoDB, MySQL, Supabase, Nginx, Docker</p>
+            <p>
+              Django, FastAPI, Node.js, MongoDB, MySQL, Supabase, Nginx, Docker
+            </p>
             <div><strong>DevOps</strong></div>
-            <p>AWS, Azure, DigitalOcean, Firebase</p>
+            <p>AWS, Azure, DigitalOcean, Firebase, Terraform</p>
             <div><strong>Languages</strong></div>
-            <p>Python, JavaScript, Java</p>
+            <p>Python, JavaScript, TypeScript, Java</p>
           </div>
         </div>
         <div class="flex flex-col gap-4">
