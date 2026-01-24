@@ -19,16 +19,15 @@ const len = ref(6);
 const stopped = ref(false);
 
 function initCanvas(canvas: HTMLCanvasElement, width = 400, height = 400, _dpi?: number) {
-  const ctx = canvas.getContext('2d')!;
+  const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d')!;
 
   const dpr = window.devicePixelRatio || 1;
-  // @ts-expect-error vendor
   const bsr =
-    ctx.webkitBackingStorePixelRatio ||
-    ctx.mozBackingStorePixelRatio ||
-    ctx.msBackingStorePixelRatio ||
-    ctx.oBackingStorePixelRatio ||
-    ctx.backingStorePixelRatio ||
+    (ctx as any)?.webkitBackingStorePixelRatio ||
+    (ctx as any)?.mozBackingStorePixelRatio ||
+    (ctx as any)?.msBackingStorePixelRatio ||
+    (ctx as any)?.oBackingStorePixelRatio ||
+    (ctx as any)?.backingStorePixelRatio ||
     1;
 
   const dpi = _dpi || dpr / bsr;
