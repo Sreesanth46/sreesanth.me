@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Github from "~/icons/Github.vue";
-import RightArrowOutlined from "~/icons/RightArrowOutlined.vue";
+import Github from '~/icons/Github.vue';
+import RightArrowOutlined from '~/icons/RightArrowOutlined.vue';
 defineProps<{
   title: string;
   github?: string;
@@ -16,20 +16,10 @@ defineProps<{
     <div class="flex-auto">
       <div class="flex gap-2 items-center">
         <p class="text-normal font-semibold">{{ title }}</p>
-        <a
-          class="flex gap-1 items-center"
-          v-if="github"
-          :href="github"
-          target="_blank"
-        >
+        <a class="flex gap-1 items-center" v-if="github" :href="github" target="_blank">
           <Github class="h-3 w-3" />
         </a>
-        <a
-          class="flex gap-1 items-center"
-          v-if="live"
-          :href="live"
-          target="_blank"
-        >
+        <a class="flex gap-1 items-center" v-if="live" :href="live" target="_blank">
           <RightArrowOutlined />
         </a>
       </div>

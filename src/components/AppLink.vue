@@ -14,13 +14,11 @@ const isExternalLink = computed(() => props.to.startsWith('http'));
     v-bind="$attrs"
     :href="to"
     target="_blank"
-    class="hover:text-gray-800 hover:dark:text-gray-50">
+    class="hover:text-gray-800 hover:dark:text-gray-50"
+  >
     <slot />
   </a>
-  <RouterLink
-    v-else
-    :to="{ name: to }"
-    class="hover:text-gray-800 hover:dark:text-gray-50">
+  <RouterLink v-else :to="{ name: to }" class="hover:text-gray-800 hover:dark:text-gray-50">
     <slot />
   </RouterLink>
 </template>

@@ -5,15 +5,15 @@ const md = MarkdownIt({
   html: true,
   breaks: true,
   linkify: true,
-  typographer: true
+  typographer: true,
 });
 
 md.use(
   await Shiki({
     themes: {
       light: 'vitesse-light',
-      dark: 'vitesse-dark'
-    }
+      dark: 'vitesse-dark',
+    },
   })
 );
 

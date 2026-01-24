@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Experience } from "~/types";
+import type { Experience } from '~/types';
 
 defineProps<Experience>();
 </script>
@@ -8,15 +8,13 @@ defineProps<Experience>();
   <div class="flex flex-col gap-2">
     <div>
       <p class="flex gap-2">
-        <strong
-          class="underline decoration-stone-400 dark:decoration-slate-300 decoration-dashed"
-        >
+        <strong class="underline decoration-stone-400 dark:decoration-slate-300 decoration-dashed">
           <a href="#"> {{ employer }} </a>
         </strong>
         <span class="text-gray-500 dark:text-gray-300">{{ title }}</span>
       </p>
       <p class="text-gray-600 dark:text-gray-400 font-light">
-        {{ `${startDate} - ${endDate ? endDate : "Present"}` }}
+        {{ `${startDate} - ${endDate ? endDate : 'Present'}` }}
       </p>
     </div>
     <ul class="pl-8 list-[circle]">

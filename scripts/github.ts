@@ -21,7 +21,7 @@ async function getContent(owner: string, repo: string, path = '') {
   const { data } = await github.repos.getContent({
     owner,
     repo,
-    path
+    path,
   });
 
   return data as GetRepoContentResponseDataFile;
@@ -42,7 +42,7 @@ const parseMatter = async (owner: string, repo: string, path = '') => {
     name: name.split('.')[0],
     url: download_url ?? '',
     readTime: read,
-    ...matterData
+    ...matterData,
   } as TBlogs;
 };
 

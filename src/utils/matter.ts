@@ -1,7 +1,7 @@
-import { parse } from "yaml";
+import { parse } from 'yaml';
 
 const defaults = {
-  delimiter: "---",
+  delimiter: '---',
 };
 
 export function matter(str: string) {
@@ -28,16 +28,16 @@ export function matter(str: string) {
   if (closeIndex === -1) return file;
 
   const matter = str.slice(0, closeIndex);
-  const block = matter.replace(/^\s*#[^\n]+/gm, "").trim();
+  const block = matter.replace(/^\s*#[^\n]+/gm, '').trim();
 
   file.data = parse(block);
 
   if (closeIndex === len) {
-    file.content = "";
+    file.content = '';
   } else {
     file.content = str.slice(closeIndex + close.length);
 
-    if (["\n", "\r"].includes(file.content[0] as string)) {
+    if (['\n', '\r'].includes(file.content[0] as string)) {
       file.content = file.content.slice(1);
     }
   }
