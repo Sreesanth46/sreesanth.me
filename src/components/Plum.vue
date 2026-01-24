@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Fn } from '@vueuse/core';
-import { useWindowSize, useRafFn  } from '@vueuse/core'
+import { useWindowSize, useRafFn } from '@vueuse/core';
 import { computed, onMounted, reactive, ref } from 'vue';
 
 const r180 = Math.PI;
@@ -18,17 +18,18 @@ const MIN_BRANCH = 30;
 const len = ref(6);
 const stopped = ref(false);
 
-function initCanvas(
-  canvas: HTMLCanvasElement,
-  width = 400,
-  height = 400,
-  _dpi?: number
-) {
+function initCanvas(canvas: HTMLCanvasElement, width = 400, height = 400, _dpi?: number) {
   const ctx = canvas.getContext('2d')!;
 
   const dpr = window.devicePixelRatio || 1;
   // @ts-expect-error vendor
-  const bsr = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1;
+  const bsr =
+    ctx.webkitBackingStorePixelRatio ||
+    ctx.mozBackingStorePixelRatio ||
+    ctx.msBackingStorePixelRatio ||
+    ctx.oBackingStorePixelRatio ||
+    ctx.backingStorePixelRatio ||
+    1;
 
   const dpi = _dpi || dpr / bsr;
 
@@ -55,12 +56,7 @@ onMounted(async () => {
   let steps: Fn[] = [];
   let prevSteps: Fn[] = [];
 
-  const step = (
-    x: number,
-    y: number,
-    rad: number,
-    counter: { value: number } = { value: 0 }
-  ) => {
+  const step = (x: number, y: number, rad: number, counter: { value: number } = { value: 0 }) => {
     const length = random() * len.value;
     counter.value += 1;
 
@@ -75,13 +71,7 @@ onMounted(async () => {
     const rad2 = rad - random() * r15;
 
     // out of bounds
-    if (
-      nx < -100 ||
-      nx > size.width + 100 ||
-      ny < -100 ||
-      ny > size.height + 100
-    )
-      return;
+    if (nx < -100 || nx > size.width + 100 || ny < -100 || ny > size.height + 100) return;
 
     const rate = counter.value <= MIN_BRANCH ? 0.8 : 0.5;
 
@@ -110,7 +100,7 @@ onMounted(async () => {
     }
 
     // Execute all the steps from the previous frame
-    prevSteps.forEach(i => {
+    prevSteps.forEach((i) => {
       // 50% chance to keep the step for the next frame, to create a more organic look
       if (random() < 0.5) steps.push(i);
       else i();
@@ -134,7 +124,7 @@ onMounted(async () => {
       () => step(randomMiddle() * size.width, -5, r90),
       () => step(randomMiddle() * size.width, size.height + 5, -r90),
       () => step(-5, randomMiddle() * size.height, 0),
-      () => step(size.width + 5, randomMiddle() * size.height, r180)
+      () => step(size.width + 5, randomMiddle() * size.height, r180),
     ];
     if (size.width < 500) steps = steps.slice(0, 2);
     controls.resume();
@@ -150,7 +140,8 @@ const mask = computed(() => 'radial-gradient(circle, transparent, black);');
   <div
     class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden"
     style="z-index: -1"
-    :style="`mask-image: ${mask};--webkit-mask-image: ${mask};`">
+    :style="`mask-image: ${mask};--webkit-mask-image: ${mask};`"
+  >
     <canvas ref="el" width="400" height="400" />
   </div>
 </template>

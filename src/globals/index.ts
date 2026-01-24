@@ -1,9 +1,9 @@
-import { h } from "vue";
-import Github from "~/icons/Github.vue";
-import Linkedin from "~/icons/Linkedin.vue";
-import LightBulbOutlined from "~/icons/LightBulbOutlined.vue";
-import CvOutlinedIcon from "~/icons/CvOutlinedIcon.vue";
-import ArticleOutlined from "~/icons/ArticleOutlined.vue";
+import { h } from 'vue';
+import Github from '~/icons/Github.vue';
+import Linkedin from '~/icons/Linkedin.vue';
+import LightBulbOutlined from '~/icons/LightBulbOutlined.vue';
+import CvOutlinedIcon from '~/icons/CvOutlinedIcon.vue';
+import ArticleOutlined from '~/icons/ArticleOutlined.vue';
 
 interface IResponsiveLabelProp {
   label: string;
@@ -15,55 +15,55 @@ interface INavLink extends IResponsiveLabelProp {
 }
 
 const ResponsiveLabel = (props: IResponsiveLabelProp) =>
-  h("div", [
-    h(props.icon, { class: "sm:hidden" }),
-    h("p", { class: "hidden sm:block" }, [props.label]),
+  h('div', [
+    h(props.icon, { class: 'sm:hidden' }),
+    h('p', { class: 'hidden sm:block' }, [props.label]),
   ]);
 
 export const Links = {
-  Github: "https://github.com/Sreesanth46",
-  Linkedin: "https://www.linkedin.com/in/Sreesanth46",
-  Instagram: "https://www.instagram.com/Sreesanth.sh",
+  Github: 'https://github.com/Sreesanth46',
+  Linkedin: 'https://www.linkedin.com/in/Sreesanth46',
+  Instagram: 'https://www.instagram.com/Sreesanth.sh',
 };
 
 const ProjectLinks = {
   VueTable: {
-    github: "https://github.com/Sreesanth46/vue-table",
-    live: "https://www.npmjs.com/package/@harv46/vue-table",
+    github: 'https://github.com/Sreesanth46/vue-table',
+    live: 'https://www.npmjs.com/package/@harv46/vue-table',
   },
   sh: {
-    github: "https://github.com/Sreesanth46/sreesanth.me",
-    live: "",
+    github: 'https://github.com/Sreesanth46/sreesanth.me',
+    live: '',
   },
   TypeRush: {
-    github: "https://github.com/Sreesanth46/VueTypeRush",
-    live: "https://sreesanth46.github.io/VueTypeRush/",
+    github: 'https://github.com/Sreesanth46/VueTypeRush',
+    live: 'https://sreesanth46.github.io/VueTypeRush/',
   },
 };
 
 export const NavbarLinks: INavLink[] = [
   {
-    label: "Blogs",
-    icon: ResponsiveLabel({ icon: ArticleOutlined, label: "Blogs" }),
-    to: "Blogs",
+    label: 'Blogs',
+    icon: ResponsiveLabel({ icon: ArticleOutlined, label: 'Blogs' }),
+    to: 'Blogs',
   },
   {
-    label: "Projects",
-    icon: ResponsiveLabel({ icon: LightBulbOutlined, label: "Projects" }),
-    to: "Projects",
+    label: 'Projects',
+    icon: ResponsiveLabel({ icon: LightBulbOutlined, label: 'Projects' }),
+    to: 'Projects',
   },
   {
-    label: "Resume",
+    label: 'Resume',
     icon: CvOutlinedIcon,
-    to: "Resume",
+    to: 'Resume',
   },
   {
-    label: "Github",
+    label: 'Github',
     icon: Github,
     to: Links.Github,
   },
   {
-    label: "Linkedin",
+    label: 'Linkedin',
     icon: Linkedin,
     to: Links.Linkedin,
   },
@@ -71,40 +71,40 @@ export const NavbarLinks: INavLink[] = [
 
 export const FindMeLinks = [
   {
-    label: "Github",
+    label: 'Github',
     link: Links.Github,
     icons: {
       outlined: Github,
-      solid: "",
+      solid: '',
     },
   },
   {
-    label: "LinkedIn",
+    label: 'LinkedIn',
     link: Links.Linkedin,
     icons: {
       outlined: Linkedin,
-      solid: "",
+      solid: '',
     },
   },
 ];
 
 export const ProjectList = [
   {
-    title: "Vue Table",
-    description: "A declarative table component with pagination component.",
+    title: 'Vue Table',
+    description: 'A declarative table component with pagination component.',
     icon: Github,
     ...ProjectLinks.VueTable,
   },
   {
-    title: "Vue Type Rush",
+    title: 'Vue Type Rush',
     description:
-      "A fun typing test game that keeps you engaged by recalculating your speed and accuracy after each round, adjusting the timer to match your performance.",
+      'A fun typing test game that keeps you engaged by recalculating your speed and accuracy after each round, adjusting the timer to match your performance.',
     icon: Github,
     ...ProjectLinks.TypeRush,
   },
   {
-    title: ".sh",
-    description: "My portfolio website",
+    title: '.sh',
+    description: 'My portfolio website',
     icon: Github,
     ...ProjectLinks.sh,
   },

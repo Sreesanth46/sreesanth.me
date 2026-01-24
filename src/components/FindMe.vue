@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps({
   label: { type: String, required: true },
-  link: { type: String, required: false }
+  link: { type: String, required: false },
 });
 </script>
 

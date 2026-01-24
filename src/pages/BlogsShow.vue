@@ -5,7 +5,7 @@ import Markdown from '~/components/Markdown.vue';
 const { slug } = defineProps<{ slug: string }>();
 
 const blog = computed(() => {
-  return blogs.find(blog => blog.name === slug);
+  return blogs.find((blog) => blog.name === slug);
 });
 
 provide('readTime', blog.value?.readTime);

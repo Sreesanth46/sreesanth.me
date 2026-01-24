@@ -6,8 +6,7 @@ import { h } from 'vue';
 import { Experiences } from '.';
 
 const SectionTitle = h('h4', {
-  class:
-    'bg-black dark:bg-white w-max text-white dark:text-black px-1 rounded-sm'
+  class: 'bg-black dark:bg-white w-max text-white dark:text-black px-1 rounded-sm',
 });
 </script>
 
@@ -25,7 +24,8 @@ const SectionTitle = h('h4', {
                 class="h-4 w-4 cursor-pointer"
                 v-for="me in FindMeLinks"
                 :is="me.icons.outlined"
-                :key="me.label" />
+                :key="me.label"
+              />
             </div>
           </div>
         </div>
@@ -34,14 +34,12 @@ const SectionTitle = h('h4', {
         <div class="flex flex-col gap-4">
           <section-title> About </section-title>
           <p>
-            My name is Sreesanth, a computer science engineering graduate. I
-            work on full stack web development projects using various
-            technologies, such as Node.js, Vue.js, Python Django, Next.js,
-            TypeScript, and JavaScript. I have experience with microservice
-            architecture and deploying applications on cloud platforms using
-            Docker and Kubernetes. I also contribute to and build open source
-            projects, demonstrating my passion and enthusiasm for web
-            development.
+            My name is Sreesanth, a computer science engineering graduate. I work on full stack web
+            development projects using various technologies, such as Node.js, Vue.js, Python Django,
+            Next.js, TypeScript, and JavaScript. I have experience with microservice architecture
+            and deploying applications on cloud platforms using Docker and Kubernetes. I also
+            contribute to and build open source projects, demonstrating my passion and enthusiasm
+            for web development.
           </p>
         </div>
         <div>
@@ -52,7 +50,8 @@ const SectionTitle = h('h4', {
             :title="project.title"
             :descriptions="project.description"
             :github="project.github"
-            :live="project.live" />
+            :live="project.live"
+          />
         </div>
         <div class="flex flex-col gap-4">
           <section-title> Work Experience </section-title>
@@ -63,7 +62,8 @@ const SectionTitle = h('h4', {
             :title="experience.title"
             :start-date="experience.startDate"
             :end-date="experience.endDate"
-            :summary="experience.summary" />
+            :summary="experience.summary"
+          />
         </div>
         <div class="flex flex-col gap-4">
           <section-title> Stacks </section-title>
@@ -71,9 +71,7 @@ const SectionTitle = h('h4', {
             <div><strong>Frontend</strong></div>
             <p>Vue, Nuxt, React, Next, Vite</p>
             <div><strong>Backend</strong></div>
-            <p>
-              Django, FastAPI, Node.js, MongoDB, MySQL, Supabase, Nginx, Docker
-            </p>
+            <p>Django, FastAPI, Node.js, MongoDB, MySQL, Supabase, Nginx, Docker</p>
             <div><strong>DevOps</strong></div>
             <p>AWS, Azure, DigitalOcean, Firebase, Terraform</p>
             <div><strong>Languages</strong></div>

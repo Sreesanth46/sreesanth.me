@@ -4,10 +4,4 @@ import NodeSkillIcon from './NodeSkillIcon.vue';
 import ReactSkillIcon from './ReactSkillIcon.vue';
 import VueSkillIcon from './VueSkillIcon.vue';
 
-export {
-  DjangoSkillIcon,
-  NextSkillIcon,
-  NodeSkillIcon,
-  ReactSkillIcon,
-  VueSkillIcon
-};
+export { DjangoSkillIcon, NextSkillIcon, NodeSkillIcon, ReactSkillIcon, VueSkillIcon };

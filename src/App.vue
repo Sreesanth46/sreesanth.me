@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Navbar from "~/components/Navbar.vue";
-import Plum from "~/components/Plum.vue";
-import SlideEnterTransition from "~/components/SlideEnterTransition.vue";
+import Navbar from '~/components/Navbar.vue';
+import Plum from '~/components/Plum.vue';
+import SlideEnterTransition from '~/components/SlideEnterTransition.vue';
 </script>
 
 <template>
@@ -16,9 +16,7 @@ import SlideEnterTransition from "~/components/SlideEnterTransition.vue";
       </router-view>
     </main>
     <footer class="flex justify-center py-6">
-      <p class="text-gray-600/50 dark:text-gray-100/30 text-xs">
-        2023-PRESENT &copy; Sreesanth
-      </p>
+      <p class="text-gray-600/50 dark:text-gray-100/30 text-xs">2023-PRESENT &copy; Sreesanth</p>
     </footer>
   </div>
 </template>

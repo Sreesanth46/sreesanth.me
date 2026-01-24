@@ -23,7 +23,7 @@ const { data: downloaded, isFetching } = useFetch<{
     ctx.data = { matter: data, content };
 
     return ctx;
-  }
+  },
 });
 
 const baseUrl = computed(() => {
@@ -51,7 +51,8 @@ useTitle(title);
     <BlogTitle v-if="render.length" :read-time="readTime" v-bind="blogData" />
     <article
       v-html="render"
-      class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg" />
+      class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg"
+    />
   </div>
 </template>
 
