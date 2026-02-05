@@ -2,6 +2,8 @@
 import ToggleDark from './ToggleDark.vue';
 import AppLink from './AppLink.vue';
 import { NavbarLinks } from '~/globals';
+// @ts-ignore
+import CalCom from './CalCom.vue';
 </script>
 
 <template>
@@ -16,7 +18,8 @@ import { NavbarLinks } from '~/globals';
       </p>
     </router-link>
     <div class="flex-auto" />
-    <div class="flex gap-6 sm:gap-5">
+    <div class="flex gap-5 sm:gap-6">
+      <CalCom />
       <app-link v-for="link in NavbarLinks" :key="link.to" :to="link.to" :title="link.label">
         <component :is="link.icon" />
       </app-link>
