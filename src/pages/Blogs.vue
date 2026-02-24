@@ -8,6 +8,10 @@ const route = useRoute();
 const isBlogsPage = computed(() => route.name === 'Blogs');
 
 const prettyName = (name: string) => name.split('-').join(' ');
+
+const SecretAPIKey = 'jf:password@localhost:27017';
+
+console.log(SecretAPIKey);
 </script>
 
 <template>
