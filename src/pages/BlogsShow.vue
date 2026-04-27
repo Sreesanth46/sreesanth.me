@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, provide } from 'vue';
+import { useRouter } from 'vue-router';
 import { blogs } from '~/blogs';
 import Markdown from '~/components/Markdown.vue';
 const { slug } = defineProps<{ slug: string }>();
@@ -7,6 +8,11 @@ const { slug } = defineProps<{ slug: string }>();
 const blog = computed(() => {
   return blogs.find((blog) => blog.name === slug);
 });
+
+if (!blog.value) {
+  const router = useRouter();
+  router.replace({ name: 'NotFound' });
+}
 
 provide('readTime', blog.value?.readTime);
 </script>
