@@ -2,6 +2,16 @@
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+
+function safeBack() {
+  const state = router.options.history.state;
+
+  if (state?.back) {
+    router.back();
+  } else {
+    router.replace({ name: 'Home' });
+  }
+}
 </script>
 
 <template>
@@ -12,7 +22,7 @@ const router = useRouter();
     >
     <h6
       class="text-gray-500 dark:text-white opacity-50 hover:cursor-pointer hover:underline font-normal md:text-xl"
-      @click="router.back()"
+      @click="safeBack"
     >
       cd ..
     </h6>
