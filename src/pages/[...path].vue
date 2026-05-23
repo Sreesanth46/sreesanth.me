@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+definePage({
+  meta: {
+    title: '404 | sh',
+    description: 'Sreesanth - Software Engineer. The page you are looking for does not exist.',
+  },
+});
 
 const router = useRouter();
 
@@ -9,7 +14,7 @@ function safeBack() {
   if (state?.back) {
     router.back();
   } else {
-    router.replace({ name: 'Home' });
+    router.replace('/');
   }
 }
 </script>

@@ -1,8 +1,5 @@
 import { Experience } from '~/types';
-import Resume from './Resume.vue';
 import { monthWithYear } from '~/utils/date-utils';
-
-export default Resume;
 
 export const Experiences: Experience[] = [
   {

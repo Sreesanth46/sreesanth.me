@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import MoonOutlined from '~/icons/MoonOutlined.vue';
-import SunOutlined from '~/icons/SunOutlined.vue';
 import { toggleDark } from '~/logics';
 </script>
 

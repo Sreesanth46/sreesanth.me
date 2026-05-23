@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-
 const props = defineProps<{
   to: string;
 }>();
@@ -18,7 +16,7 @@ const isExternalLink = computed(() => props.to.startsWith('http'));
   >
     <slot />
   </a>
-  <RouterLink v-else :to="{ name: to }" class="hover:text-gray-800 hover:dark:text-gray-50">
+  <router-link v-else :to class="hover:text-gray-800 hover:dark:text-gray-50">
     <slot />
-  </RouterLink>
+  </router-link>
 </template>

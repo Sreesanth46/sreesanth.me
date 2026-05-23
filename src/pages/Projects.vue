@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import ProjectCard from '~/components/ProjectCard.vue';
-import { ProjectList } from '~/globals';
+definePage({
+  meta: {
+    title: 'Projects | sh',
+    description: 'Sreesanth - Software Engineer. View my projects and skills.',
+  },
+});
 </script>
 
 <template>

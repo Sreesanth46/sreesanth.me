@@ -41,10 +41,6 @@ Cal('init', '30min', { origin: 'https://app.cal.com' });
 Cal.ns['30min']('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 </script>
 
-<script setup>
-import TelephoneOutlined from '~/icons/TelephoneOutlined.vue';
-</script>
-
 <template>
   <button
     class="flex gap-1 relative"

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import type { BlogPublishedOnProps } from '~/types';
 import { monthWithDay } from '~/utils/date-utils';
 
