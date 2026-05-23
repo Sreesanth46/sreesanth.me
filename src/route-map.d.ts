@@ -45,18 +45,18 @@ declare module 'vue-router/auto-routes' {
       { path: ParamValue<false> },
       | never
     >,
+    '/blogs': RouteRecordInfo<
+      '/blogs',
+      '/blogs',
+      Record<never, never>,
+      Record<never, never>,
+      | '/blogs/[slug]'
+    >,
     '/blogs/[slug]': RouteRecordInfo<
       '/blogs/[slug]',
       '/blogs/:slug',
       { slug: ParamValue<true> },
       { slug: ParamValue<false> },
-      | never
-    >,
-    '/Blogs': RouteRecordInfo<
-      '/Blogs',
-      '/Blogs',
-      Record<never, never>,
-      Record<never, never>,
       | never
     >,
     '/Projects': RouteRecordInfo<
@@ -98,15 +98,16 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
+    'src/pages/blogs.vue': {
+      routes:
+        | '/blogs'
+        | '/blogs/[slug]'
+      views:
+        | 'default'
+    }
     'src/pages/blogs/[slug].vue': {
       routes:
         | '/blogs/[slug]'
-      views:
-        | never
-    }
-    'src/pages/Blogs.vue': {
-      routes:
-        | '/Blogs'
       views:
         | never
     }
