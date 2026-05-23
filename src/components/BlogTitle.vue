@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { BlogTitleProps } from '~/types';
 
-const props = defineProps<BlogTitleProps>();
+defineProps<BlogTitleProps>();
 </script>
 
 <template>

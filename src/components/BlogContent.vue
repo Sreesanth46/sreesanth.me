@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Blog } from '~/types';
+import type { Blog } from '~/types';
 
 const { url } = defineProps<{
   url: string;
