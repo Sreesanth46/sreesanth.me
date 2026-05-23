@@ -1,34 +1,32 @@
 <script setup lang="ts">
-import FindMe from '~/components/FindMe.vue';
-import {
-  NodeSkillIcon,
-  DjangoSkillIcon,
-  VueSkillIcon,
-  NextSkillIcon,
-  ReactSkillIcon,
-} from '~/icons';
-import { FindMeLinks } from '~/globals';
+definePage({
+  meta: {
+    title: 'sh',
+    description:
+      'Sreesanth - Software Engineer. A passionate full-stack developer with expertise in Python Django | FastAPI, Node.js, Vue.js, Nuxt.js, Next.js, and React. Explore my projects, blogs, and find me on social media.',
+  },
+});
 
 const Frameworks = [
   {
-    label: 'Node.js',
-    icon: NodeSkillIcon,
+    label: 'Python Django',
+    icon: resolveComponent('DjangoSkillIcon'),
   },
   {
-    label: 'Python Django',
-    icon: DjangoSkillIcon,
+    label: 'Node.js',
+    icon: resolveComponent('NodeSkillIcon'),
   },
   {
     label: 'Vue.js',
-    icon: VueSkillIcon,
+    icon: resolveComponent('VueSkillIcon'),
   },
   {
     label: 'Next.js',
-    icon: NextSkillIcon,
+    icon: resolveComponent('NextSkillIcon'),
   },
   {
     label: 'React',
-    icon: ReactSkillIcon,
+    icon: resolveComponent('ReactSkillIcon'),
   },
 ];
 </script>

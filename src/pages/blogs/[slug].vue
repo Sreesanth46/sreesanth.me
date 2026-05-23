@@ -1,8 +1,13 @@
+<route lang="yaml">
+props: true
+</route>
+
 <script setup lang="ts">
 import { computed, provide } from 'vue';
 import { useRouter } from 'vue-router';
 import { blogs } from '~/blogs';
 import Markdown from '~/components/Markdown.vue';
+
 const { slug } = defineProps<{ slug: string }>();
 
 const blog = computed(() => {
@@ -11,11 +16,12 @@ const blog = computed(() => {
 
 if (!blog.value) {
   const router = useRouter();
-  router.replace({ name: 'NotFound' });
+  router.replace('/404');
 }
 
 provide('readTime', blog.value?.readTime);
 </script>
+
 <template>
   <Transition name="fade" mode="out-in">
     <component :is="Markdown" :markdown-url="blog?.url ?? `Oops! Not found`" />

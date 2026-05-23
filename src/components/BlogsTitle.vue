@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import type { BlogTitleProps } from '~/types';
-import BlogPublishedOn from '~/components/BlogPublishedOn.vue';
 
 const props = defineProps<BlogTitleProps>();
 

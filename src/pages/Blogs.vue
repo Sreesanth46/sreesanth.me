@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
-import { blogs } from '~/blogs';
-import BlogPublishedOn from '~/components/BlogPublishedOn.vue';
+definePage({
+  meta: {
+    title: 'Blogs | sh',
+    description: 'Sreesanth - Software Engineer. View my blogs and articles.',
+  },
+});
+
 const route = useRoute();
 
-const isBlogsPage = computed(() => route.name === 'Blogs');
+const isBlogsPage = computed(() => route.name === '/blogs');
 
 const prettyName = (name: string) => name.split('-').join(' ');
 </script>

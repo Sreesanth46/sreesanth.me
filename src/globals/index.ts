@@ -45,17 +45,17 @@ export const NavbarLinks: INavLink[] = [
   {
     label: 'Blogs',
     icon: ResponsiveLabel({ icon: ArticleOutlined, label: 'Blogs' }),
-    to: 'Blogs',
+    to: '/blogs',
   },
   {
     label: 'Projects',
     icon: ResponsiveLabel({ icon: LightBulbOutlined, label: 'Projects' }),
-    to: 'Projects',
+    to: '/projects',
   },
   {
     label: 'Resume',
     icon: CvOutlinedIcon,
-    to: 'Resume',
+    to: '/resume',
   },
   {
     label: 'Github',

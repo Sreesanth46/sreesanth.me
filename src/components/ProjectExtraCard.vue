@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Github from '~/icons/Github.vue';
-import RightArrowOutlined from '~/icons/RightArrowOutlined.vue';
 defineProps<{
   title: string;
   github?: string;

@@ -1,11 +1,7 @@
 <script setup lang="ts">
-import { useFetch, useTitle } from '@vueuse/core';
-import { computed, inject } from 'vue';
-import BlogTitle from '~/components/BlogsTitle.vue';
 import { useMarkDown } from '~/composable/use-markdown';
 import type { BlogData } from '~/types';
 import { matter } from '~/utils/matter';
-import AppLoader from '~/components/AppLoader.vue';
 
 const { markdownUrl } = defineProps<{
   markdownUrl: string;

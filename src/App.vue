@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import Navbar from '~/components/Navbar.vue';
-import Plum from '~/components/Plum.vue';
-import SlideEnterTransition from '~/components/SlideEnterTransition.vue';
-</script>
-
 <template>
   <div class="flex flex-col h-screen pb-2 px-6 font-sans">
     <Plum />

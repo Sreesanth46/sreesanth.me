@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import ProjectExtraCard from '~/components/ProjectExtraCard.vue';
-import { FindMeLinks, ProjectList } from '~/globals';
-import WorkExperienceCard from '~/components/WorkExperienceCard.vue';
-import { h } from 'vue';
-import { Experiences } from '.';
+definePage({
+  meta: {
+    title: 'Resume | sh',
+    description:
+      'Sreesanth - Software Engineer. View my resume, projects, work experience, and skills.',
+  },
+});
 
 const SectionTitle = h('h4', {
   class: 'bg-black dark:bg-white w-max text-white dark:text-black px-1 rounded-sm',
