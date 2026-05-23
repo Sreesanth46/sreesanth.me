@@ -6,6 +6,8 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const Blog: typeof import('~types').Blog
+  const BlogContent: typeof import('~types').BlogContent
   const EffectScope: typeof import('vue').EffectScope
   const Experiences: typeof import('./src/globals/resume').Experiences
   const FindMeLinks: typeof import('./src/globals/index').FindMeLinks
@@ -24,6 +26,7 @@ declare global {
   const controlledComputed: typeof import('@vueuse/core').controlledComputed
   const controlledRef: typeof import('@vueuse/core').controlledRef
   const createApp: typeof import('vue').createApp
+  const createContext: typeof import('./src/composables/create-context').createContext
   const createEventHook: typeof import('@vueuse/core').createEventHook
   const createGlobalState: typeof import('@vueuse/core').createGlobalState
   const createInjectionState: typeof import('@vueuse/core').createInjectionState
@@ -57,6 +60,9 @@ declare global {
   const isShallow: typeof import('vue').isShallow
   const makeDestructurable: typeof import('@vueuse/core').makeDestructurable
   const markRaw: typeof import('vue').markRaw
+  const matter: typeof import('./src/utils/matter').matter
+  const monthWithDay: typeof import('./src/utils/date-utils').monthWithDay
+  const monthWithYear: typeof import('./src/utils/date-utils').monthWithYear
   const nextTick: typeof import('vue').nextTick
   const onActivated: typeof import('vue').onActivated
   const onBeforeMount: typeof import('vue').onBeforeMount
@@ -81,6 +87,7 @@ declare global {
   const onWatcherCleanup: typeof import('vue').onWatcherCleanup
   const pausableWatch: typeof import('@vueuse/core').pausableWatch
   const provide: typeof import('vue').provide
+  const provideBlogContext: typeof import('./src/contexts/blogs-context').provideBlogContext
   const provideLocal: typeof import('@vueuse/core').provideLocal
   const reactify: typeof import('@vueuse/core').reactify
   const reactifyObject: typeof import('@vueuse/core').reactifyObject
@@ -88,6 +95,7 @@ declare global {
   const reactiveComputed: typeof import('@vueuse/core').reactiveComputed
   const reactiveOmit: typeof import('@vueuse/core').reactiveOmit
   const reactivePick: typeof import('@vueuse/core').reactivePick
+  const readTime: typeof import('./src/utils/read-time').readTime
   const readonly: typeof import('vue').readonly
   const ref: typeof import('vue').ref
   const refAutoReset: typeof import('@vueuse/core').refAutoReset
@@ -139,6 +147,7 @@ declare global {
   const useAttrs: typeof import('vue').useAttrs
   const useBase64: typeof import('@vueuse/core').useBase64
   const useBattery: typeof import('@vueuse/core').useBattery
+  const useBlog: typeof import('./src/contexts/blogs-context').useBlog
   const useBluetooth: typeof import('@vueuse/core').useBluetooth
   const useBreakpoints: typeof import('@vueuse/core').useBreakpoints
   const useBroadcastChannel: typeof import('@vueuse/core').useBroadcastChannel
@@ -201,6 +210,7 @@ declare global {
   const useLocalStorage: typeof import('@vueuse/core').useLocalStorage
   const useMagicKeys: typeof import('@vueuse/core').useMagicKeys
   const useManualRefHistory: typeof import('@vueuse/core').useManualRefHistory
+  const useMarkDown: typeof import('./src/composables/use-markdown').useMarkDown
   const useMediaControls: typeof import('@vueuse/core').useMediaControls
   const useMediaQuery: typeof import('@vueuse/core').useMediaQuery
   const useMemoize: typeof import('@vueuse/core').useMemoize
@@ -329,6 +339,7 @@ declare module 'vue' {
     readonly blogs: UnwrapRef<typeof import('./src/blogs')['blogs']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly createContext: UnwrapRef<typeof import('./src/composables/create-context')['createContext']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
@@ -344,6 +355,9 @@ declare module 'vue' {
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly matter: UnwrapRef<typeof import('./src/utils/matter')['matter']>
+    readonly monthWithDay: UnwrapRef<typeof import('./src/utils/date-utils')['monthWithDay']>
+    readonly monthWithYear: UnwrapRef<typeof import('./src/utils/date-utils')['monthWithYear']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
@@ -362,7 +376,9 @@ declare module 'vue' {
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly onWatcherCleanup: UnwrapRef<typeof import('vue')['onWatcherCleanup']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
+    readonly provideBlogContext: UnwrapRef<typeof import('./src/contexts/blogs-context')['provideBlogContext']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
+    readonly readTime: UnwrapRef<typeof import('./src/utils/read-time')['readTime']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
@@ -376,11 +392,13 @@ declare module 'vue' {
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
+    readonly useBlog: UnwrapRef<typeof import('./src/contexts/blogs-context')['useBlog']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
+    readonly useMarkDown: UnwrapRef<typeof import('./src/composables/use-markdown')['useMarkDown']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>

@@ -3,10 +3,7 @@ props: true
 </route>
 
 <script setup lang="ts">
-import { computed, provide } from 'vue';
-import { useRouter } from 'vue-router';
-import { blogs } from '~/blogs';
-import Markdown from '~/components/Markdown.vue';
+import { provideBlogContext } from '~/contexts/blogs-context';
 
 const { slug } = defineProps<{ slug: string }>();
 
@@ -19,11 +16,11 @@ if (!blog.value) {
   router.replace('/404');
 }
 
-provide('readTime', blog.value?.readTime);
+provideBlogContext(blog.value!);
 </script>
 
 <template>
   <Transition name="fade" mode="out-in">
-    <component :is="Markdown" :markdown-url="blog?.url ?? `Oops! Not found`" />
+    <BlogPage v-if="blog" />
   </Transition>
 </template>

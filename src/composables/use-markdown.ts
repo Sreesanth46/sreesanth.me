@@ -11,10 +11,7 @@ const md = MarkdownIt({
 });
 
 const highlighter = (await createHighlighterCore({
-  themes: [
-    import('@shikijs/themes/vitesse-light'),
-    import('@shikijs/themes/vitesse-dark'),
-  ],
+  themes: [import('@shikijs/themes/vitesse-light'), import('@shikijs/themes/vitesse-dark')],
   langs: [
     import('@shikijs/langs/javascript'),
     import('@shikijs/langs/typescript'),

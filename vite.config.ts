@@ -35,7 +35,13 @@ export default defineConfig({
         fileFilter: (file) => file.endsWith('.ts'), // Filter files
         types: true, // Enable auto import the types under the directories
       },
-      dirs: ['./composables/**', './utils/**', './src/blogs.ts', './src/globals'],
+      dirs: [
+        './src/composables/**',
+        './src/utils/**',
+        './src/blogs.ts',
+        './src/globals',
+        './src/contexts/**',
+      ],
       dts: true,
       vueTemplate: true,
       viteOptimizeDeps: true,

@@ -3,15 +3,9 @@ import fs from 'fs-extra';
 import { matter } from '../src/utils/matter.ts';
 import { readTime } from '../src/utils/read-time.ts';
 import type { components } from '@octokit/openapi-types';
+import { Blog } from '~/types/index.js';
 
 type GetRepoContentResponseDataFile = components['schemas']['content-file'];
-type TBlogs = {
-  name: string;
-  url: string;
-  title?: string;
-  date: string;
-  readTime?: string;
-};
 
 const auth = process.env.GITHUB_TOKEN;
 
@@ -43,7 +37,7 @@ const parseMatter = async (owner: string, repo: string, path = '') => {
     url: download_url ?? '',
     readTime: read,
     ...matterData,
-  } as TBlogs;
+  } as Blog;
 };
 
 async function run(owner: string, repo: string, path = '') {
@@ -53,7 +47,7 @@ async function run(owner: string, repo: string, path = '') {
     return;
   }
 
-  const blogs: TBlogs[] = [];
+  const blogs: Blog[] = [];
 
   for (const { type, path } of data) {
     if (type === 'file') {
@@ -64,7 +58,7 @@ async function run(owner: string, repo: string, path = '') {
 
   blogs.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
 
-  const final = `export const blogs = ${JSON.stringify(blogs, null, 4)}`;
+  const final = `export const blogs = ${JSON.stringify(blogs, null, 4)} as const`;
 
   await fs.writeFile('./src/blogs.ts', final, 'utf-8');
 }

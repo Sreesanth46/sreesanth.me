@@ -1,55 +1,27 @@
 <script setup lang="ts">
-import { useMarkDown } from '~/composable/use-markdown';
-import type { BlogData } from '~/types';
-import { matter } from '~/utils/matter';
+import { useMarkDown } from '~/composables/use-markdown';
 
-const { markdownUrl } = defineProps<{
-  markdownUrl: string;
+const { content, srcBaseUrl } = defineProps<{
+  content: string;
+  srcBaseUrl: string;
 }>();
 
-const readTime = inject('readTime', '5min');
 const md = useMarkDown();
 
-const { data: downloaded, isFetching } = useFetch<{
-  matter: BlogData;
-  content: string;
-}>(markdownUrl, {
-  afterFetch(ctx) {
-    const { data, content } = matter(ctx.data ?? '');
-    ctx.data = { matter: data, content };
-
-    return ctx;
-  },
-});
-
-const baseUrl = computed(() => {
-  return markdownUrl.split('/').slice(0, -1).join('/');
-});
-
-const blogData = computed(() => downloaded.value?.matter);
-
 const render = computed(() => {
-  const html = md.render(downloaded.value?.content ?? '');
+  const html = md.render(content ?? '');
   return html.replace(/src="([^"]+)"/g, (_, src) => {
     const cleanSrc = src.replace(/^\.?\//, '');
-    return `src="${baseUrl.value}/${cleanSrc}"`;
+    return `src="${srcBaseUrl}/${cleanSrc}"`;
   });
 });
-
-const title = computed(() => blogData.value?.title);
-
-useTitle(title);
 </script>
 
 <template>
-  <AppLoader v-if="isFetching" />
-  <div v-else>
-    <BlogTitle v-if="render.length" :read-time="readTime" v-bind="blogData" />
-    <article
-      v-html="render"
-      class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg"
-    />
-  </div>
+  <article
+    v-html="render"
+    class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg"
+  />
 </template>
 
 <style lang="css">
