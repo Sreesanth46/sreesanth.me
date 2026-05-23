@@ -2,11 +2,23 @@ import type { InjectionKey } from 'vue';
 import { inject, provide } from 'vue';
 
 /**
- * @param providerComponentName - The name(s) of the component(s) providing the context.
+ * Creates a typed Vue dependency-injection context pair: an injector and a provider.
  *
- * There are situations where context can come from multiple components. In such cases, you might need to give an array of component names to provide your context, instead of just a single string.
+ * The injector uses a unique Symbol-based `InjectionKey` derived from `contextName`
+ * (or `${providerComponentName}Context` when `providerComponentName` is a string and
+ * `contextName` is omitted). The provider registers a `ContextValue` under that key.
  *
- * @param contextName The description for injection key symbol.
+ * @param providerComponentName - The name of the providing component, or an array of names when multiple components may provide the same context; used in the runtime error message when injection fails.
+ * @param contextName - Optional description used as the Symbol's description for the injection key.
+ * @returns A readonly tuple `[injectContext, provideContext]` where `injectContext` retrieves the provided context (optionally using a fallback and throwing when missing) and `provideContext` registers and returns the provided `ContextValue`.
+ */
+
+/**
+ * Retrieves the context value associated with the created injection key.
+ *
+ * @param fallback - Value to return if the context is not found. If `fallback` is exactly `null`, `null` is allowed as a valid retrieved value.
+ * @returns `ContextValue` when a context value is found or a non-`null` fallback is provided; `ContextValue | null` when the explicit `fallback` is `null`.
+ * @throws Error when the context is not found and no fallback (or an undefined fallback) is provided.
  */
 export function createContext<ContextValue>(
   providerComponentName: string | string[],

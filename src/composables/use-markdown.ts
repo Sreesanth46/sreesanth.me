@@ -39,6 +39,11 @@ md.use(
   })
 );
 
+/**
+ * Get the preconfigured MarkdownIt instance with HTML support, line-break handling, linkification, typographic enhancements, and Shiki-based syntax highlighting (Vitesse light/dark).
+ *
+ * @returns The configured MarkdownIt instance
+ */
 export function useMarkDown() {
   return md;
 }

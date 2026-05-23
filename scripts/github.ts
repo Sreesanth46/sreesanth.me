@@ -40,6 +40,13 @@ const parseMatter = async (owner: string, repo: string, path = '') => {
   } as Blog;
 };
 
+/**
+ * Fetches markdown files from a GitHub repository path, parses their frontmatter into Blog objects, sorts them by date (newest first), and writes the resulting `blogs` export to ./src/blogs.ts.
+ *
+ * @param owner - GitHub repository owner
+ * @param repo - GitHub repository name
+ * @param path - Repository path to list and parse (defaults to repository root)
+ */
 async function run(owner: string, repo: string, path = '') {
   const data = await getContent(owner, repo, path);
 
