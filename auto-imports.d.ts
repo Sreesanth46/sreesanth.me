@@ -15,8 +15,21 @@ declare global {
   const Links: typeof import('./src/globals/index').Links
   const NavbarLinks: typeof import('./src/globals/index').NavbarLinks
   const ProjectList: typeof import('./src/globals/index').ProjectList
+  const applyMarkdownLineReveal: typeof import('./src/utils/markdown-line-reveal').applyMarkdownLineReveal
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
+  const blogChromeAnimate: typeof import('./src/utils/blog-layout').blogChromeAnimate
+  const blogChromeEnterTransition: typeof import('./src/utils/blog-layout').blogChromeEnterTransition
+  const blogChromeExit: typeof import('./src/utils/blog-layout').blogChromeExit
+  const blogChromeExitTransition: typeof import('./src/utils/blog-layout').blogChromeExitTransition
+  const blogChromeFade: typeof import('./src/utils/blog-layout').blogChromeFade
+  const blogChromeInitial: typeof import('./src/utils/blog-layout').blogChromeInitial
+  const blogContentAnimate: typeof import('./src/utils/blog-layout').blogContentAnimate
+  const blogLineRevealBaseDelay: typeof import('./src/utils/blog-layout').blogLineRevealBaseDelay
+  const blogLineRevealStagger: typeof import('./src/utils/blog-layout').blogLineRevealStagger
+  const blogMetaLayoutId: typeof import('./src/utils/blog-layout').blogMetaLayoutId
+  const blogTitleLayoutId: typeof import('./src/utils/blog-layout').blogTitleLayoutId
+  const blogTitleLayoutTransition: typeof import('./src/utils/blog-layout').blogTitleLayoutTransition
   const blogs: typeof import('./src/blogs').blogs
   const computed: typeof import('vue').computed
   const computedAsync: typeof import('@vueuse/core').computedAsync
@@ -49,6 +62,7 @@ declare global {
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
   const h: typeof import('vue').h
+  const htmlToMarkdownBlocks: typeof import('./src/utils/markdown-blocks').htmlToMarkdownBlocks
   const ignorableWatch: typeof import('@vueuse/core').ignorableWatch
   const inject: typeof import('vue').inject
   const injectLocal: typeof import('@vueuse/core').injectLocal
@@ -336,6 +350,15 @@ declare module 'vue' {
     readonly Links: UnwrapRef<typeof import('./src/globals/index')['Links']>
     readonly NavbarLinks: UnwrapRef<typeof import('./src/globals/index')['NavbarLinks']>
     readonly ProjectList: UnwrapRef<typeof import('./src/globals/index')['ProjectList']>
+    readonly applyMarkdownLineReveal: UnwrapRef<typeof import('./src/utils/markdown-line-reveal')['applyMarkdownLineReveal']>
+    readonly blogChromeAnimate: UnwrapRef<typeof import('./src/utils/blog-layout')['blogChromeAnimate']>
+    readonly blogChromeExit: UnwrapRef<typeof import('./src/utils/blog-layout')['blogChromeExit']>
+    readonly blogChromeInitial: UnwrapRef<typeof import('./src/utils/blog-layout')['blogChromeInitial']>
+    readonly blogLineRevealBaseDelay: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealBaseDelay']>
+    readonly blogLineRevealStagger: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealStagger']>
+    readonly blogMetaLayoutId: UnwrapRef<typeof import('./src/utils/blog-layout')['blogMetaLayoutId']>
+    readonly blogTitleLayoutId: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTitleLayoutId']>
+    readonly blogTitleLayoutTransition: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTitleLayoutTransition']>
     readonly blogs: UnwrapRef<typeof import('./src/blogs')['blogs']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -348,6 +371,7 @@ declare module 'vue' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly htmlToMarkdownBlocks: UnwrapRef<typeof import('./src/utils/markdown-blocks')['htmlToMarkdownBlocks']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
@@ -400,6 +424,7 @@ declare module 'vue' {
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useMarkDown: UnwrapRef<typeof import('./src/composables/use-markdown')['useMarkDown']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
+    readonly usePreferredReducedMotion: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedMotion']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
