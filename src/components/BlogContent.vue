@@ -26,5 +26,5 @@ const content = computed(() => downloaded.value?.content ?? '');
 
 <template>
   <AppLoader v-if="isFetching" />
-  <Markdown v-else :src-base-url :content />
+  <Markdown v-else :key="url" :src-base-url :content />
 </template>
