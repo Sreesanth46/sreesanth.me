@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useBlog } from '~/contexts/blogs-context';
 import { blogChromeExit } from '~/utils/blog-layout';
+import { motion } from 'motion-v';
 
 const blog = useBlog();
 
