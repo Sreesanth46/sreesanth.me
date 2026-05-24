@@ -21,6 +21,20 @@ async function getContent(owner: string, repo: string, path = '') {
   return data as GetRepoContentResponseDataFile;
 }
 
+// Frontmatter dates often arrive as "YYYY-MM-DD HH:MM:SS +HHMM" (e.g. from
+// `git log` defaults). Safari/WebKit refuses to parse that form, so normalize
+// to ISO 8601 before writing the data file.
+const toIsoDate = (value: unknown) => {
+  if (typeof value !== 'string') return value;
+  const match = value.match(
+    /^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}:\d{2}(?:\.\d+)?)(?:\s*([+-]\d{2}):?(\d{2})|\s*Z)?$/
+  );
+  if (!match) return value;
+  const [, date, time, offsetHours, offsetMinutes] = match;
+  const offset = offsetHours ? `${offsetHours}:${offsetMinutes}` : 'Z';
+  return `${date}T${time}${offset}`;
+};
+
 const parseMatter = async (owner: string, repo: string, path = '') => {
   const data = await getContent(owner, repo, path);
 
@@ -32,11 +46,14 @@ const parseMatter = async (owner: string, repo: string, path = '') => {
   const { data: matterData, content: matterContent } = matter(buffer);
   const read = readTime(matterContent);
 
+  const { date } = matterData as Record<string, unknown>;
+
   return {
     name: name.split('.')[0],
     url: download_url ?? '',
     readTime: read,
     ...matterData,
+    date: toIsoDate(date),
   } as Blog;
 };
 
