@@ -11,7 +11,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AnimatePresence: typeof import('motion-v')['AnimatePresence']
     AppLink: typeof import('./src/components/AppLink.vue')['default']
     AppLoader: typeof import('./src/components/AppLoader.vue')['default']
     ArticleOutlined: typeof import('./src/icons/ArticleOutlined.vue')['default']

@@ -50,15 +50,7 @@ declare module 'vue-router/auto-routes' {
       '/blogs',
       Record<never, never>,
       Record<never, never>,
-      | '/blogs/'
       | '/blogs/[slug]'
-    >,
-    '/blogs/': RouteRecordInfo<
-      '/blogs/',
-      '/blogs',
-      Record<never, never>,
-      Record<never, never>,
-      | never
     >,
     '/blogs/[slug]': RouteRecordInfo<
       '/blogs/[slug]',
@@ -109,16 +101,9 @@ declare module 'vue-router/auto-routes' {
     'src/pages/blogs.vue': {
       routes:
         | '/blogs'
-        | '/blogs/'
         | '/blogs/[slug]'
       views:
         | 'default'
-    }
-    'src/pages/blogs/index.vue': {
-      routes:
-        | '/blogs/'
-      views:
-        | never
     }
     'src/pages/blogs/[slug].vue': {
       routes:
