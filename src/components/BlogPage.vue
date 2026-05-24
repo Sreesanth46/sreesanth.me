@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { motion } from 'motion-v';
 import { useBlog } from '~/contexts/blogs-context';
+import { blogChromeExit, blogChromeInitial, blogContentAnimate } from '~/utils/blog-layout';
 
 const blog = useBlog();
 
@@ -11,6 +13,8 @@ useTitle(title);
 <template>
   <div>
     <BlogTitle v-bind="blog" />
-    <BlogContent :url="blog.url" />
+    <motion.div :initial="blogChromeInitial" :animate="blogContentAnimate" :exit="blogChromeExit">
+      <BlogContent :url="blog.url" />
+    </motion.div>
   </div>
 </template>

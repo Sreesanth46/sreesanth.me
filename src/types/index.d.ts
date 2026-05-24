@@ -14,6 +14,6 @@ interface Blog {
   readTime: string;
 }
 
-export type BlogTitleProps = Omit<Blog, 'url' | 'name'>;
+export type BlogTitleProps = Omit<Blog, 'url'>;
 
 export type BlogPublishedOnProps = Pick<Blog, 'date' | 'readTime'>;
