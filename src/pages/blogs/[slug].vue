@@ -20,7 +20,5 @@ provideBlogContext(blog.value!);
 </script>
 
 <template>
-  <Transition name="fade" mode="out-in">
-    <BlogPage v-if="blog" />
-  </Transition>
+  <BlogPage v-if="blog" />
 </template>
