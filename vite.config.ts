@@ -5,6 +5,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
 import VueRouter from 'vue-router/vite';
+import MotionResolver from 'motion-v/resolver';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,7 +23,13 @@ export default defineConfig({
         'vue',
         'vue-router',
         {
-          '@vueuse/core': ['useTitle', 'useWindowSize', 'useRafFn', 'useFetch'],
+          '@vueuse/core': [
+            'useTitle',
+            'useWindowSize',
+            'useRafFn',
+            'useFetch',
+            'usePreferredReducedMotion',
+          ],
         },
         {
           from: '@vueuse/core',
@@ -47,7 +54,7 @@ export default defineConfig({
       viteOptimizeDeps: true,
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver(), MotionResolver()],
       dts: true,
       globs: ['src/components/*.vue', 'src/icons/**/*.vue'],
       deep: true,
