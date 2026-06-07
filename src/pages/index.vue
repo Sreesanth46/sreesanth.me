@@ -21,6 +21,10 @@ const Frameworks = [
     icon: resolveComponent('VueSkillIcon'),
   },
   {
+    label: 'Nuxt.js',
+    icon: resolveComponent('NuxtSkillIcon'),
+  },
+  {
     label: 'Next.js',
     icon: resolveComponent('NextSkillIcon'),
   },
@@ -39,16 +43,16 @@ const Frameworks = [
       <p class="mb-0">
         Detail-oriented Full-Stack Developer with expertise developing and deploying complete web
         applications with technologies like
-        <span class="flex flex-wrap not-prose">
-          <div
-            class="flex items-center pr-3"
+        <span class="not-prose">
+          <span
+            class="inline-flex items-baseline align-baseline pr-3"
             v-for="({ label, icon }, i) in Frameworks"
             :key="label"
           >
-            <p class="mr-1">{{ label }}</p>
+            <span class="mr-1">{{ label }}</span>
             <component :is="icon" />
             <span v-if="Frameworks.length - 1 !== i">&#65104;</span>
-          </div>
+          </span>
         </span>
       </p>
 

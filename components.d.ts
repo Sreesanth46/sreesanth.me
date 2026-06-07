@@ -34,6 +34,7 @@ declare module 'vue' {
     Navbar: typeof import('./src/components/Navbar.vue')['default']
     NextSkillIcon: typeof import('./src/icons/skill-icon/NextSkillIcon.vue')['default']
     NodeSkillIcon: typeof import('./src/icons/skill-icon/NodeSkillIcon.vue')['default']
+    NuxtSkillIcon: typeof import('./src/icons/skill-icon/NuxtSkillIcon.vue')['default']
     Plum: typeof import('./src/components/Plum.vue')['default']
     ProjectCard: typeof import('./src/components/ProjectCard.vue')['default']
     ProjectExtraCard: typeof import('./src/components/ProjectExtraCard.vue')['default']
