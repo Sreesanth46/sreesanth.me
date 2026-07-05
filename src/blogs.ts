@@ -1,5 +1,28 @@
 export const blogs = [
     {
+        "name": "http-query-method",
+        "url": "https://raw.githubusercontent.com/Sreesanth46/blogs/main/http-query-method.md",
+        "readTime": "5 min",
+        "title": "HTTP Finally Has a `QUERY` Method: What It Means for API Design",
+        "date": "2026-07-06T01:21:56+05:30",
+        "tags": [
+            "javascript",
+            "http"
+        ]
+    },
+    {
+        "name": "clean-code",
+        "url": "https://raw.githubusercontent.com/Sreesanth46/blogs/main/clean-code.md",
+        "readTime": "15 min",
+        "title": "Clean Code in the Age of AI Agents: Why It Still Matters — and How to Enforce It",
+        "date": "2026-05-25T21:30:01+05:30",
+        "tags": [
+            "clean-code",
+            "dx",
+            "work-in-progress"
+        ]
+    },
+    {
         "name": "remembering-polymorphism",
         "url": "https://raw.githubusercontent.com/Sreesanth46/blogs/main/remembering-polymorphism.md",
         "readTime": "8 min",
@@ -7,7 +30,9 @@ export const blogs = [
         "date": "2026-01-18T22:34:18+05:30",
         "tags": [
             "javascript",
-            "polymorphism"
+            "polymorphism",
+            "js",
+            "oop"
         ]
     },
     {
@@ -28,7 +53,9 @@ export const blogs = [
         "title": "Handling event listeners in React",
         "date": "2025-04-09T18:31:36+05:30",
         "tags": [
-            "react"
+            "react",
+            "clean-code",
+            "dx"
         ]
     },
     {
@@ -72,7 +99,8 @@ export const blogs = [
         "date": "2024-08-11T01:37:26+05:30",
         "tags": [
             "tricks",
-            "javascript"
+            "javascript",
+            "js"
         ]
     },
     {
@@ -83,7 +111,8 @@ export const blogs = [
         "date": "2024-05-20T19:23:00.000+00:00",
         "tags": [
             "python",
-            "context-manager"
+            "context-manager",
+            "clean-code"
         ]
     },
     {
@@ -104,7 +133,8 @@ export const blogs = [
         "date": "2024-03-21T09:29:00.000+00:00",
         "tags": [
             "react",
-            "infinite-scroll"
+            "infinite-scroll",
+            "ux"
         ]
     },
     {
@@ -114,7 +144,8 @@ export const blogs = [
         "title": "Show component for React",
         "date": "2024-03-21T01:20:00.000+00:00",
         "tags": [
-            "react"
+            "react",
+            "clean-code"
         ]
     },
     {
@@ -135,7 +166,8 @@ export const blogs = [
         "date": "2024-03-02T16:04:00.000+00:00",
         "tags": [
             "micro-service",
-            "session"
+            "session",
+            "pattern"
         ]
     }
 ] as const
