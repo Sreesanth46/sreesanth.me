@@ -26,6 +26,7 @@ const highlighter = (await createHighlighterCore({
     import('@shikijs/langs/shellscript'),
     import('@shikijs/langs/python'),
     import('@shikijs/langs/markdown'),
+    import('@shikijs/langs/http'),
   ],
   engine: createJavaScriptRegexEngine(),
 })) as unknown as HighlighterGeneric<any, any>;
