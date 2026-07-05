@@ -15,6 +15,7 @@ declare global {
   const Links: typeof import('./src/globals/index').Links
   const NavbarLinks: typeof import('./src/globals/index').NavbarLinks
   const ProjectList: typeof import('./src/globals/index').ProjectList
+  const activeBlogSlug: typeof import('./src/utils/blog-layout').activeBlogSlug
   const applyMarkdownLineReveal: typeof import('./src/utils/markdown-line-reveal').applyMarkdownLineReveal
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
@@ -28,6 +29,10 @@ declare global {
   const blogLineRevealBaseDelay: typeof import('./src/utils/blog-layout').blogLineRevealBaseDelay
   const blogLineRevealStagger: typeof import('./src/utils/blog-layout').blogLineRevealStagger
   const blogMetaLayoutId: typeof import('./src/utils/blog-layout').blogMetaLayoutId
+  const blogSharedElementExit: typeof import('./src/utils/blog-layout').blogSharedElementExit
+  const blogTagEnter: typeof import('./src/utils/blog-layout').blogTagEnter
+  const blogTagEnterInitial: typeof import('./src/utils/blog-layout').blogTagEnterInitial
+  const blogTagsAnimate: typeof import('./src/utils/blog-layout').blogTagsAnimate
   const blogTitleLayoutId: typeof import('./src/utils/blog-layout').blogTitleLayoutId
   const blogTitleLayoutTransition: typeof import('./src/utils/blog-layout').blogTitleLayoutTransition
   const blogs: typeof import('./src/blogs').blogs
@@ -117,6 +122,7 @@ declare global {
   const refDefault: typeof import('@vueuse/core').refDefault
   const refThrottled: typeof import('@vueuse/core').refThrottled
   const refWithControl: typeof import('@vueuse/core').refWithControl
+  const relatedBlogs: typeof import('./src/utils/related-blogs').relatedBlogs
   const resolveComponent: typeof import('vue').resolveComponent
   const resolveRef: typeof import('@vueuse/core').resolveRef
   const resolveUnref: typeof import('@vueuse/core').resolveUnref
@@ -350,6 +356,7 @@ declare module 'vue' {
     readonly Links: UnwrapRef<typeof import('./src/globals/index')['Links']>
     readonly NavbarLinks: UnwrapRef<typeof import('./src/globals/index')['NavbarLinks']>
     readonly ProjectList: UnwrapRef<typeof import('./src/globals/index')['ProjectList']>
+    readonly activeBlogSlug: UnwrapRef<typeof import('./src/utils/blog-layout')['activeBlogSlug']>
     readonly applyMarkdownLineReveal: UnwrapRef<typeof import('./src/utils/markdown-line-reveal')['applyMarkdownLineReveal']>
     readonly blogChromeAnimate: UnwrapRef<typeof import('./src/utils/blog-layout')['blogChromeAnimate']>
     readonly blogChromeExit: UnwrapRef<typeof import('./src/utils/blog-layout')['blogChromeExit']>
@@ -357,6 +364,9 @@ declare module 'vue' {
     readonly blogLineRevealBaseDelay: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealBaseDelay']>
     readonly blogLineRevealStagger: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealStagger']>
     readonly blogMetaLayoutId: UnwrapRef<typeof import('./src/utils/blog-layout')['blogMetaLayoutId']>
+    readonly blogSharedElementExit: UnwrapRef<typeof import('./src/utils/blog-layout')['blogSharedElementExit']>
+    readonly blogTagEnter: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTagEnter']>
+    readonly blogTagEnterInitial: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTagEnterInitial']>
     readonly blogTitleLayoutId: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTitleLayoutId']>
     readonly blogTitleLayoutTransition: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTitleLayoutTransition']>
     readonly blogs: UnwrapRef<typeof import('./src/blogs')['blogs']>
@@ -405,6 +415,7 @@ declare module 'vue' {
     readonly readTime: UnwrapRef<typeof import('./src/utils/read-time')['readTime']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
+    readonly relatedBlogs: UnwrapRef<typeof import('./src/utils/related-blogs')['relatedBlogs']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>

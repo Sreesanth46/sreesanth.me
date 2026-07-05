@@ -6,12 +6,13 @@ export interface Experience {
   summary?: string[];
 }
 
-interface Blog {
+export interface Blog {
   name: string;
   url: string;
   title: string;
   date: string;
   readTime: string;
+  tags: readonly string[];
 }
 
 export type BlogTitleProps = Omit<Blog, 'url'>;

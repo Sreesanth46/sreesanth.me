@@ -2,7 +2,11 @@
 import { motion } from 'motion-v';
 import type { BlogPublishedOnProps } from '~/types';
 import { monthWithDay } from '~/utils/date-utils';
-import { blogMetaLayoutId, blogTitleLayoutTransition } from '~/utils/blog-layout';
+import {
+  blogMetaLayoutId,
+  blogSharedElementExit,
+  blogTitleLayoutTransition,
+} from '~/utils/blog-layout';
 
 const props = defineProps<
   BlogPublishedOnProps & {
@@ -41,16 +45,15 @@ const ago = computed(() => {
 </script>
 
 <template>
+  <!-- Always the same motion element — an undefined layout-id is inert.
+       Swapping element types mid-exit strands AnimatePresence's tracking. -->
   <motion.p
-    v-if="layoutId"
     :layout-id="layoutId"
+    :exit="layoutId ? blogSharedElementExit : undefined"
     :title="ago"
     :transition="blogTitleLayoutTransition"
     class="mt-0 opacity-50 whitespace-nowrap inline-block"
   >
     {{ displayDate }} <span>&middot; {{ readTime }}</span>
   </motion.p>
-  <p v-else :title="ago" class="mt-0 opacity-50 whitespace-nowrap">
-    {{ displayDate }} <span>&middot; {{ readTime }}</span>
-  </p>
 </template>

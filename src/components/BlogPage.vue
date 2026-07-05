@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useBlog } from '~/contexts/blogs-context';
-import { blogChromeExit } from '~/utils/blog-layout';
+import { blogChromeInitial, blogChromeAnimate, blogChromeExit } from '~/utils/blog-layout';
+import { relatedBlogs } from '~/utils/related-blogs';
 import { motion } from 'motion-v';
 
 const blog = useBlog();
@@ -8,6 +9,12 @@ const blog = useBlog();
 const title = computed(() => blog.title);
 
 useTitle(title);
+
+const related = computed(() => relatedBlogs(blog, blogs));
+
+const readNextLabel = computed(() =>
+  related.value.similar ? 'Read something similar' : 'Keep reading',
+);
 </script>
 
 <template>
@@ -15,6 +22,26 @@ useTitle(title);
     <BlogTitle v-bind="blog" />
     <motion.div :exit="blogChromeExit">
       <BlogContent :url="blog.url" />
+    </motion.div>
+    <motion.div
+      v-if="related.blogs.length"
+      :initial="blogChromeInitial"
+      :animate="blogChromeAnimate"
+      :exit="blogChromeExit"
+      class="mt-16"
+    >
+      <p class="opacity-50 text-sm mb-3">{{ readNextLabel }}</p>
+      <BlogsList>
+        <BlogsListItem
+          v-for="item in related.blogs"
+          :key="item.name"
+          :morph="false"
+          :name="item.name"
+          :date="item.date"
+          :read-time="item.readTime"
+          :title="item.title"
+        />
+      </BlogsList>
     </motion.div>
   </div>
 </template>

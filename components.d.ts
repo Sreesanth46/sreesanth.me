@@ -20,6 +20,7 @@ declare module 'vue' {
     BlogPublishedOn: typeof import('./src/components/BlogPublishedOn.vue')['default']
     BlogsList: typeof import('./src/components/BlogsList.vue')['default']
     BlogsListItem: typeof import('./src/components/BlogsListItem.vue')['default']
+    BlogTags: typeof import('./src/components/BlogTags.vue')['default']
     BlogTitle: typeof import('./src/components/BlogTitle.vue')['default']
     CalCom: typeof import('./src/components/CalCom.vue')['default']
     CvOutlinedIcon: typeof import('./src/icons/CvOutlinedIcon.vue')['default']
