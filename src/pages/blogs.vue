@@ -7,6 +7,17 @@ definePage({
     description: 'Sreesanth - Software Engineer. View my blogs and articles.',
   },
 });
+
+const route = useRoute();
+
+watch(
+  () => route.params,
+  (params) => {
+    const slug = 'slug' in params ? params.slug : undefined;
+    activeBlogSlug.value = typeof slug === 'string' ? slug : undefined;
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
