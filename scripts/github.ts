@@ -9,7 +9,11 @@ type GetRepoContentResponseDataFile = components['schemas']['content-file'];
 
 const auth = process.env.GITHUB_TOKEN;
 
-async function getContent(owner: string, repo: string, path = '') {
+async function getContent(
+  owner: string,
+  repo: string,
+  path = ''
+): Promise<GetRepoContentResponseDataFile> {
   const github = new Octokit({ auth });
 
   const { data } = await github.repos.getContent({
@@ -26,6 +30,7 @@ async function getContent(owner: string, repo: string, path = '') {
 // to ISO 8601 before writing the data file.
 const toIsoDate = (value: unknown) => {
   if (typeof value !== 'string') return value;
+
   const match = value.match(
     /^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}:\d{2}(?:\.\d+)?)(?:\s*([+-]\d{2}):?(\d{2})|\s*Z)?$/
   );
@@ -35,7 +40,7 @@ const toIsoDate = (value: unknown) => {
   return `${date}T${time}${offset}`;
 };
 
-const parseMatter = async (owner: string, repo: string, path = '') => {
+const parseMatter = async (owner: string, repo: string, path = ''): Promise<Blog | undefined> => {
   const data = await getContent(owner, repo, path);
 
   if (Array.isArray(data)) return;
@@ -57,7 +62,7 @@ const parseMatter = async (owner: string, repo: string, path = '') => {
   } as Blog;
 };
 
-async function run(owner: string, repo: string, path = '') {
+async function run(owner: string, repo: string, path = ''): Promise<void> {
   const data = await getContent(owner, repo, path);
 
   if (!Array.isArray(data)) {
