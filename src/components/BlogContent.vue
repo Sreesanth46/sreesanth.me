@@ -5,6 +5,8 @@ const { url } = defineProps<{
   url: string;
 }>();
 
+const emit = defineEmits<{ revealed: [] }>();
+
 const { data: downloaded, isFetching } = useFetch<{
   matter: Blog;
   content: string;
@@ -26,5 +28,5 @@ const content = computed(() => downloaded.value?.content ?? '');
 
 <template>
   <AppLoader v-if="isFetching" />
-  <Markdown v-else :key="url" :src-base-url :content />
+  <Markdown v-else :key="url" :src-base-url :content @revealed="emit('revealed')" />
 </template>
