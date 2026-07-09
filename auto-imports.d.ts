@@ -27,7 +27,13 @@ declare global {
   const blogChromeInitial: typeof import('./src/utils/blog-layout').blogChromeInitial
   const blogContentAnimate: typeof import('./src/utils/blog-layout').blogContentAnimate
   const blogLineRevealBaseDelay: typeof import('./src/utils/blog-layout').blogLineRevealBaseDelay
+  const blogLineRevealBaseDelayMs: typeof import('./src/utils/blog-layout').blogLineRevealBaseDelayMs
+  const blogLineRevealDuration: typeof import('./src/utils/blog-layout').blogLineRevealDuration
+  const blogLineRevealDurationMs: typeof import('./src/utils/blog-layout').blogLineRevealDurationMs
+  const blogLineRevealMaxIndex: typeof import('./src/utils/blog-layout').blogLineRevealMaxIndex
   const blogLineRevealStagger: typeof import('./src/utils/blog-layout').blogLineRevealStagger
+  const blogLineRevealStaggerMs: typeof import('./src/utils/blog-layout').blogLineRevealStaggerMs
+  const blogLineRevealTotalMs: typeof import('./src/utils/blog-layout').blogLineRevealTotalMs
   const blogMetaLayoutId: typeof import('./src/utils/blog-layout').blogMetaLayoutId
   const blogSharedElementExit: typeof import('./src/utils/blog-layout').blogSharedElementExit
   const blogTagEnter: typeof import('./src/utils/blog-layout').blogTagEnter
@@ -67,7 +73,6 @@ declare global {
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
   const h: typeof import('vue').h
-  const htmlToMarkdownBlocks: typeof import('./src/utils/markdown-blocks').htmlToMarkdownBlocks
   const ignorableWatch: typeof import('@vueuse/core').ignorableWatch
   const inject: typeof import('vue').inject
   const injectLocal: typeof import('@vueuse/core').injectLocal
@@ -362,7 +367,13 @@ declare module 'vue' {
     readonly blogChromeExit: UnwrapRef<typeof import('./src/utils/blog-layout')['blogChromeExit']>
     readonly blogChromeInitial: UnwrapRef<typeof import('./src/utils/blog-layout')['blogChromeInitial']>
     readonly blogLineRevealBaseDelay: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealBaseDelay']>
+    readonly blogLineRevealBaseDelayMs: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealBaseDelayMs']>
+    readonly blogLineRevealDuration: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealDuration']>
+    readonly blogLineRevealDurationMs: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealDurationMs']>
+    readonly blogLineRevealMaxIndex: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealMaxIndex']>
     readonly blogLineRevealStagger: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealStagger']>
+    readonly blogLineRevealStaggerMs: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealStaggerMs']>
+    readonly blogLineRevealTotalMs: UnwrapRef<typeof import('./src/utils/blog-layout')['blogLineRevealTotalMs']>
     readonly blogMetaLayoutId: UnwrapRef<typeof import('./src/utils/blog-layout')['blogMetaLayoutId']>
     readonly blogSharedElementExit: UnwrapRef<typeof import('./src/utils/blog-layout')['blogSharedElementExit']>
     readonly blogTagEnter: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTagEnter']>
@@ -381,7 +392,6 @@ declare module 'vue' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
-    readonly htmlToMarkdownBlocks: UnwrapRef<typeof import('./src/utils/markdown-blocks')['htmlToMarkdownBlocks']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>

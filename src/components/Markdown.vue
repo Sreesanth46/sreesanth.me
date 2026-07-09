@@ -1,18 +1,32 @@
 <script setup lang="ts">
 import { useMarkDown } from '~/composables/use-markdown';
-import { htmlToMarkdownBlocks } from '~/utils/markdown-blocks';
 import { applyMarkdownLineReveal } from '~/utils/markdown-line-reveal';
-import { blogLineRevealBaseDelay, blogLineRevealStagger } from '~/utils/blog-layout';
+import {
+  blogLineRevealBaseDelay,
+  blogLineRevealStagger,
+  blogLineRevealDuration,
+  blogLineRevealTotalMs,
+} from '~/utils/blog-layout';
 
 const { content, srcBaseUrl } = defineProps<{
   content: string;
   srcBaseUrl: string;
 }>();
 
+/** Fires once the last line has finished revealing (or immediately when there's
+    nothing to animate) so downstream chrome can wait for the body. */
+const emit = defineEmits<{ revealed: [] }>();
+
 const md = useMarkDown();
 const articleRef = ref<HTMLElement | null>(null);
 const prefersReducedMotion = usePreferredReducedMotion();
-const revealed = ref(false);
+// Article stays hidden until words are wrapped and lines measured — otherwise
+// the full text flashes before it splits and hides for the reveal.
+const ready = ref(false);
+// True only once the line split has run (and markers injected) — gates the
+// native-marker suppression so reduced-motion/empty renders keep their bullets.
+const split = ref(false);
+let revealTimer: ReturnType<typeof setTimeout> | undefined;
 
 const render = computed(() => {
   const html = md.render(content ?? '');
@@ -22,55 +36,65 @@ const render = computed(() => {
   });
 });
 
-const blocks = computed(() => htmlToMarkdownBlocks(render.value));
-
 function waitForPaint() {
   return new Promise<void>((resolve) => {
     requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
   });
 }
 
-async function revealLines() {
-  revealed.value = false;
+async function reveal() {
+  ready.value = false;
+  split.value = false;
+  const article = articleRef.value;
+
+  if (!article?.childElementCount || prefersReducedMotion.value === 'reduce') {
+    ready.value = true;
+    emit('revealed');
+    return;
+  }
+
+  // Line wrapping depends on font metrics, so measure once fonts have settled.
+  if (document.fonts?.ready) {
+    await document.fonts.ready.catch(() => {});
+  }
   await nextTick();
   await waitForPaint();
 
-  const article = articleRef.value;
-  if (!article) {
+  // The component may have unmounted while awaiting (navigation).
+  if (articleRef.value !== article) {
     return;
   }
 
-  if (!blocks.value.length) {
-    revealed.value = true;
-    return;
-  }
+  const lineCount = applyMarkdownLineReveal(article);
+  split.value = true;
+  ready.value = true;
 
-  if (prefersReducedMotion.value === 'reduce') {
-    revealed.value = true;
-    return;
-  }
-
-  applyMarkdownLineReveal(article);
-  revealed.value = true;
+  // Signal completion off a deterministic timer rather than `animationend`, which
+  // can silently never fire (cancelled animation, inactive tab, no rendered box).
+  revealTimer = setTimeout(() => emit('revealed'), blogLineRevealTotalMs(lineCount));
 }
 
-watch(() => content, revealLines);
+onMounted(reveal);
 
-onMounted(revealLines);
+onBeforeUnmount(() => {
+  clearTimeout(revealTimer);
+});
 </script>
 
 <template>
+  <!-- key on content so navigating between posts replays the reveal -->
   <article
     ref="articleRef"
+    :key="content"
     class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg md-lines"
-    :class="{ 'md-lines-revealed': revealed }"
+    :class="{ 'md-lines-ready': ready, 'md-lines-split': split }"
     :style="{
       '--line-base-delay': blogLineRevealBaseDelay,
       '--line-stagger': blogLineRevealStagger,
+      '--line-duration': blogLineRevealDuration,
     }"
-  >
-    <div v-for="(block, index) in blocks" :key="index" class="md-block" v-html="block" />
-  </article>
+    v-html="render"
+  />
 </template>
 
 <style lang="css">
@@ -117,77 +141,64 @@ li code {
   word-break: normal;
 }
 
-.md-lines:not(.md-lines-revealed) {
+/*
+ * Per-visual-line reveal. A JS pass (markdown-line-reveal) wraps each word in a
+ * .md-word span in place — inline markup is untouched — and tags each word with
+ * a --line-index for its wrapped line. Blocks that aren't split into lines
+ * (code, images, tables) get .md-reveal and animate as one unit. Both share the
+ * same fade/slide keyed off --line-index. The article is hidden until the split
+ * runs so the un-split text never flashes.
+ */
+.md-lines:not(.md-lines-ready) {
   visibility: hidden;
 }
 
-.md-lines.md-lines-revealed {
-  visibility: visible;
+.md-word,
+.md-reveal {
+  opacity: 0;
+  transform: translateY(0.5em);
+  animation: md-line-in var(--line-duration, 0.42s) cubic-bezier(0.33, 1, 0.68, 1) both;
+  animation-delay: calc(var(--line-base-delay, 0.2s) + var(--line-index, 0) * var(--line-stagger, 90ms));
 }
 
-/* Native markers paint before line text; bullets live inside the animated inner */
-.md-lines :is(ul, ol) {
-  list-style: none !important;
-  padding-inline-start: 1.625em;
+/* Words must be inline-block for translateY; long words still wrap. */
+.md-word {
+  display: inline-block;
+  overflow-wrap: anywhere;
 }
 
-.md-lines ul > li > .md-line:first-child > .md-line__inner::before {
-  content: '•\00a0';
+/*
+ * Native list markers paint immediately and can't fade (opacity isn't allowed on
+ * ::marker), so drop them and draw our own on the injected .md-marker token,
+ * which reveals with the item's first line.
+ */
+.md-lines-split :is(ul, ol) {
+  list-style: none;
 }
 
-.md-lines ul ul > li > .md-line:first-child > .md-line__inner::before {
-  content: '◦\00a0';
-}
-
-.md-lines ol {
+.md-lines-split ol {
   counter-reset: md-ol;
 }
 
-.md-lines ol > li {
+.md-lines-split ol > li {
   counter-increment: md-ol;
 }
 
-.md-lines ol > li > .md-line:first-child > .md-line__inner::before {
-  content: counter(md-ol) '.\00a0';
+.md-marker {
+  margin-right: 0.4em;
+  overflow-wrap: normal;
 }
 
-.md-line {
-  display: block;
-  overflow: hidden;
+.md-lines-split ul > li > .md-marker::before {
+  content: '•';
 }
 
-.md-line__inner {
-  display: block;
-  opacity: 0;
-  transform: translateY(0.92em);
-  animation: md-line-in 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: calc(var(--line-base-delay, 0.2s) + var(--line-index, 0) * var(--line-stagger, 38ms));
-  will-change: transform, opacity;
+.md-lines-split ul ul > li > .md-marker::before {
+  content: '◦';
 }
 
-/* Shiki/pre chrome lives on the animated inner wrapper, not the shell */
-.md-lines pre.md-line-reveal-host,
-.md-lines pre.md-line-reveal-host.shiki {
-  padding: 0;
-  background: transparent !important;
-  background-color: transparent !important;
-}
-
-.md-lines pre.md-line-reveal-host code,
-.md-lines pre.md-line-reveal-host .shiki {
-  background: transparent !important;
-  background-color: transparent !important;
-}
-
-.md-lines pre.md-line-reveal-host .md-line__inner {
-  padding: 1em;
-  overflow-x: auto;
-  border-radius: 0.375rem;
-  background-color: #fafafa !important;
-}
-
-.dark .md-lines pre.md-line-reveal-host .md-line__inner {
-  background-color: #0e0e0e !important;
+.md-lines-split ol > li > .md-marker::before {
+  content: counter(md-ol) '.';
 }
 
 @keyframes md-line-in {
@@ -198,11 +209,12 @@ li code {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .md-lines:not(.md-lines-revealed) {
+  .md-lines {
     visibility: visible;
   }
 
-  .md-line__inner {
+  .md-word,
+  .md-reveal {
     animation: none;
     opacity: 1;
     transform: none;

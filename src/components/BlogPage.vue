@@ -15,16 +15,25 @@ const related = computed(() => relatedBlogs(blog, blogs));
 const readNextLabel = computed(() =>
   related.value.similar ? 'Read something similar' : 'Keep reading',
 );
+
+// Hold the related list back until the article body has finished revealing.
+const contentRevealed = ref(false);
+watch(
+  () => blog.url,
+  () => {
+    contentRevealed.value = false;
+  },
+);
 </script>
 
 <template>
   <div>
     <BlogTitle v-bind="blog" />
     <motion.div :exit="blogChromeExit">
-      <BlogContent :url="blog.url" />
+      <BlogContent :url="blog.url" @revealed="contentRevealed = true" />
     </motion.div>
     <motion.div
-      v-if="related.blogs.length"
+      v-if="related.blogs.length && contentRevealed"
       :initial="blogChromeInitial"
       :animate="blogChromeAnimate"
       :exit="blogChromeExit"

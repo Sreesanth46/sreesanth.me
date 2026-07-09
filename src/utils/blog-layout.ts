@@ -57,7 +57,30 @@ export const blogChromeExit = {
   transition: { duration: 0.12 },
 } as const;
 
-/** Stagger start for article lines — after the title/meta layout animation. */
-export const blogLineRevealBaseDelay = '0.2s';
+/* Article line-reveal timing (ms). Single source of truth — the CSS pulls these
+   in as custom properties, and Markdown derives the total reveal duration from
+   them so downstream chrome can wait without relying on animation events. */
 
-export const blogLineRevealStagger = '38ms';
+/** Stagger start for article lines — after the title/meta layout animation. */
+export const blogLineRevealBaseDelayMs = 200;
+
+/** Gap between consecutive block reveals. */
+export const blogLineRevealStaggerMs = 90;
+
+/** Per-block fade/slide duration. Kept short so blocks snap in crisply rather
+    than drifting — the deliberate pacing comes from the stagger, not this. */
+export const blogLineRevealDurationMs = 420;
+
+/** Lines past this position share the final delay, so long posts don't accrue an
+    ever-growing reveal (and the related list doesn't wait forever). */
+export const blogLineRevealMaxIndex = 12;
+
+export const blogLineRevealBaseDelay = `${blogLineRevealBaseDelayMs}ms`;
+export const blogLineRevealStagger = `${blogLineRevealStaggerMs}ms`;
+export const blogLineRevealDuration = `${blogLineRevealDurationMs}ms`;
+
+/** Total time from mount until the last line has finished revealing. */
+export function blogLineRevealTotalMs(lineCount: number) {
+  const lastIndex = Math.min(Math.max(lineCount - 1, 0), blogLineRevealMaxIndex);
+  return blogLineRevealBaseDelayMs + lastIndex * blogLineRevealStaggerMs + blogLineRevealDurationMs;
+}
