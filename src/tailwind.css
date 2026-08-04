@@ -1,13 +1,27 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/typography';
+
+@source '../index.html';
+@source './**/*.{js,ts,jsx,tsx,vue}';
+
+/* Replaces v3 `darkMode: 'class'` — dark styles hang off `html.dark`, set by useDark(). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Replaces v3 `theme.screens`, which overrode the defaults outright rather than extending
+   them — hence the `initial` reset, which also drops Tailwind's `2xl` breakpoint. */
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 900px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1536px;
+}
+
 :root {
   --primary: transparent;
   --secondary: rgb(223, 223, 223);
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
   --c-bg: #fff;
   --c-scrollbar: #eee;
   --c-scrollbar-hover: #bbb;

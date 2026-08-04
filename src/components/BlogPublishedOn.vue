@@ -19,7 +19,7 @@ const prefersReducedMotion = usePreferredReducedMotion();
 const layoutId = computed(() =>
   props.layoutName && prefersReducedMotion.value !== 'reduce'
     ? blogMetaLayoutId(props.layoutName)
-    : undefined,
+    : undefined
 );
 
 const now = new Date();

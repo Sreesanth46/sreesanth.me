@@ -23,8 +23,7 @@ export function relatedBlogs(current: Blog, all: readonly Blog[], limit = 2): Re
     }))
     .sort(
       (a, b) =>
-        b.shared - a.shared ||
-        new Date(b.blog.date).valueOf() - new Date(a.blog.date).valueOf(),
+        b.shared - a.shared || new Date(b.blog.date).valueOf() - new Date(a.blog.date).valueOf()
     );
 
   const similar = scored.filter(({ shared }) => shared > 0);

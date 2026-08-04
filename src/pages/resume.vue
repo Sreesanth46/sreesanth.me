@@ -8,7 +8,7 @@ definePage({
 });
 
 const SectionTitle = h('h4', {
-  class: 'bg-black dark:bg-white w-max text-white dark:text-black px-1 rounded-sm',
+  class: 'bg-black dark:bg-white w-max text-white dark:text-black px-1 rounded-xs',
 });
 </script>
 

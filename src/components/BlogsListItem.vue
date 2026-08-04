@@ -29,7 +29,7 @@ const prefersReducedMotion = usePreferredReducedMotion();
 const layoutId = computed(() =>
   prefersReducedMotion.value === 'reduce' || (!morph && name !== activeBlogSlug.value)
     ? undefined
-    : blogTitleLayoutId(name),
+    : blogTitleLayoutId(name)
 );
 
 // motion-v registers layout-ids on mount, so arming happens before the
@@ -43,7 +43,7 @@ function markActive() {
   <router-link
     :to="`/blogs/${name}`"
     @click="markActive"
-    class="capitalize no-underline text-black dark:text-white text-opacity-65 dark:text-opacity-65 hover:text-opacity-100 dark:hover:text-opacity-100 transition-all duration-200"
+    class="capitalize no-underline text-black/65 dark:text-white/65 hover:text-black dark:hover:text-white transition-all duration-200"
   >
     <li class="flex flex-col md:flex-row md:gap-4 md:items-center my-0 text-lg font-normal">
       <motion.span

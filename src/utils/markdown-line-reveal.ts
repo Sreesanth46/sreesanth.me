@@ -137,7 +137,9 @@ function splitIntoLines(block: HTMLElement, ctx: RevealContext) {
   // count. offsetTop is a layout value, so the reveal transform doesn't skew it.
   const computed = getComputedStyle(block);
   const parsedLineHeight = parseFloat(computed.lineHeight);
-  const lineHeight = Number.isNaN(parsedLineHeight) ? words[0].offsetHeight || 20 : parsedLineHeight;
+  const lineHeight = Number.isNaN(parsedLineHeight)
+    ? words[0].offsetHeight || 20
+    : parsedLineHeight;
   const threshold = lineHeight * 0.5;
 
   let lineTop: number | null = null;

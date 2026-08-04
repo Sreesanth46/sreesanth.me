@@ -14,6 +14,11 @@
     "noEmit": true,
     "jsx": "preserve",
 
+    /* vue-router's sfc-typed-router Volar plugin resolves each SFC to a
+       `relative(rootDir, file)` key, and the keys in src/route-map.d.ts are
+       project-root-relative (e.g. 'src/pages/index.vue') — so this must stay '.'. */
+    "rootDir": ".",
+
     "paths": {
       "~/*": ["./src/*"]
     },
@@ -28,9 +33,6 @@
   "exclude": ["dist", "node_modules", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "vueCompilerOptions": {
-    "plugins": [
-      "vue-router/volar/sfc-route-blocks",
-      "vue-router/volar/sfc-typed-router"
-    ]
+    "plugins": ["vue-router/volar/sfc-route-blocks", "vue-router/volar/sfc-typed-router"]
   }
 }
