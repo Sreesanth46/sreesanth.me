@@ -73,7 +73,7 @@ const SectionTitle = h('h4', {
             <div><strong>Frontend</strong></div>
             <p>Vue, Nuxt, React, Next, Vite</p>
             <div><strong>Backend</strong></div>
-            <p>Django, FastAPI, Node.js, MongoDB, MySQL, Supabase, Nginx, Docker</p>
+            <p>Django, FastAPI, Node.js, FastMCP, MongoDB, MySQL, Supabase, Nginx, Docker</p>
             <div><strong>DevOps</strong></div>
             <p>AWS, Azure, DigitalOcean, Firebase, Terraform</p>
             <div><strong>Languages</strong></div>
@@ -84,7 +84,7 @@ const SectionTitle = h('h4', {
           <section-title> Awards </section-title>
           <div>
             <p><strong>Newbie 2023 Award</strong>, Innovature Labs</p>
-            <p class="text-gray-500 font-light">Jan 2024</p>
+            <p class="text-gray-600 dark:text-gray-400 font-light">Jan 2024</p>
           </div>
         </div>
         <div class="flex flex-col gap-4">
