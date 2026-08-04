@@ -45,7 +45,7 @@ function markActive() {
     @click="markActive"
     class="capitalize no-underline text-black/65 dark:text-white/65 hover:text-black dark:hover:text-white transition-all duration-200"
   >
-    <li class="flex flex-col md:flex-row md:gap-4 md:items-center my-0 text-lg font-normal">
+    <li class="not-prose flex flex-col md:flex-row md:gap-4 md:items-baseline text-lg font-normal">
       <motion.span
         :key="layoutId ?? 'static'"
         :layout-id="layoutId"

@@ -39,6 +39,28 @@ html.dark {
   --c-scrollbar-hover: #222;
 }
 
+/*
+ * One soft grey for every body-level element in a post — `<p>`, `<li>`, `<strong>`,
+ * table cells — instead of the old `prose-p:text-gray-500/80`, which coloured only
+ * paragraphs and left list items on prose's darker default.
+ *
+ * Written as prose's own `--tw-prose-body` variable rather than a `text-*` utility:
+ * `.prose` and `.dark:prose-invert` both declare colour at (0,1,0), so a utility ties
+ * with them and wins or loses purely on emit order. These rules are unlayered, and
+ * unlayered styles outrank anything in @layer regardless of specificity.
+ *
+ * Hex first, color-mix second, matching how Tailwind itself emits `/80` opacity.
+ */
+.prose-body-soft {
+  --tw-prose-body: #6a7282cc; /* gray-500 @ 80% */
+  --tw-prose-body: color-mix(in oklab, var(--color-gray-500) 80%, transparent);
+}
+
+.dark .prose-body-soft {
+  --tw-prose-body: #f3f4f6cc; /* gray-100 @ 80% */
+  --tw-prose-body: color-mix(in oklab, var(--color-gray-100) 80%, transparent);
+}
+
 .fade-enter-active {
   transition: opacity 2s ease;
 }
@@ -100,4 +122,18 @@ html.dark .shiki span {
 }
 .dark::view-transition-new(root) {
   z-index: 1;
+}
+
+/*
+ * Going dark -> light, toggleDark() grows ::view-transition-new(root) from the click
+ * point. That layer sits on top at z-index 9999, so any frame rendered before the
+ * animation's first tick shows it *unclipped* — the whole screen flashes to the final
+ * light colours, then snaps back and wipes. Starting it already collapsed makes that
+ * frame a no-op; the animation then takes over and fill:forwards holds the end state.
+ *
+ * Only the to-light direction needs this: going to dark the top layer is
+ * ::view-transition-old(root), which is the page already on screen.
+ */
+html:not(.dark)::view-transition-new(root) {
+  clip-path: circle(0px at var(--vt-x, 50%) var(--vt-y, 50%));
 }
