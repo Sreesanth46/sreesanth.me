@@ -86,7 +86,7 @@ onBeforeUnmount(() => {
   <article
     ref="articleRef"
     :key="content"
-    class="prose dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 lg:prose-lg md-lines"
+    class="prose dark:prose-invert prose-body-soft lg:prose-lg md-lines"
     :class="{ 'md-lines-ready': ready, 'md-lines-split': split }"
     :style="{
       '--line-base-delay': blogLineRevealBaseDelay,

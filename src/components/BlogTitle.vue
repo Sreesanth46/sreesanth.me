@@ -19,7 +19,7 @@ const layoutId = computed(() =>
 <template>
   <motion.div
     :exit="blogChromeExit"
-    class="prose-sm sm:prose lg:prose-lg dark:prose-invert prose-p:text-gray-500/80 prose-p:dark:text-gray-100/80 mb-6"
+    class="prose-sm sm:prose lg:prose-lg dark:prose-invert prose-body-soft mb-6"
   >
     <motion.h1
       v-if="props.title"
