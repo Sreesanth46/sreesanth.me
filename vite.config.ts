@@ -62,7 +62,7 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    alias: [{ find: '~/', replacement: `${resolve(__dirname, 'src')}/` }],
+    alias: [{ find: '~/', replacement: `${resolve(import.meta.dirname, 'src')}/` }],
   },
   base: '/',
   build: {

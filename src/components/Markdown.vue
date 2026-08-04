@@ -158,7 +158,9 @@ li code {
   opacity: 0;
   transform: translateY(0.5em);
   animation: md-line-in var(--line-duration, 0.42s) cubic-bezier(0.33, 1, 0.68, 1) both;
-  animation-delay: calc(var(--line-base-delay, 0.2s) + var(--line-index, 0) * var(--line-stagger, 90ms));
+  animation-delay: calc(
+    var(--line-base-delay, 0.2s) + var(--line-index, 0) * var(--line-stagger, 90ms)
+  );
 }
 
 /* Words must be inline-block for translateY; long words still wrap. */

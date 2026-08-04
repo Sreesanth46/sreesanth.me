@@ -4,7 +4,7 @@
   >
     <router-link to="/">
       <p
-        class="text-2xl animate-pulse bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text"
+        class="text-2xl animate-pulse bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text"
       >
         .sh
       </p>

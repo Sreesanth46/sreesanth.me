@@ -13,7 +13,7 @@ useTitle(title);
 const related = computed(() => relatedBlogs(blog, blogs));
 
 const readNextLabel = computed(() =>
-  related.value.similar ? 'Read something similar' : 'Keep reading',
+  related.value.similar ? 'Read something similar' : 'Keep reading'
 );
 
 // Hold the related list back until the article body has finished revealing.
@@ -22,7 +22,7 @@ watch(
   () => blog.url,
   () => {
     contentRevealed.value = false;
-  },
+  }
 );
 </script>
 
