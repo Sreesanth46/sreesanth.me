@@ -9,6 +9,7 @@
     "build": "npm run static && vue-tsc && vite build",
     "preview": "vite preview",
     "static": "esno scripts/github.ts",
+    "size": "esno scripts/build-size.ts",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
