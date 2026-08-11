@@ -15,8 +15,10 @@ declare global {
   const FindMeLinks: typeof import('./src/globals/index').FindMeLinks
   const Fn: typeof import('@vueuse/core').Fn
   const Links: typeof import('./src/globals/index').Links
+  const MERMAID_BLOCK_CLASS: typeof import('./src/utils/mermaid').MERMAID_BLOCK_CLASS
   const NavbarLinks: typeof import('./src/globals/index').NavbarLinks
   const ProjectList: typeof import('./src/globals/index').ProjectList
+  const WHOLE_BLOCK_CLASS: typeof import('./src/utils/markdown-line-reveal').WHOLE_BLOCK_CLASS
   const activeBlogSlug: typeof import('./src/utils/blog-layout').activeBlogSlug
   const applyMarkdownLineReveal: typeof import('./src/utils/markdown-line-reveal').applyMarkdownLineReveal
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
@@ -130,6 +132,7 @@ declare global {
   const refThrottled: typeof import('@vueuse/core').refThrottled
   const refWithControl: typeof import('@vueuse/core').refWithControl
   const relatedBlogs: typeof import('./src/utils/related-blogs').relatedBlogs
+  const renderMermaidDiagrams: typeof import('./src/utils/mermaid').renderMermaidDiagrams
   const resolveComponent: typeof import('vue').resolveComponent
   const resolveRef: typeof import('@vueuse/core').resolveRef
   const resolveUnref: typeof import('@vueuse/core').resolveUnref
@@ -361,8 +364,10 @@ declare module 'vue' {
     readonly Experiences: UnwrapRef<typeof import('./src/globals/resume')['Experiences']>
     readonly FindMeLinks: UnwrapRef<typeof import('./src/globals/index')['FindMeLinks']>
     readonly Links: UnwrapRef<typeof import('./src/globals/index')['Links']>
+    readonly MERMAID_BLOCK_CLASS: UnwrapRef<typeof import('./src/utils/mermaid')['MERMAID_BLOCK_CLASS']>
     readonly NavbarLinks: UnwrapRef<typeof import('./src/globals/index')['NavbarLinks']>
     readonly ProjectList: UnwrapRef<typeof import('./src/globals/index')['ProjectList']>
+    readonly WHOLE_BLOCK_CLASS: UnwrapRef<typeof import('./src/utils/markdown-line-reveal')['WHOLE_BLOCK_CLASS']>
     readonly activeBlogSlug: UnwrapRef<typeof import('./src/utils/blog-layout')['activeBlogSlug']>
     readonly applyMarkdownLineReveal: UnwrapRef<typeof import('./src/utils/markdown-line-reveal')['applyMarkdownLineReveal']>
     readonly blogChromeAnimate: UnwrapRef<typeof import('./src/utils/blog-layout')['blogChromeAnimate']>
@@ -428,6 +433,7 @@ declare module 'vue' {
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
     readonly relatedBlogs: UnwrapRef<typeof import('./src/utils/related-blogs')['relatedBlogs']>
+    readonly renderMermaidDiagrams: UnwrapRef<typeof import('./src/utils/mermaid')['renderMermaidDiagrams']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>

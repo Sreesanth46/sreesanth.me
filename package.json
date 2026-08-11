@@ -21,6 +21,7 @@
     "@vueuse/core": "^14.4.0",
     "fast-glob": "^3.3.3",
     "markdown-it": "^15.0.0",
+    "mermaid": "^11.16.1",
     "motion-v": "^2.3.0",
     "shiki": "^4.4.1",
     "vue": "^3.5.40",

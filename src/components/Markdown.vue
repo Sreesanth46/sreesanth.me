@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useMarkDown } from '~/composables/use-markdown';
 import { applyMarkdownLineReveal } from '~/utils/markdown-line-reveal';
+import { renderMermaidDiagrams } from '~/utils/mermaid';
+import { isDark } from '~/logics';
 import {
   blogLineRevealBaseDelay,
   blogLineRevealStagger,
@@ -42,12 +44,43 @@ function waitForPaint() {
   });
 }
 
+/**
+ * Serialised so a theme toggle arriving mid-draw can't run a second pass over the
+ * same containers concurrently — `isDark` is read when the queued draw actually
+ * runs, so the last one queued renders the current theme.
+ */
+let diagramQueue: Promise<void> = Promise.resolve();
+
+function drawDiagrams(article: HTMLElement) {
+  diagramQueue = diagramQueue
+    .then(() =>
+      articleRef.value === article ? renderMermaidDiagrams(article, isDark.value) : undefined
+    )
+    .catch(() => {});
+  return diagramQueue;
+}
+
 async function reveal() {
   ready.value = false;
   split.value = false;
   const article = articleRef.value;
 
-  if (!article?.childElementCount || prefersReducedMotion.value === 'reduce') {
+  if (!article?.childElementCount) {
+    ready.value = true;
+    emit('revealed');
+    return;
+  }
+
+  // Diagrams draw before the article is measured or shown — they're content, and
+  // drawing them later would reflow the body mid-reveal. No-ops (without loading
+  // mermaid) when the post has none.
+  await drawDiagrams(article);
+
+  if (articleRef.value !== article) {
+    return;
+  }
+
+  if (prefersReducedMotion.value === 'reduce') {
     ready.value = true;
     emit('revealed');
     return;
@@ -75,6 +108,16 @@ async function reveal() {
 }
 
 onMounted(reveal);
+
+// mermaid bakes theme colours into the SVG it emits, so a mode switch means
+// re-drawing from source rather than restyling the existing output.
+watch(isDark, () => {
+  const article = articleRef.value;
+
+  if (article) {
+    drawDiagrams(article);
+  }
+});
 
 onBeforeUnmount(() => {
   clearTimeout(revealTimer);
@@ -105,6 +148,28 @@ pre {
 
 .dark pre {
   background-color: #0e0e0e !important;
+}
+
+/* Empty until mermaid draws into it, so an un-rendered container takes no space. */
+.mermaid-diagram {
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+/*
+ * Centring applies only to a drawn diagram — a container that fell back to its
+ * source should read as an ordinary code block, full width and left aligned.
+ * Diagrams scroll rather than shrink: a wide flowchart squeezed into the prose
+ * column renders its labels unreadably small.
+ */
+.mermaid-diagram-rendered {
+  display: flex;
+  justify-content: center;
+}
+
+.mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
 }
 
 .prose code:not(pre code) {
