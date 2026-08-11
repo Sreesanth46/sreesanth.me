@@ -25,3 +25,7 @@ dist-ssr
 
 # Env
 .env
+
+# Previous deployment's bundle totals, restored from the CI cache to produce the
+# size delta (see scripts/build-size.ts). Build output, not source.
+.build-size.json

@@ -52,6 +52,25 @@ jobs:
       - name: Build
         run: pnpm run build && cp ./dist/index.html ./dist/404.html
 
+      # Restores the previous deployment's totals so the size report can show a
+      # delta. The exact key never hits (it carries this run's sha), so the
+      # restore-key prefix picks up the most recent cache instead; the new totals
+      # are saved under this run's key when the job finishes. A miss — first run,
+      # or a cache aged out after 7 days — just means no delta.
+      - name: Restore previous build size
+        uses: actions/cache@v4
+        with:
+          path: .build-size.json
+          key: build-size-${{ github.sha }}
+          restore-keys: |
+            build-size-
+
+      # Observability only — a failure here must never hold up a deployment, but
+      # it should still be visible in the run rather than swallowed.
+      - name: Report build size
+        run: pnpm run size
+        continue-on-error: true
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
 

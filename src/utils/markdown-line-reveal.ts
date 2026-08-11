@@ -29,6 +29,14 @@ const BLOCK_CONTAINER = new Set([
 const WHOLE_BLOCK = new Set(['PRE', 'TABLE', 'FIGURE', 'HR']);
 
 /**
+ * Opt-in marker for blocks that render their own content (mermaid diagrams) and
+ * must reveal whole. Word-splitting them would inject <span>s into foreign
+ * markup — inside an <svg> those spans lay out as nothing and the diagram
+ * vanishes. Set by the markdown renderer, so this stays tag-agnostic.
+ */
+export const WHOLE_BLOCK_CLASS = 'md-whole-block';
+
+/**
  * Inline elements revealed as one token instead of word-by-word. Their own box
  * carries a background (the inline-code chip), which would otherwise show empty
  * before its text faded in — so the whole element must reveal together.
@@ -157,7 +165,7 @@ function splitIntoLines(block: HTMLElement, ctx: RevealContext) {
 }
 
 function process(element: HTMLElement, ctx: RevealContext) {
-  if (WHOLE_BLOCK.has(element.tagName)) {
+  if (WHOLE_BLOCK.has(element.tagName) || element.classList.contains(WHOLE_BLOCK_CLASS)) {
     revealWholeBlock(element, ctx);
     return;
   }
