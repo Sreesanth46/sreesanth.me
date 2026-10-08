@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import { matter } from '../src/utils/matter.ts';
 import { readTime } from '../src/utils/read-time.ts';
 import type { components } from '@octokit/openapi-types';
-import { Blog } from '~/types/index.js';
+import type { Blog } from '~/types';
 
 type GetRepoContentResponseDataFile = components['schemas']['content-file'];
 

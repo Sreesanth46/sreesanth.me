@@ -33,6 +33,10 @@ let revealTimer: ReturnType<typeof setTimeout> | undefined;
 const render = computed(() => {
   const html = md.render(content ?? '');
   return html.replace(/src="([^"]+)"/g, (_, src) => {
+    if (/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(src)) {
+      return `src="${src}"`;
+    }
+
     const cleanSrc = src.replace(/^\.?\//, '');
     return `src="${srcBaseUrl}/${cleanSrc}"`;
   });

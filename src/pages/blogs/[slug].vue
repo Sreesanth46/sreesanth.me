@@ -14,9 +14,9 @@ const blog = computed(() => {
 if (!blog.value) {
   const router = useRouter();
   router.replace('/404');
+} else {
+  provideBlogContext(blog.value);
 }
-
-provideBlogContext(blog.value!);
 </script>
 
 <template>
