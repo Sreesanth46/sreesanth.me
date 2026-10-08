@@ -37,7 +37,7 @@ const Frameworks = [
 
 <template>
   <div class="sm:m-auto max-w-[75ch]">
-    <article class="prose dark:prose-invert lg:prose-lg">
+    <article class="prose dark:prose-invert">
       <h1 class="mb-0 text-4xl font-bold">Sreesanth</h1>
       <p>Hey, I am Sreesanth, a Full-Stack Developer | open sourceror</p>
       <p class="mb-0">
