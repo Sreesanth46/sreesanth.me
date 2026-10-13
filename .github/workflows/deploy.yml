@@ -33,12 +33,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install pnpm
-        run: npm install -g pnpm
-        shell: bash
-
       - name: Checkout
         uses: actions/checkout@v4
+
+      # Installs the exact pnpm pinned by `packageManager` in package.json, so the
+      # store path setup-node caches is the same one `pnpm install` writes to.
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node
         uses: actions/setup-node@v3
