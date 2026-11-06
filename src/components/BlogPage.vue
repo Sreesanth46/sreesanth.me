@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useBlog } from '~/contexts/blogs-context';
 import { blogChromeInitial, blogChromeAnimate, blogChromeExit } from '~/utils/blog-layout';
 import { relatedBlogs } from '~/utils/related-blogs';
 import { motion } from 'motion-v';
+import { useBlog } from '~/pages/blogs/[slug].vue';
 
 const blog = useBlog();
 

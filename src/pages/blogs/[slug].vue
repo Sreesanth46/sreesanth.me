@@ -2,9 +2,13 @@
 props: true
 </route>
 
-<script setup lang="ts">
-import { provideBlogContext } from '~/contexts/blogs-context';
+<script lang="ts">
+import { Blog } from '~/types';
 
+export const [useBlog, provideBlogContext] = createContext<Blog>('BlogPage');
+</script>
+
+<script setup lang="ts">
 const { slug } = defineProps<{ slug: string }>();
 
 const blog = computed(() => {

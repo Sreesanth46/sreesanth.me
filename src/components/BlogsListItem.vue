@@ -33,7 +33,11 @@ const layoutId = computed(() =>
 );
 
 // motion-v registers layout-ids on mount, so arming happens before the
-// navigation starts and the :key below remounts the spans with the id live.
+// navigation starts and the :keys below remount the spans with the id live.
+// The title and meta are siblings, so each needs its own prefix — a shared key
+// makes Vue's keyed diff mismatch them when they remount.
+const remountKey = computed(() => layoutId.value ?? 'static');
+
 function markActive() {
   activeBlogSlug.value = name;
 }
@@ -47,7 +51,7 @@ function markActive() {
   >
     <li class="flex flex-col items-baseline md:flex-row md:gap-4 my-0 text-lg font-normal">
       <motion.span
-        :key="layoutId ?? 'static'"
+        :key="`title:${remountKey}`"
         :layout-id="layoutId"
         :exit="layoutId ? blogSharedElementExit : undefined"
         class="inline-block"
@@ -56,7 +60,7 @@ function markActive() {
         {{ title }}
       </motion.span>
       <BlogPublishedOn
-        :key="layoutId ?? 'static'"
+        :key="`meta:${remountKey}`"
         :layout-name="layoutId ? name : undefined"
         :date="date"
         :read-time="readTime"
