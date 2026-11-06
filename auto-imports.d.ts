@@ -177,7 +177,6 @@ declare global {
   const useAttrs: typeof import('vue').useAttrs
   const useBase64: typeof import('@vueuse/core').useBase64
   const useBattery: typeof import('@vueuse/core').useBattery
-  const useBlog: typeof import('./src/contexts/blogs-context').useBlog
   const useBluetooth: typeof import('@vueuse/core').useBluetooth
   const useBreakpoints: typeof import('@vueuse/core').useBreakpoints
   const useBroadcastChannel: typeof import('@vueuse/core').useBroadcastChannel
@@ -428,7 +427,6 @@ declare module 'vue' {
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly onWatcherCleanup: UnwrapRef<typeof import('vue')['onWatcherCleanup']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
-    readonly provideBlogContext: UnwrapRef<typeof import('./src/contexts/blogs-context')['provideBlogContext']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readTime: UnwrapRef<typeof import('./src/utils/read-time')['readTime']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
@@ -446,7 +444,6 @@ declare module 'vue' {
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useBlog: UnwrapRef<typeof import('./src/contexts/blogs-context')['useBlog']>
     readonly useClarity: UnwrapRef<typeof import('./src/composables/use-clarity')['useClarity']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
