@@ -43,7 +43,7 @@ Cal.ns['30min']('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 
 <template>
   <button
-    class="flex gap-1 relative"
+    class="flex gap-1 relative hover:cursor-pointer hover:text-gray-800 hover:dark:text-gray-50"
     data-cal-link="sreesanth.sh/30min"
     data-cal-namespace="30min"
     data-cal-config='{"layout":"month_view"}'
