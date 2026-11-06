@@ -16,6 +16,7 @@
     "fmt:check": "oxfmt --check"
   },
   "dependencies": {
+    "@microsoft/clarity": "^1.0.2",
     "@shikijs/langs": "^4.4.1",
     "@shikijs/markdown-it": "^4.4.1",
     "@shikijs/themes": "^4.4.1",

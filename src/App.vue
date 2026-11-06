@@ -1,3 +1,7 @@
+<script setup lang="ts">
+useClarity();
+</script>
+
 <template>
   <div class="flex flex-col h-screen pb-2 px-6 font-sans">
     <Plum />
