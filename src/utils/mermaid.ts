@@ -1,9 +1,15 @@
+import type { Node } from '@comark/vue';
+import { defineComarkPlugin } from '@comark/vue/parse';
+import { visit } from '@comark/vue/utils';
+import { WHOLE_BLOCK_CLASS } from '~/utils/markdown-line-reveal';
+
 /*
  * Client-side mermaid rendering for article bodies.
  *
- * The markdown renderer (composables/use-markdown) turns a ```mermaid fence into
- * an empty container carrying the diagram source in `data-mermaid`, rather than
- * sending it down the Shiki path. This module draws those containers.
+ * At parse time, `mermaidBlocks` turns a ```mermaid fence into an empty
+ * container carrying the diagram source in `data-mermaid`, rather than sending
+ * it down the Shiki path. After mount, `renderMermaidDiagrams` draws into those
+ * containers.
  *
  * Keeping the source on the element (instead of consuming it) is what makes the
  * dark-mode re-draw possible: mermaid bakes theme colours into the SVG it emits,
@@ -11,12 +17,40 @@
  */
 
 /** Container emitted for a ```mermaid fence. */
-export const MERMAID_BLOCK_CLASS = 'mermaid-diagram';
+const MERMAID_BLOCK_CLASS = 'mermaid-diagram';
 
 /** Set once a container holds a drawn diagram, so re-draws can be told apart. */
 const RENDERED_CLASS = 'mermaid-diagram-rendered';
 
 const SOURCE_ATTR = 'data-mermaid';
+
+function mermaidFenceSource(node: Node) {
+  if (!Array.isArray(node) || node[0] !== 'pre' || node[1].language !== 'mermaid') {
+    return undefined;
+  }
+
+  const code = node[2];
+  return Array.isArray(code) && typeof code[2] === 'string' ? code[2] : undefined;
+}
+
+// Not comark's own mermaid plugin: its Vue entry imports `beautiful-mermaid`, a different renderer.
+export const mermaidBlocks = defineComarkPlugin(() => ({
+  name: 'mermaid-blocks',
+  post(state) {
+    visit(state.tree, Array.isArray, (node) => {
+      const source = mermaidFenceSource(node);
+
+      if (source === undefined) {
+        return undefined;
+      }
+
+      return [
+        'div',
+        { class: `${MERMAID_BLOCK_CLASS} ${WHOLE_BLOCK_CLASS}`, [SOURCE_ATTR]: source },
+      ];
+    });
+  },
+}));
 
 type Mermaid = typeof import('mermaid').default;
 

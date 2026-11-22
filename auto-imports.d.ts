@@ -15,7 +15,6 @@ declare global {
   const FindMeLinks: typeof import('./src/globals/index').FindMeLinks
   const Fn: typeof import('@vueuse/core').Fn
   const Links: typeof import('./src/globals/index').Links
-  const MERMAID_BLOCK_CLASS: typeof import('./src/utils/mermaid').MERMAID_BLOCK_CLASS
   const NavbarLinks: typeof import('./src/globals/index').NavbarLinks
   const ProjectList: typeof import('./src/globals/index').ProjectList
   const WHOLE_BLOCK_CLASS: typeof import('./src/utils/markdown-line-reveal').WHOLE_BLOCK_CLASS
@@ -46,6 +45,7 @@ declare global {
   const blogTitleLayoutId: typeof import('./src/utils/blog-layout').blogTitleLayoutId
   const blogTitleLayoutTransition: typeof import('./src/utils/blog-layout').blogTitleLayoutTransition
   const blogs: typeof import('./src/blogs').blogs
+  const codeHighlight: typeof import('./src/utils/markdown-plugins').codeHighlight
   const computed: typeof import('vue').computed
   const computedAsync: typeof import('@vueuse/core').computedAsync
   const computedEager: typeof import('@vueuse/core').computedEager
@@ -88,7 +88,9 @@ declare global {
   const isShallow: typeof import('vue').isShallow
   const makeDestructurable: typeof import('@vueuse/core').makeDestructurable
   const markRaw: typeof import('vue').markRaw
+  const markdownItCompat: typeof import('./src/utils/markdown-plugins').markdownItCompat
   const matter: typeof import('./src/utils/matter').matter
+  const mermaidBlocks: typeof import('./src/utils/mermaid').mermaidBlocks
   const monthWithDay: typeof import('./src/utils/date-utils').monthWithDay
   const monthWithYear: typeof import('./src/utils/date-utils').monthWithYear
   const nextTick: typeof import('vue').nextTick
@@ -240,7 +242,7 @@ declare global {
   const useLocalStorage: typeof import('@vueuse/core').useLocalStorage
   const useMagicKeys: typeof import('@vueuse/core').useMagicKeys
   const useManualRefHistory: typeof import('@vueuse/core').useManualRefHistory
-  const useMarkDown: typeof import('./src/composables/use-markdown').useMarkDown
+  const useMarkdown: typeof import('./src/composables/use-markdown').useMarkdown
   const useMediaControls: typeof import('@vueuse/core').useMediaControls
   const useMediaQuery: typeof import('@vueuse/core').useMediaQuery
   const useMemoize: typeof import('@vueuse/core').useMemoize
@@ -364,7 +366,6 @@ declare module 'vue' {
     readonly Experiences: UnwrapRef<typeof import('./src/globals/resume')['Experiences']>
     readonly FindMeLinks: UnwrapRef<typeof import('./src/globals/index')['FindMeLinks']>
     readonly Links: UnwrapRef<typeof import('./src/globals/index')['Links']>
-    readonly MERMAID_BLOCK_CLASS: UnwrapRef<typeof import('./src/utils/mermaid')['MERMAID_BLOCK_CLASS']>
     readonly NavbarLinks: UnwrapRef<typeof import('./src/globals/index')['NavbarLinks']>
     readonly ProjectList: UnwrapRef<typeof import('./src/globals/index')['ProjectList']>
     readonly WHOLE_BLOCK_CLASS: UnwrapRef<typeof import('./src/utils/markdown-line-reveal')['WHOLE_BLOCK_CLASS']>
@@ -388,6 +389,7 @@ declare module 'vue' {
     readonly blogTitleLayoutId: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTitleLayoutId']>
     readonly blogTitleLayoutTransition: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTitleLayoutTransition']>
     readonly blogs: UnwrapRef<typeof import('./src/blogs')['blogs']>
+    readonly codeHighlight: UnwrapRef<typeof import('./src/utils/markdown-plugins')['codeHighlight']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createContext: UnwrapRef<typeof import('./src/composables/create-context')['createContext']>
@@ -406,7 +408,9 @@ declare module 'vue' {
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly markdownItCompat: UnwrapRef<typeof import('./src/utils/markdown-plugins')['markdownItCompat']>
     readonly matter: UnwrapRef<typeof import('./src/utils/matter')['matter']>
+    readonly mermaidBlocks: UnwrapRef<typeof import('./src/utils/mermaid')['mermaidBlocks']>
     readonly monthWithDay: UnwrapRef<typeof import('./src/utils/date-utils')['monthWithDay']>
     readonly monthWithYear: UnwrapRef<typeof import('./src/utils/date-utils')['monthWithYear']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
@@ -450,7 +454,7 @@ declare module 'vue' {
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
-    readonly useMarkDown: UnwrapRef<typeof import('./src/composables/use-markdown')['useMarkDown']>
+    readonly useMarkdown: UnwrapRef<typeof import('./src/composables/use-markdown')['useMarkdown']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedMotion']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
