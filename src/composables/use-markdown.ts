@@ -4,7 +4,8 @@ import security from '@comark/vue/plugins/security';
 import type { MaybeRefOrGetter } from 'vue';
 import { computed, toValue } from 'vue';
 import { skipFrontmatter } from '~/utils/frontmatter';
-import { codeHighlight, markdownItCompat } from '~/utils/markdown-it-compat';
+import { codeHighlight } from '~/utils/code-highlight';
+import { markdownItCompat } from '~/utils/markdown-it-compat';
 import { mermaidBlocks } from '~/utils/mermaid';
 
 const options: Omit<ParserOptions, 'plugins'> = {

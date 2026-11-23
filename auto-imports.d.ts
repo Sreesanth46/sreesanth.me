@@ -45,7 +45,7 @@ declare global {
   const blogTitleLayoutId: typeof import('./src/utils/blog-layout').blogTitleLayoutId
   const blogTitleLayoutTransition: typeof import('./src/utils/blog-layout').blogTitleLayoutTransition
   const blogs: typeof import('./src/blogs').blogs
-  const codeHighlight: typeof import('./src/utils/markdown-it-compat').codeHighlight
+  const codeHighlight: typeof import('./src/utils/code-highlight').codeHighlight
   const computed: typeof import('vue').computed
   const computedAsync: typeof import('@vueuse/core').computedAsync
   const computedEager: typeof import('@vueuse/core').computedEager
@@ -389,7 +389,7 @@ declare module 'vue' {
     readonly blogTitleLayoutId: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTitleLayoutId']>
     readonly blogTitleLayoutTransition: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTitleLayoutTransition']>
     readonly blogs: UnwrapRef<typeof import('./src/blogs')['blogs']>
-    readonly codeHighlight: UnwrapRef<typeof import('./src/utils/markdown-it-compat')['codeHighlight']>
+    readonly codeHighlight: UnwrapRef<typeof import('./src/utils/code-highlight')['codeHighlight']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createContext: UnwrapRef<typeof import('./src/composables/create-context')['createContext']>
