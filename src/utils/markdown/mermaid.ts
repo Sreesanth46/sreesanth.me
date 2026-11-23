@@ -1,7 +1,7 @@
 import type { Node } from '@comark/vue';
 import { defineComarkPlugin } from '@comark/vue/parse';
 import { visit } from '@comark/vue/utils';
-import { WHOLE_BLOCK_CLASS } from '~/utils/markdown-line-reveal';
+import { WHOLE_BLOCK_CLASS } from '~/utils/markdown/line-reveal';
 
 /*
  * Client-side mermaid rendering for article bodies.
