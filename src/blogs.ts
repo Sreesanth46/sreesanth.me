@@ -1,5 +1,47 @@
 export const blogs = [
     {
+        "name": "your-codebase-is-an-interface-for-ai-agents",
+        "url": "https://raw.githubusercontent.com/Sreesanth46/blogs/main/your-codebase-is-an-interface-for-ai-agents.md",
+        "readTime": "32 min",
+        "title": "If an Agent Can’t Find It, Neither Can Your New Hire: Codebase Structure in the Age of AI",
+        "date": "2026-11-07T15:52:38+05:30",
+        "tags": [
+            "ai",
+            "agent",
+            "ai-agents",
+            "clean-code",
+            "wip"
+        ]
+    },
+    {
+        "name": "sentry-triage-on-cloud",
+        "url": "https://raw.githubusercontent.com/Sreesanth46/blogs/main/sentry-triage-on-cloud.md",
+        "readTime": "13 min",
+        "title": "I Let the Triage Agent Run Unattended for a Week. It Broke.",
+        "date": "2026-08-17T00:50:11+05:30",
+        "tags": [
+            "sentry",
+            "bug-fix",
+            "agent",
+            "ai",
+            "fix"
+        ]
+    },
+    {
+        "name": "sentry-triage-task",
+        "url": "https://raw.githubusercontent.com/Sreesanth46/blogs/main/sentry-triage-task.md",
+        "readTime": "11 min",
+        "title": "I let an AI agent triage my production errors for a week. Here's what it actually does.",
+        "date": "2026-08-11T23:18:16+05:30",
+        "tags": [
+            "sentry",
+            "bug-fix",
+            "fix",
+            "agent",
+            "ai"
+        ]
+    },
+    {
         "name": "http-query-method",
         "url": "https://raw.githubusercontent.com/Sreesanth46/blogs/main/http-query-method.md",
         "readTime": "5 min",
@@ -18,8 +60,7 @@ export const blogs = [
         "date": "2026-05-25T21:30:01+05:30",
         "tags": [
             "clean-code",
-            "dx",
-            "work-in-progress"
+            "dx"
         ]
     },
     {

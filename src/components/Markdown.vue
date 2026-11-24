@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useMarkDown } from '~/composables/use-markdown';
+import { Markdown as ComarkMarkdown } from '@comark/vue';
+import { useMarkdown } from '~/composables/use-markdown';
 import { applyMarkdownLineReveal } from '~/utils/markdown-line-reveal';
 import { renderMermaidDiagrams } from '~/utils/mermaid';
 import { isDark } from '~/logics';
@@ -19,7 +20,6 @@ const { content, srcBaseUrl } = defineProps<{
     nothing to animate) so downstream chrome can wait for the body. */
 const emit = defineEmits<{ revealed: [] }>();
 
-const md = useMarkDown();
 const articleRef = ref<HTMLElement | null>(null);
 const prefersReducedMotion = usePreferredReducedMotion();
 // Article stays hidden until words are wrapped and lines measured — otherwise
@@ -30,17 +30,16 @@ const ready = ref(false);
 const split = ref(false);
 let revealTimer: ReturnType<typeof setTimeout> | undefined;
 
-const render = computed(() => {
-  const html = md.render(content ?? '');
-  return html.replace(/src="([^"]+)"/g, (_, src) => {
-    if (/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(src)) {
-      return `src="${src}"`;
-    }
+const { options, plugins, transformNode } = useMarkdown(() => srcBaseUrl);
 
-    const cleanSrc = src.replace(/^\.?\//, '');
-    return `src="${srcBaseUrl}/${cleanSrc}"`;
-  });
-});
+function isStillDisplayed(article: HTMLElement) {
+  return articleRef.value === article;
+}
+
+function showWithoutReveal() {
+  ready.value = true;
+  emit('revealed');
+}
 
 function waitForPaint() {
   return new Promise<void>((resolve) => {
@@ -58,7 +57,7 @@ let diagramQueue: Promise<void> = Promise.resolve();
 function drawDiagrams(article: HTMLElement) {
   diagramQueue = diagramQueue
     .then(() =>
-      articleRef.value === article ? renderMermaidDiagrams(article, isDark.value) : undefined
+      isStillDisplayed(article) ? renderMermaidDiagrams(article, isDark.value) : undefined
     )
     .catch(() => {});
   return diagramQueue;
@@ -68,10 +67,10 @@ async function reveal() {
   ready.value = false;
   split.value = false;
   const article = articleRef.value;
+  const renderedPost = article?.querySelector<HTMLElement>('.comark-content');
 
-  if (!article?.childElementCount) {
-    ready.value = true;
-    emit('revealed');
+  if (!article || !renderedPost?.childElementCount) {
+    showWithoutReveal();
     return;
   }
 
@@ -80,13 +79,12 @@ async function reveal() {
   // mermaid) when the post has none.
   await drawDiagrams(article);
 
-  if (articleRef.value !== article) {
+  if (!isStillDisplayed(article)) {
     return;
   }
 
   if (prefersReducedMotion.value === 'reduce') {
-    ready.value = true;
-    emit('revealed');
+    showWithoutReveal();
     return;
   }
 
@@ -97,12 +95,11 @@ async function reveal() {
   await nextTick();
   await waitForPaint();
 
-  // The component may have unmounted while awaiting (navigation).
-  if (articleRef.value !== article) {
+  if (!isStillDisplayed(article)) {
     return;
   }
 
-  const lineCount = applyMarkdownLineReveal(article);
+  const lineCount = applyMarkdownLineReveal(renderedPost);
   split.value = true;
   ready.value = true;
 
@@ -110,8 +107,6 @@ async function reveal() {
   // can silently never fire (cancelled animation, inactive tab, no rendered box).
   revealTimer = setTimeout(() => emit('revealed'), blogLineRevealTotalMs(lineCount));
 }
-
-onMounted(reveal);
 
 // mermaid bakes theme colours into the SVG it emits, so a mode switch means
 // re-drawing from source rather than restyling the existing output.
@@ -140,11 +135,24 @@ onBeforeUnmount(() => {
       '--line-stagger': blogLineRevealStagger,
       '--line-duration': blogLineRevealDuration,
     }"
-    v-html="render"
-  />
+  >
+    <!-- Props must stay stable: a re-render would patch DOM the line reveal has rewritten. -->
+    <Suspense @resolve="reveal">
+      <ComarkMarkdown :value="content" :options :plugins :transform-node="transformNode" />
+    </Suspense>
+  </article>
 </template>
 
 <style lang="css">
+/* Applies prose's first/last-child margin resets past comark's wrapper div. */
+.prose > .comark-content > :first-child {
+  margin-top: 0;
+}
+
+.prose > .comark-content > :last-child {
+  margin-bottom: 0;
+}
+
 pre {
   position: relative;
   background-color: #fafafa !important;
