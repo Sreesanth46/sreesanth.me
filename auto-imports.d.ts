@@ -45,7 +45,7 @@ declare global {
   const blogTitleLayoutId: typeof import('./src/utils/blog-layout').blogTitleLayoutId
   const blogTitleLayoutTransition: typeof import('./src/utils/blog-layout').blogTitleLayoutTransition
   const blogs: typeof import('./src/blogs').blogs
-  const codeHighlight: typeof import('./src/utils/markdown-plugins').codeHighlight
+  const codeHighlight: typeof import('./src/utils/markdown-it-compat').codeHighlight
   const computed: typeof import('vue').computed
   const computedAsync: typeof import('@vueuse/core').computedAsync
   const computedEager: typeof import('@vueuse/core').computedEager
@@ -88,8 +88,7 @@ declare global {
   const isShallow: typeof import('vue').isShallow
   const makeDestructurable: typeof import('@vueuse/core').makeDestructurable
   const markRaw: typeof import('vue').markRaw
-  const markdownItCompat: typeof import('./src/utils/markdown-plugins').markdownItCompat
-  const matter: typeof import('./src/utils/matter').matter
+  const markdownItCompat: typeof import('./src/utils/markdown-it-compat').markdownItCompat
   const mermaidBlocks: typeof import('./src/utils/mermaid').mermaidBlocks
   const monthWithDay: typeof import('./src/utils/date-utils').monthWithDay
   const monthWithYear: typeof import('./src/utils/date-utils').monthWithYear
@@ -141,6 +140,7 @@ declare global {
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
+  const skipFrontmatter: typeof import('./src/utils/frontmatter').skipFrontmatter
   const syncRef: typeof import('@vueuse/core').syncRef
   const syncRefs: typeof import('@vueuse/core').syncRefs
   const templateRef: typeof import('@vueuse/core').templateRef
@@ -389,7 +389,7 @@ declare module 'vue' {
     readonly blogTitleLayoutId: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTitleLayoutId']>
     readonly blogTitleLayoutTransition: UnwrapRef<typeof import('./src/utils/blog-layout')['blogTitleLayoutTransition']>
     readonly blogs: UnwrapRef<typeof import('./src/blogs')['blogs']>
-    readonly codeHighlight: UnwrapRef<typeof import('./src/utils/markdown-plugins')['codeHighlight']>
+    readonly codeHighlight: UnwrapRef<typeof import('./src/utils/markdown-it-compat')['codeHighlight']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createContext: UnwrapRef<typeof import('./src/composables/create-context')['createContext']>
@@ -408,8 +408,7 @@ declare module 'vue' {
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly markdownItCompat: UnwrapRef<typeof import('./src/utils/markdown-plugins')['markdownItCompat']>
-    readonly matter: UnwrapRef<typeof import('./src/utils/matter')['matter']>
+    readonly markdownItCompat: UnwrapRef<typeof import('./src/utils/markdown-it-compat')['markdownItCompat']>
     readonly mermaidBlocks: UnwrapRef<typeof import('./src/utils/mermaid')['mermaidBlocks']>
     readonly monthWithDay: UnwrapRef<typeof import('./src/utils/date-utils')['monthWithDay']>
     readonly monthWithYear: UnwrapRef<typeof import('./src/utils/date-utils')['monthWithYear']>
@@ -441,6 +440,7 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly skipFrontmatter: UnwrapRef<typeof import('./src/utils/frontmatter')['skipFrontmatter']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>

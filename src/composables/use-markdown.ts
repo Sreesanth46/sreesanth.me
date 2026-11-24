@@ -3,7 +3,8 @@ import punctuation from '@comark/vue/plugins/punctuation';
 import security from '@comark/vue/plugins/security';
 import type { MaybeRefOrGetter } from 'vue';
 import { computed, toValue } from 'vue';
-import { codeHighlight, markdownItCompat } from '~/utils/markdown-plugins';
+import { skipFrontmatter } from '~/utils/frontmatter';
+import { codeHighlight, markdownItCompat } from '~/utils/markdown-it-compat';
 import { mermaidBlocks } from '~/utils/mermaid';
 
 const options: Omit<ParserOptions, 'plugins'> = {
@@ -14,6 +15,7 @@ const options: Omit<ParserOptions, 'plugins'> = {
 };
 
 const plugins: ParserOptions['plugins'] = [
+  skipFrontmatter(),
   markdownItCompat(),
   punctuation(),
   // Must run before codeHighlight, which would otherwise claim mermaid fences as code.

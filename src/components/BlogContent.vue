@@ -1,29 +1,17 @@
 <script setup lang="ts">
-import type { Blog } from '~/types';
-
 const { url } = defineProps<{
   url: string;
 }>();
 
 const emit = defineEmits<{ revealed: [] }>();
 
-const { data: downloaded, isFetching } = useFetch<{
-  matter: Blog;
-  content: string;
-}>(url, {
-  afterFetch(ctx) {
-    const { data, content } = matter(ctx.data ?? '');
-    ctx.data = { matter: data, content };
-
-    return ctx;
-  },
-});
+const { data: rawPost, isFetching } = useFetch(url).text();
 
 const srcBaseUrl = computed(() => {
   return url.split('/').slice(0, -1).join('/');
 });
 
-const content = computed(() => downloaded.value?.content ?? '');
+const content = computed(() => rawPost.value ?? '');
 </script>
 
 <template>

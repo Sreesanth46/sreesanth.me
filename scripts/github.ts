@@ -1,6 +1,6 @@
 import { Octokit } from '@octokit/rest';
 import fs from 'fs-extra';
-import { matter } from '../src/utils/matter.ts';
+import { parseFrontmatter } from '@comark/vue/parse';
 import { readTime } from '../src/utils/read-time.ts';
 import type { components } from '@octokit/openapi-types';
 import type { Blog } from '~/types';
@@ -48,17 +48,14 @@ const parseMatter = async (owner: string, repo: string, path = ''): Promise<Blog
   const { name, download_url, content } = data;
 
   const buffer = Buffer.from(content, 'base64').toString();
-  const { data: matterData, content: matterContent } = matter(buffer);
-  const read = readTime(matterContent);
-
-  const { date } = matterData as Record<string, unknown>;
+  const { data: frontmatter, content: body } = parseFrontmatter(buffer);
 
   return {
     name: name.split('.')[0],
     url: download_url ?? '',
-    readTime: read,
-    ...matterData,
-    date: toIsoDate(date),
+    readTime: readTime(body),
+    ...frontmatter,
+    date: toIsoDate(frontmatter.date),
   } as Blog;
 };
 
