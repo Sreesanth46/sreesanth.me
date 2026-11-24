@@ -32,7 +32,7 @@ const WHOLE_BLOCK = new Set(['PRE', 'TABLE', 'FIGURE', 'HR']);
  * Opt-in marker for blocks that render their own content (mermaid diagrams) and
  * must reveal whole. Word-splitting them would inject <span>s into foreign
  * markup — inside an <svg> those spans lay out as nothing and the diagram
- * vanishes. Set at parse time (see `mermaidBlocks` in utils/mermaid), so this
+ * vanishes. Set at parse time (see `mermaidBlocks` in utils/markdown/mermaid), so this
  * stays tag-agnostic.
  */
 export const WHOLE_BLOCK_CLASS = 'md-whole-block';

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Markdown as ComarkMarkdown } from '@comark/vue';
 import { useMarkdown } from '~/composables/use-markdown';
-import { applyMarkdownLineReveal } from '~/utils/markdown-line-reveal';
-import { renderMermaidDiagrams } from '~/utils/mermaid';
+import { applyMarkdownLineReveal } from '~/utils/markdown/line-reveal';
+import { renderMermaidDiagrams } from '~/utils/markdown/mermaid';
 import { isDark } from '~/logics';
 import {
   blogLineRevealBaseDelay,
@@ -219,7 +219,7 @@ li code {
 }
 
 /*
- * Per-visual-line reveal. A JS pass (markdown-line-reveal) wraps each word in a
+ * Per-visual-line reveal. A JS pass (utils/markdown/line-reveal) wraps each word in a
  * .md-word span in place — inline markup is untouched — and tags each word with
  * a --line-index for its wrapped line. Blocks that aren't split into lines
  * (code, images, tables) get .md-reveal and animate as one unit. Both share the

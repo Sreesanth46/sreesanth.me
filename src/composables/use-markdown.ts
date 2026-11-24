@@ -3,9 +3,10 @@ import punctuation from '@comark/vue/plugins/punctuation';
 import security from '@comark/vue/plugins/security';
 import type { MaybeRefOrGetter } from 'vue';
 import { computed, toValue } from 'vue';
-import { skipFrontmatter } from '~/utils/frontmatter';
-import { codeHighlight, markdownItCompat } from '~/utils/markdown-it-compat';
-import { mermaidBlocks } from '~/utils/mermaid';
+import { codeHighlight } from '~/utils/markdown/code-highlight';
+import { markdownItCompat } from '~/utils/markdown/markdown-it-compat';
+import { skipFrontmatter } from '~/utils/markdown/frontmatter';
+import { mermaidBlocks } from '~/utils/markdown/mermaid';
 
 const options: Omit<ParserOptions, 'plugins'> = {
   // markdownItCompat applies markdown-it's paragraph rules instead.
