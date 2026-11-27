@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Markdown as ComarkMarkdown } from '@comark/vue';
+import ProsePre from '~/components/ProsePre.vue';
 import { useMarkdown } from '~/composables/use-markdown';
 import { applyMarkdownLineReveal } from '~/utils/markdown/line-reveal';
 import { renderMermaidDiagrams } from '~/utils/markdown/mermaid';
@@ -31,6 +32,7 @@ const split = ref(false);
 let revealTimer: ReturnType<typeof setTimeout> | undefined;
 
 const { options, plugins, transformNode } = useMarkdown(() => srcBaseUrl);
+const components = { ProsePre };
 
 function isStillDisplayed(article: HTMLElement) {
   return articleRef.value === article;
@@ -138,7 +140,13 @@ onBeforeUnmount(() => {
   >
     <!-- Props must stay stable: a re-render would patch DOM the line reveal has rewritten. -->
     <Suspense @resolve="reveal">
-      <ComarkMarkdown :value="content" :options :plugins :transform-node="transformNode" />
+      <ComarkMarkdown
+        :value="content"
+        :options
+        :plugins
+        :components
+        :transform-node="transformNode"
+      />
     </Suspense>
   </article>
 </template>
