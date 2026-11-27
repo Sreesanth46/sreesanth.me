@@ -26,7 +26,7 @@ function safeBack() {
       >404</span
     >
     <h6
-      class="text-gray-500 dark:text-white opacity-50 hover:cursor-pointer hover:underline font-normal md:text-xl"
+      class="text-fg-secondary opacity-50 hover:cursor-pointer hover:underline font-normal md:text-xl"
       @click="safeBack"
     >
       cd ..
@@ -37,10 +37,6 @@ function safeBack() {
 <style scoped>
 .outer-stoke {
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
-}
-
-.dark .outer-stoke {
-  -webkit-text-stroke-color: white;
+  -webkit-text-stroke-color: var(--c-fg-strong);
 }
 </style>

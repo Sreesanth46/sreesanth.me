@@ -27,7 +27,7 @@ async function copyCode() {
     <pre ref="pre" v-bind="preAttrs"><slot /></pre>
     <button
       type="button"
-      class="absolute top-2 right-2 flex cursor-pointer rounded-md border border-[#e5e5e5] bg-[#fafafa] p-1.5 text-[#9a9a9a] opacity-0 transition group-hover:opacity-100 hover:text-[#393a34] focus-visible:opacity-100 data-copied:opacity-100 dark:border-[#262626] dark:bg-[#0e0e0e] dark:text-[#6b6b6b] dark:hover:text-[#dbd7caee] [@media(hover:none)]:opacity-100"
+      class="absolute top-2 right-2 flex cursor-pointer rounded-md border border-border bg-surface p-1.5 text-fg-faint opacity-0 transition group-hover:opacity-100 hover:text-fg focus-visible:opacity-100 data-copied:opacity-100 [@media(hover:none)]:opacity-100"
       :data-copied="copied || undefined"
       :aria-label="copied ? 'Copied' : 'Copy code'"
       @click="copyCode"

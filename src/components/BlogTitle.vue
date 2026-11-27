@@ -17,10 +17,7 @@ const layoutId = computed(() =>
 </script>
 
 <template>
-  <motion.div
-    :exit="blogChromeExit"
-    class="prose-sm sm:prose lg:prose-lg dark:prose-invert prose-body-soft mb-6"
-  >
+  <motion.div :exit="blogChromeExit" class="prose-sm sm:prose lg:prose-lg prose-palette mb-6">
     <motion.h1
       v-if="props.title"
       :layout-id="layoutId"

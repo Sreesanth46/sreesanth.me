@@ -37,7 +37,7 @@ const Frameworks = [
 
 <template>
   <div class="sm:m-auto max-w-[75ch]">
-    <article class="prose dark:prose-invert">
+    <article class="prose prose-palette">
       <h1 class="mb-0 text-4xl font-bold">Sreesanth</h1>
       <p>Hey, I am Sreesanth, a Full-Stack Developer | open sourceror</p>
       <p class="mb-0">
@@ -65,7 +65,7 @@ const Frameworks = [
         When I'm not coding, you'll usually find me reading something interesting, playing badminton
         or cricket, or behind the camera, capturing moments while exploring new places.
       </p>
-      <hr class="w-24 m-auto my-10 border-[#7d7d7d4d] dark:border-[#e9e9e94d]" />
+      <hr class="w-24 m-auto my-10 border-border" />
     </article>
 
     <div class="flex flex-col gap-2 mt-10">

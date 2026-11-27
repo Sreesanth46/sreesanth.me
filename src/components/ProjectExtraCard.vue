@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <div
-    class="relative flex items-center rounded-md gap-2 p-2 hover:bg-gray-100/70 dark:hover:bg-black/40 dark:text-gray-300 dark:hover:text-white hover:text-gray-950"
+    class="relative flex items-center rounded-md gap-2 p-2 text-fg hover:bg-surface-raised hover:text-fg-strong"
   >
     <div class="flex-auto">
       <div class="flex gap-2 items-center">

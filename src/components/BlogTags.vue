@@ -26,7 +26,7 @@ function isDraft(tag: string) {
       :initial="blogTagEnterInitial"
       :animate="blogTagEnter(index)"
       class="whitespace-nowrap"
-      :class="isDraft(tag) ? 'text-amber-600 dark:text-amber-400 font-medium' : 'opacity-50'"
+      :class="isDraft(tag) ? 'text-warning font-medium' : 'opacity-50'"
     >
       &middot; {{ tag }}
     </motion.span>

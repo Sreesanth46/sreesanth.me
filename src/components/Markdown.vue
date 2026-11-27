@@ -51,16 +51,14 @@ function waitForPaint() {
 
 /**
  * Serialised so a theme toggle arriving mid-draw can't run a second pass over the
- * same containers concurrently — `isDark` is read when the queued draw actually
+ * same containers concurrently — the palette is read when the queued draw actually
  * runs, so the last one queued renders the current theme.
  */
 let diagramQueue: Promise<void> = Promise.resolve();
 
 function drawDiagrams(article: HTMLElement) {
   diagramQueue = diagramQueue
-    .then(() =>
-      isStillDisplayed(article) ? renderMermaidDiagrams(article, isDark.value) : undefined
-    )
+    .then(() => (isStillDisplayed(article) ? renderMermaidDiagrams(article) : undefined))
     .catch(() => {});
   return diagramQueue;
 }
@@ -130,7 +128,7 @@ onBeforeUnmount(() => {
   <article
     ref="articleRef"
     :key="content"
-    class="prose dark:prose-invert prose-body-soft lg:prose-lg md-lines"
+    class="prose prose-palette lg:prose-lg md-lines"
     :class="{ 'md-lines-ready': ready, 'md-lines-split': split }"
     :style="{
       '--line-base-delay': blogLineRevealBaseDelay,
@@ -163,11 +161,8 @@ onBeforeUnmount(() => {
 
 pre {
   position: relative;
-  background-color: #fafafa !important;
-}
-
-.dark pre {
-  background-color: #0e0e0e !important;
+  background-color: var(--c-surface) !important;
+  border: 1px solid var(--c-border);
 }
 
 /* Empty until mermaid draws into it, so an un-rendered container takes no space. */
@@ -200,13 +195,8 @@ pre {
   cursor: pointer;
   user-select: all;
 
-  background-color: #f5f5f5;
-  color: #d6336c;
-}
-
-.dark code:not(pre code) {
-  background-color: #1e1e1e;
-  color: #ffcb6b;
+  background-color: var(--c-surface-raised);
+  color: var(--c-accent);
 }
 
 code::before,
