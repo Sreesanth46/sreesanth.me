@@ -19,46 +19,98 @@
   --breakpoint-xl: 1536px;
 }
 
+/*
+ * Colour palette. `--c-*` holds the values and flips under `.dark`; `@theme inline`
+ * turns them into utilities (`bg-surface`, `text-fg-secondary`…) that need no `dark:`
+ * variant. Plain CSS and scripts read `--c-*` directly. Hex rather than oklch:
+ * mermaid derives shades with khroma, which only parses hex/rgb/hsl.
+ */
 :root {
-  --primary: transparent;
-  --secondary: rgb(223, 223, 223);
-  --c-bg: #fff;
-  --c-scrollbar: #eee;
-  --c-scrollbar-hover: #bbb;
+  color-scheme: light;
+  --c-page: #ffffff;
+  --c-surface: #fafafa;
+  --c-surface-raised: #f4f4f4;
+  --c-border: #e5e5e5;
+  --c-border-strong: #d4d4d4;
+  --c-fg-strong: #0a0a0a;
+  --c-fg: #262626;
+  --c-fg-secondary: #525252;
+  --c-fg-tertiary: #737373;
+  --c-fg-faint: #a3a3a3;
+  --c-accent: #db2777;
+  --c-warning: #b45309;
+  --c-brand-start: #6366f1;
+  --c-brand-mid: #a855f7;
+  --c-brand-end: #ec4899;
+  /* Not utilities: only read by the scrollbar styles and the Plum canvas. */
+  --c-scrollbar: #d4d4d4;
+  --c-plum: #88888825;
+}
+
+.dark {
+  color-scheme: dark;
+  --c-page: #000000;
+  --c-surface: #0a0a0a;
+  --c-surface-raised: #161616;
+  --c-border: #1f1f1f;
+  --c-border-strong: #333333;
+  --c-fg-strong: #fafafa;
+  --c-fg: #e5e5e5;
+  --c-fg-secondary: #c7c7c7;
+  --c-fg-tertiary: #a3a3a3;
+  --c-fg-faint: #6b6b6b;
+  --c-accent: #f472b6;
+  --c-warning: #fbbf24;
+  --c-scrollbar: #262626;
+}
+
+@theme inline {
+  --color-page: var(--c-page);
+  --color-surface: var(--c-surface);
+  --color-surface-raised: var(--c-surface-raised);
+  --color-border: var(--c-border);
+  --color-border-strong: var(--c-border-strong);
+  --color-fg-strong: var(--c-fg-strong);
+  --color-fg: var(--c-fg);
+  --color-fg-secondary: var(--c-fg-secondary);
+  --color-fg-tertiary: var(--c-fg-tertiary);
+  --color-fg-faint: var(--c-fg-faint);
+  --color-accent: var(--c-accent);
+  --color-warning: var(--c-warning);
+  --color-brand-start: var(--c-brand-start);
+  --color-brand-mid: var(--c-brand-mid);
+  --color-brand-end: var(--c-brand-end);
 }
 
 html {
-  background-color: var(--c-bg);
+  background-color: var(--c-page);
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
-html.dark {
-  --c-bg: #050505;
-  --c-scrollbar: #111;
-  --c-scrollbar-hover: #222;
-}
-
 /*
- * One soft grey for every body-level element in a post — `<p>`, `<li>`, `<strong>`,
- * table cells — instead of the old `prose-p:text-gray-500/80`, which coloured only
- * paragraphs and left list items on prose's darker default.
- *
- * Written as prose's own `--tw-prose-body` variable rather than a `text-*` utility:
- * `.prose` and `.dark:prose-invert` both declare colour at (0,1,0), so a utility ties
- * with them and wins or loses purely on emit order. These rules are unlayered, and
- * unlayered styles outrank anything in @layer regardless of specificity.
- *
- * Hex first, color-mix second, matching how Tailwind itself emits `/80` opacity.
+ * Points the typography plugin's colours at the palette, so prose follows the theme
+ * without `prose-invert`. Unlayered, so it outranks every `prose`/`sm:prose` variant,
+ * each of which re-declares the plugin's own greys.
  */
-.prose-body-soft {
-  --tw-prose-body: #6a7282cc; /* gray-500 @ 80% */
-  --tw-prose-body: color-mix(in oklab, var(--color-gray-500) 80%, transparent);
-}
-
-.dark .prose-body-soft {
-  --tw-prose-body: #f3f4f6cc; /* gray-100 @ 80% */
-  --tw-prose-body: color-mix(in oklab, var(--color-gray-100) 80%, transparent);
+.prose-palette {
+  --tw-prose-body: var(--c-fg-secondary);
+  --tw-prose-headings: var(--c-fg-strong);
+  --tw-prose-lead: var(--c-fg-secondary);
+  --tw-prose-links: var(--c-fg-strong);
+  --tw-prose-bold: var(--c-fg-strong);
+  --tw-prose-counters: var(--c-fg-tertiary);
+  --tw-prose-bullets: var(--c-border-strong);
+  --tw-prose-hr: var(--c-border);
+  --tw-prose-quotes: var(--c-fg);
+  --tw-prose-quote-borders: var(--c-border);
+  --tw-prose-captions: var(--c-fg-tertiary);
+  --tw-prose-kbd: var(--c-fg-strong);
+  --tw-prose-code: var(--c-accent);
+  --tw-prose-pre-code: var(--c-fg);
+  --tw-prose-pre-bg: var(--c-surface);
+  --tw-prose-th-borders: var(--c-border-strong);
+  --tw-prose-td-borders: var(--c-border);
 }
 
 .fade-enter-active {
@@ -73,7 +125,7 @@ html.dark {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--secondary) var(--primary);
+  scrollbar-color: var(--c-scrollbar) transparent;
 }
 
 /* Chrome, Edge, and Safari */
@@ -82,14 +134,14 @@ html.dark {
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--primary);
+  background: transparent;
   border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--secondary);
+  background-color: var(--c-scrollbar);
   border-radius: 14px;
-  border: 3px solid var(--primary);
+  border: 3px solid transparent;
 }
 
 .shiki,

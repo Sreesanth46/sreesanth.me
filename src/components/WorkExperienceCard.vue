@@ -8,12 +8,12 @@ defineProps<Experience>();
   <div class="flex flex-col gap-2">
     <div>
       <p class="flex gap-2">
-        <strong class="underline decoration-stone-400 dark:decoration-slate-300 decoration-dashed">
+        <strong class="underline decoration-fg-tertiary decoration-dashed">
           <a href="#"> {{ employer }} </a>
         </strong>
-        <span class="text-gray-500 dark:text-gray-300">{{ title }}</span>
+        <span class="text-fg-secondary">{{ title }}</span>
       </p>
-      <p class="text-gray-600 dark:text-gray-400 font-light">
+      <p class="text-fg-tertiary font-light">
         {{ `${startDate} - ${endDate ? endDate : 'Present'}` }}
       </p>
     </div>

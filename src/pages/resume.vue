@@ -8,7 +8,7 @@ definePage({
 });
 
 const SectionTitle = h('h4', {
-  class: 'bg-black dark:bg-white w-max text-white dark:text-black px-1 rounded-xs',
+  class: 'bg-fg-strong w-max text-page px-1 rounded-xs',
 });
 </script>
 
@@ -84,7 +84,7 @@ const SectionTitle = h('h4', {
           <section-title> Awards </section-title>
           <div>
             <p><strong>Newbie 2023 Award</strong>, Innovature Labs</p>
-            <p class="text-gray-600 dark:text-gray-400 font-light">Jan 2024</p>
+            <p class="text-fg-tertiary font-light">Jan 2024</p>
           </div>
         </div>
         <div class="flex flex-col gap-4">

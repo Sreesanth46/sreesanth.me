@@ -2,7 +2,6 @@
 const r180 = Math.PI;
 const r90 = Math.PI / 2;
 const r15 = Math.PI / 12;
-const color = '#88888825';
 
 const el = ref<HTMLCanvasElement | null>(null);
 
@@ -113,7 +112,8 @@ onMounted(async () => {
     controls.pause();
     ctx.clearRect(0, 0, width, height);
     ctx.lineWidth = 1;
-    ctx.strokeStyle = color;
+    // Canvas can't resolve var(), so read the palette value.
+    ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--c-plum');
     prevSteps = [];
     steps = [
       () => step(randomMiddle() * size.width, -5, r90),

@@ -47,7 +47,7 @@ function markActive() {
   <router-link
     :to="`/blogs/${name}`"
     @click="markActive"
-    class="capitalize no-underline text-black/65 dark:text-white/65 hover:text-black dark:hover:text-white transition-all duration-200"
+    class="capitalize no-underline text-fg-strong/65 hover:text-fg-strong transition-all duration-200"
   >
     <li class="flex flex-col items-baseline md:flex-row md:gap-4 my-0 text-lg font-normal">
       <motion.span

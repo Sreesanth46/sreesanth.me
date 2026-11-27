@@ -71,32 +71,27 @@ let diagramId = 0;
 /**
  * mermaid's own `theme` presets carry saturated defaults that fight the article's
  * muted palette, so both modes start from `base` and set only what we care about.
- * Colours are pulled from the same values the prose styles use.
+ * mermaid derives shades from these values itself, so it needs the resolved colours
+ * from the palette (tailwind.css), not `var()` references.
  */
-function themeVariables(dark: boolean) {
-  return dark
-    ? {
-        background: '#0e0e0e',
-        primaryColor: '#1e1e1e',
-        primaryTextColor: '#dbd7caee',
-        primaryBorderColor: '#4b4b4b',
-        secondaryColor: '#262626',
-        tertiaryColor: '#1a1a1a',
-        lineColor: '#6b6b6b',
-        textColor: '#dbd7caee',
-        fontSize: '15px',
-      }
-    : {
-        background: '#fafafa',
-        primaryColor: '#f5f5f5',
-        primaryTextColor: '#393a34',
-        primaryBorderColor: '#c6c6c6',
-        secondaryColor: '#ededed',
-        tertiaryColor: '#f7f7f7',
-        lineColor: '#9a9a9a',
-        textColor: '#393a34',
-        fontSize: '15px',
-      };
+function themeVariables(root: HTMLElement) {
+  const style = getComputedStyle(root);
+  const color = (token: string) => style.getPropertyValue(`--c-${token}`).trim();
+
+  return {
+    background: color('surface'),
+    primaryColor: color('surface-raised'),
+    primaryTextColor: color('fg'),
+    primaryBorderColor: color('border-strong'),
+    // Left unset, the base theme derives these by hue-shifting primaryColor.
+    secondaryColor: color('surface-raised'),
+    tertiaryColor: color('surface'),
+    lineColor: color('fg-faint'),
+    textColor: color('fg'),
+    // The base theme's light grey shadow reads as a glow on dark backgrounds.
+    dropShadow: 'none',
+    fontSize: '15px',
+  };
 }
 
 function findContainers(root: HTMLElement) {
@@ -108,7 +103,7 @@ function findContainers(root: HTMLElement) {
  * Resolves once all diagrams have settled, so callers can measure layout after.
  * A diagram that fails to parse falls back to its source text — never a blank gap.
  */
-export async function renderMermaidDiagrams(root: HTMLElement, dark: boolean) {
+export async function renderMermaidDiagrams(root: HTMLElement) {
   const containers = findContainers(root);
 
   if (!containers.length) {
@@ -132,7 +127,7 @@ export async function renderMermaidDiagrams(root: HTMLElement, dark: boolean) {
     startOnLoad: false,
     securityLevel: 'strict',
     theme: 'base',
-    themeVariables: themeVariables(dark),
+    themeVariables: themeVariables(root),
   });
 
   await Promise.all(

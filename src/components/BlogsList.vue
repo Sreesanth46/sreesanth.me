@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex flex-col prose dark:prose-invert">
+  <ul class="flex flex-col prose prose-palette">
     <slot />
   </ul>
 </template>
